@@ -1,0 +1,9 @@
+[submodule "external_roles/cloudalchemy.node-exporter"]
+	path = external_roles/cloudalchemy.node-exporter
+	url = git@github.com:cloudalchemy/ansible-node-exporter.git
+[submodule "external_roles/geerlingguy.docker"]
+	path = external_roles/geerlingguy.docker
+	url = git@github.com:geerlingguy/ansible-role-docker.git
+[submodule "robertdebock.bootstrap"]
+	path = external_roles/robertdebock.bootstrap
+	url = git@github.com:robertdebock/ansible-role-bootstrap.git

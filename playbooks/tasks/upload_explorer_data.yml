@@ -1,0 +1,18 @@
+- name: Upload explorer data
+  hosts: explorer
+  gather_facts: true
+  tasks:
+  - name: Creates explorer dir
+    file:
+      path: "{{explorer_host_dir}}"
+      state: directory
+  - name: Archive explorerdata dir to prepare for upload
+    archive:
+      path: "{{local_explorerdata_host_dir}}/*"
+      dest: "{{local_explorerdata_host_archive}}"
+    delegate_to: localhost
+  - name: Upload new explorer config
+    unarchive:
+      src: "{{ local_explorerdata_host_archive }}"
+      dest: "{{ explorer_host_dir }}/"
+

@@ -1,0 +1,17 @@
+- name: Upload validator keys
+  hosts: validator
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Archive validator dir to prepare for upload
+      archive:
+        path: "{{local_validator_host_dir}}/*"
+        dest: "{{local_validator_host_archive}}"
+      delegate_to: localhost
+    - name: Upload new validator accounts to BN
+      unarchive:
+        src: "{{ local_validator_host_archive }}"
+        dest: "{{ validator_node_dir }}/"
+        mode: "{{keystores_file_mode}}"
+        owner: "1000"
+        group: "1000"

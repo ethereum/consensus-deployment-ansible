@@ -1,0 +1,9 @@
+- name: Stop beacon node
+  hosts: beacon
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Stop Eth2 beacon node container
+      shell: "docker stop --time=10 {{beacon_container_name}}"
+      register: stop_result
+      failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"

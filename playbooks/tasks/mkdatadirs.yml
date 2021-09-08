@@ -1,0 +1,36 @@
+- name: Init beacon data dirs for nodes
+  hosts: beacon
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates beacon dir
+      file:
+        path: "{{beacon_node_dir}}"
+        state: directory
+- name: Init validator data dirs for nodes
+  hosts: validator
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates validator dir
+      file:
+        path: "{{validator_node_dir}}"
+        state: directory
+- name: Init eth1 data dirs for nodes
+  hosts: eth1
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates eth1 dir
+      file:
+        path: "{{eth1_node_dir}}"
+        state: directory
+- name: Init testnet data dirs for nodes
+  hosts: [beacon, eth1, validator]
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates testnet dir
+      file:
+        path: "{{testnet_dir}}"
+        state: directory

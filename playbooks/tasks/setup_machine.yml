@@ -1,0 +1,62 @@
+- name: Setup name and keys
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Add SSH keys from Github users
+      loop: "{{ github_user_pubkeys }}"
+      authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "https://github.com/{{ item }}.keys"
+  roles:
+    # Prepare system to be managed by Ansible.
+    - role: robertdebock.bootstrap
+      tags: [bootstrap]
+
+
+- name: update apt packages and set hostname
+  hosts: all
+  become: true
+  tasks:
+    - name: Set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+    - name: add myself to /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        regexp: '^{{ ansible_host }}='
+        line: '{{ ansible_host }} {{ inventory_hostname }}'
+
+- name: Setup general tools used and update system
+  hosts:
+    - all
+  gather_facts: true  # Needed to check if 'ansible_distribution_release' is 'bionic'
+  tasks:
+    - name: Ubuntu universe repo and update
+      become: true
+      block:
+        - name: Debug distribution
+          debug:
+            var: ansible_distribution_release
+        # Necessary for Docker install to find dependencies in ubuntu 18
+        - name: Add universe repository
+          apt_repository:
+            repo: "deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} universe"
+            state: present
+          when: (ansible_distribution_release == 'bionic') or (ansible_distribution_release == 'focal')
+        - name: Run "apt-get update" to ensure available packages are up to date
+          apt:
+            update_cache: yes
+    - name: Docker with dependencies and user role
+      become: true
+      block:
+        - name: Docker
+          include_role:
+            name: geerlingguy.docker
+        - name: Docker Python wrapper
+          apt:
+            name: python3-docker
+            state: present
+        - name: Add ansible user to docker group
+          shell: 'usermod -aG docker {{ ansible_user }}'

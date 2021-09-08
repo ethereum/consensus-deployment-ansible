@@ -1,0 +1,33 @@
+- name: Start explorer postgres db
+  hosts: explorer
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Create postgres storage dir
+      file:
+        path: "{{explorer_postgres_host_dir}}"
+        state: directory
+
+    - name: Start Postgres database
+      docker_container:
+        name: "{{ explorer_postgres_container_name }}"
+        state: started
+        image: "{{ explorer_postgres_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        #        networks:
+        #          - name: "{{explorer_docker_network_name}}"
+        #            ipv4_address: "172.1.1.100"
+        ports:
+          - "5432:5432"
+        restart: "{{ explorer_postgres_require_restart | default(false) }}"
+        memory: "{{explorer_postgres_memory}}"
+        command: "{{ explorer_postgres_start_args }}"
+        volumes: "{{explorer_postgres_volumes}}"
+        env:  # doesn't really matter, firewalled away, testnet
+          POSTGRES_PASSWORD: pass
+          POSTGRES_USER: postgres
+          POSTGRES_PORT: "5432"
+          POSTGRES_DB: db
+          PGDATA: "/postgresql/data"

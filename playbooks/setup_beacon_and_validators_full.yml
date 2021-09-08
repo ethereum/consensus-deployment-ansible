@@ -1,0 +1,28 @@
+---
+# setups up the machine with docker, updates apt cache, adds user keys
+- import_playbook: tasks/setup_machine.yml
+
+# stop any running beacon/validator docker image, remove existing validator keys
+- import_playbook: tasks/stop-beacon-validator-and-wipe-validator-keys.yml
+
+# creates requisite directories for data and sets permissions
+- import_playbook: tasks/mkdatadirs.yml
+
+# uploads validator keys corresponding to the host
+- import_playbook: tasks/upload_validator_keys.yml
+
+# uploads custom chain config and genesis data if needed
+- import_playbook: tasks/upload_custom_config_data.yml
+  when: (testnet_type == 'custom') or
+        (testnet_type == 'prater' and eth2_client_name == 'prysm')
+
+# stars beacon node docker container
+- import_playbook: tasks/start_beacon.yml
+
+# stars validator docker container
+- import_playbook: tasks/start_validator.yml
+  when: separate_validator_process_enabled
+
+# install node_exporter and metric pusher
+- import_playbook: tasks/deploy_node_exporter_and_metric_pusher.yml
+  when: push_metrics_enabled

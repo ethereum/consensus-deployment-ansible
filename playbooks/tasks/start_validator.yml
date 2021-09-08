@@ -1,0 +1,24 @@
+- name: Start validator client
+  hosts: validator
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start Eth2 validator client container
+      docker_container:
+        name: "{{ validator_container_name }}"
+        state: started
+        image: "{{ validator_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        memory_swappiness: 0
+        kernel_memory: "{{validator_kernel_memory}}"
+        network_mode: host
+        restart: "{{ validator_require_restart | default(false) }}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"
+        volumes: "{{validator_volumes}}"
+        memory: "{{validator_memory}}"
+        memory_swap: "{{validator_memory}}"
+        command: "{{ validator_start_args }}"
+        env: "{{ validator_env | default({}) }}"
+        user: "{{ validator_user_id }}"

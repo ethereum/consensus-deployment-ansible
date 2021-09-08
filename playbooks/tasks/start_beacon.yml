@@ -1,0 +1,24 @@
+- name: Start beacon node
+  hosts: beacon
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start Eth2 beacon node container
+      docker_container:
+        name: "{{ beacon_container_name }}"
+        state: started
+        image: "{{ beacon_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        memory_swappiness: 0
+        kernel_memory: "{{beacon_kernel_memory}}"
+        network_mode: host
+        restart: "{{ beacon_require_restart | default(false) }}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"
+        volumes: "{{beacon_volumes}}"
+        memory: "{{beacon_memory}}"
+        memory_swap: "{{beacon_memory}}"
+        command: "{{ beacon_start_args }}"
+        env: "{{ beacon_env | default({}) }}"
+        user: "{{ beacon_user_id }}"

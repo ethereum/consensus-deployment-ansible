@@ -1,0 +1,15 @@
+- name: Upload network data
+  hosts: beacon
+  gather_facts: true
+  serial: 20
+  tasks:
+  - name: Archive custom_config_data dir to prepare for upload
+    archive:
+      path: "{{local_custom_config_data_host_dir}}/*"
+      dest: "{{local_custom_config_data_host_archive}}"
+    delegate_to: localhost
+  - name: Upload config data to remote
+    unarchive:
+      src: "{{ local_custom_config_data_host_archive }}"
+      dest: "{{ testnet_dir }}/"
+

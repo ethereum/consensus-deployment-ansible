@@ -1,0 +1,23 @@
+- name: Init explorer sql tables
+  hosts: explorer
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Sleep for 15 seconds and continue with play
+      wait_for:
+        timeout: 15
+      delegate_to: localhost
+    - name: Run psql table creation
+      docker_container:
+        name: "postgres_tmp"
+        state: started
+        image: "{{ explorer_postgres_image_name }}"
+        pull: true
+        restart_policy: no
+        auto_remove: false
+        detach: no
+        network_mode: host
+        volumes: "{{ explorer_postgres_init_volumes }}"
+        command: "{{ explorer_postgres_init_args }}"
+        env:
+          PGPASSWORD: pass

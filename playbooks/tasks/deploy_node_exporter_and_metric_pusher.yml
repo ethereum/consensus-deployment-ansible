@@ -1,0 +1,19 @@
+- name: Start node exporter
+  hosts: beacon, validator
+  gather_facts: true
+  roles:
+    - cloudalchemy.node-exporter
+  tasks:
+    - name: Move the j2 template to remote
+      become: true
+      template:
+        src: ../templates/metric-pusher.sh
+        dest: /opt/metric-pusher.sh
+        mode: '755'
+
+    - name: Enable cronjob to push metrics to the prometheus pushgateway
+      cron:
+        name: "metric-pusher"
+        minute: "*"
+        job: "/opt/metric-pusher.sh"
+        user: "{{ ansible_user }}"
