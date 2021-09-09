@@ -2,8 +2,8 @@
 # setups up the machine with docker, updates apt cache, adds user keys
 - import_playbook: tasks/setup_machine.yml
 
-# stop any running beacon/validator docker image, remove existing validator keys
-- import_playbook: tasks/stop-beacon-validator-and-wipe-validator-keys.yml
+# stop any running beacon/validator docker image, remove existing validator keys and beacon node data
+- import_playbook: tasks/stop_and_wipe_beacon_and_validator.yml
 
 # creates requisite directories for data and sets permissions
 - import_playbook: tasks/mkdatadirs.yml

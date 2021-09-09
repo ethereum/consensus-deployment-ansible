@@ -1,4 +1,4 @@
-- name: Stop beacon node and validator node, wipe validator keys
+- name: Stop beacon node and validator node, wipe validator keys and beacon database
   hosts: all
   gather_facts: true
   become: true
@@ -16,6 +16,8 @@
       file:
         path: "{{validator_node_dir}}"
         state: absent
-    - name: Modify permissions to match user-group inside nimbus docker image
-      shell: chown -R "{{ ansible_user }}" "{{ beacon_node_dir }}"
+    - name: Remove beacon node data
       become: true
+      file:
+        path: "{{beacon_node_dir}}"
+        state: absent
