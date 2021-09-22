@@ -13,5 +13,8 @@
         src: "{{ local_validator_host_archive }}"
         dest: "{{ validator_node_dir }}/"
         mode: "{{keystores_file_mode}}"
-        owner: "1000"
-        group: "1000"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+    - name: Modify permissions to match user-group inside docker image
+      shell: chown -R "{{ validator_user_id }}" "{{ validator_node_dir }}"
+      become: true

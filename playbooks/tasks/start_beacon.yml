@@ -4,7 +4,7 @@
   serial: 20
   tasks:
     - name: Modify permissions to match user-group inside docker image
-      shell: chown -R "{{ ansible_user }}" "{{ beacon_node_dir }}"
+      shell: chown -R "{{ beacon_user_id }}" "{{ beacon_node_dir }}"
       become: true
     - name: Start Eth2 beacon node container
       docker_container:
