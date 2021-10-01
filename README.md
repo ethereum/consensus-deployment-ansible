@@ -6,7 +6,6 @@ This repository is a minimal set of playbooks and inventories required to set up
 - Fork this repository for your required devnet (Ideally it is a throwaway devnet)
 - Modify the `testnets/<name>/inventory/dynamic.py` file with the correct tags and client distribution
 - Generate the keys from the mnemonic by running the `generate_keys.sh` file (after exporting the mnemonic)  
-- Modify the client distribution in `select_keys_for_clients.sh` and run the script to get keys in the needed format
 - If needed, modify the `testnets/<name>/custom_config_data/` folder with the `genesis.ssz` and `eth2_config.yaml`
 - Modify the `testnets/<name>/inventory/group_vars/eth2client_<client_name>.yml` if required
 - Check the inventory with `ansible-inventory -i testnets/<name>/inventory/dynamic.py --list`
