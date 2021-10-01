@@ -20,4 +20,4 @@
         volumes: "{{ explorer_postgres_init_volumes }}"
         command: "{{ explorer_postgres_init_args }}"
         env:
-          PGPASSWORD: pass
+          PGPASSWORD: "{{ explorer_postgres_password }}"

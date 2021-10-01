@@ -15,7 +15,7 @@
       tags: [bootstrap]
 
 
-- name: update apt packages and set hostname
+- name: set hostname
   hosts: all
   become: true
   tasks:
@@ -31,10 +31,10 @@
 - name: Setup general tools used and update system
   hosts:
     - all
+  become: true
   gather_facts: true  # Needed to check if 'ansible_distribution_release' is 'bionic'
   tasks:
     - name: Ubuntu universe repo and update
-      become: true
       block:
         - name: Debug distribution
           debug:
@@ -48,8 +48,8 @@
         - name: Run "apt-get update" to ensure available packages are up to date
           apt:
             update_cache: yes
+            upgrade: yes
     - name: Docker with dependencies and user role
-      become: true
       block:
         - name: Docker
           include_role:
@@ -60,3 +60,5 @@
             state: present
         - name: Add ansible user to docker group
           shell: 'usermod -aG docker {{ ansible_user }}'
+    - name: Unconditionally reboot the machine with all defaults
+      reboot:

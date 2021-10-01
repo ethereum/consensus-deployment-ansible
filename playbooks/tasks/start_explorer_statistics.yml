@@ -11,9 +11,9 @@
         pull: true
         restart_policy: unless-stopped
         network_mode: bridge
-        #        networks:
-        #          - name: "{{explorer_docker_network_name}}"
-        #            ipv4_address: "172.1.1.104"
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "172.1.1.104"
         restart: "{{ explorer_stats_require_restart | default(false) }}"
         command: "{{ explorer_stats_start_args }}"
         volumes: "{{explorer_stats_volumes}}"
