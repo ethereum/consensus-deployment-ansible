@@ -16,6 +16,13 @@
   when: (testnet_type == 'custom') or
         (testnet_type == 'prater' and eth2_client_name == 'prysm')
 
+# inits geth instance
+- import_playbook: tasks/init_geth_node.yml
+  when: eth1_client_name == 'geth'
+
+# starts execution container
+- import_playbook: tasks/start_execution_node.yml
+
 # stars beacon node docker container
 - import_playbook: tasks/start_beacon.yml
 
