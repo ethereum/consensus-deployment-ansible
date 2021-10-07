@@ -48,7 +48,6 @@ beacon_start_args: >
   --metrics-host-allowlist="*"
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
-
   --Xnetwork-merge-total-terminal-difficulty {{terminal_total_difficulty}}
   --network={{consensus_base_preset}}
   --Xnetwork-altair-fork-epoch=1

@@ -4,8 +4,8 @@
 eth2_client_name: nimbus
 
 # TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: statusteam/nimbus_beacon_node:deploy-eth2-prod
-validator_image_name: statusteam/nimbus_beacon_node:deploy-eth2-prod
+beacon_image_name: parithoshj/nimbus
+validator_image_name: parithoshj/nimbus
 
 ##############################################
 # volume mappings on remote host
@@ -16,10 +16,6 @@ beacon_volumes:
   - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
   - "{{validator_node_dir}}:/validatordata"
 
-validator_volumes:
-  - "{{validator_node_dir}}:/validatordata"
-  # Note: nimbus validators fetch the spec config from the beacon node
-
 ##############################################
 # arguments to run the containers with
 ##############################################
@@ -29,7 +25,7 @@ beacon_start_args: >
   --network="/custom_config_data"
   --max-peers="{{hi_peer_count}}"
   --data-dir="/beacondata"
-  --web3-url="{{eth1endpoint_nimbus}}"
+  --web3-url="{{consensus_endpoint_nimbus}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --bootstrap-node="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -44,17 +40,6 @@ beacon_start_args: >
   --log-level="{{ beacon_log_level | upper }}"
   --log-file="/dev/null"
   --doppelganger-detection=off
-  --validators-dir="/validatordata/keys"
-  --secrets-dir="/validatordata/secrets"
-
-validator_start_args: >
-  validator_client
-  --log-level="{{ beacon_log_level | upper }}"
-  --log-file="/dev/null"
-  --data-dir="/validatordata"
-  --non-interactive=true
-  --graffiti="{{graffiti}}"
-  --beacon-node=http://127.0.0.1:{{beacon_api_port}}
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
 

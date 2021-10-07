@@ -1,21 +1,27 @@
 ##############################################
 # generic ansible config information
 ##############################################
-ansible_user: "ubuntu"
+ansible_user: "devops"
+bootstrap_user: "devops"
+
 github_user_pubkeys:
   - parithosh
   - protolambda
   - ralexstokes
   - djrtwo
 
+ansible_python_interpreter: /usr/bin/python3
+oh_my_zsh_config:
+  PROMPT: "%{$fg[yellow]%}%n%{$fg[white]%}@%{$fg[red]%}%m%{$reset_color%} ${PROMPT}"
+
 ##############################################
 # eth1 endpoints
 ##############################################
 # nimbus requires a websocket endpoint (http support unstable)
 # note: also used for execution engine endpoint in nimbus
-eth1endpoint_nimbus: wss://url
+consensus_endpoint_nimbus: ws://127.0.0.1:8546
 
-eth1endpoint: https://url
+eth1endpoint: http://127.0.0.1:8545
 
 # Merge Engine endpoints
 # TODO change IP?
@@ -37,7 +43,7 @@ consensus_base_preset: minimal
 altair_fork_epoch: 1
 
 # TODO: set TTD
-terminal_total_difficulty: 16
+terminal_total_difficulty: 10
 
 # enter bootnodes here if needed
 bootnode_enrs:
@@ -82,8 +88,8 @@ local_custom_config_data_host_dir: "{{inventory_dir}}/../custom_config_data"
 local_custom_config_data_host_archive: "{{inventory_dir}}/../custom_config_data.tar.gz"
 # private dirs
 # Validator assignments
-local_validator_host_dir: "{{inventory_dir}}/../selected_validator_keys/host_{{eth2_node_index}}"
-local_validator_host_archive: "{{inventory_dir}}/../selected_validator_keys/host_{{eth2_node_index}}.tar.gz"
+local_validator_host_dir: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}"
+local_validator_host_archive: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}.tar.gz"
 
 ##############################################
 # remote host data directories
@@ -92,6 +98,7 @@ home_dir: "/home/{{ ansible_user }}"
 beacon_node_dir: "{{home_dir}}/beacon"
 validator_node_dir: "{{home_dir}}/validator"
 testnet_dir: "{{home_dir}}/custom_config_data"
+eth1_node_dir: "{{home_dir}}/eth1data"
 
 ##############################################
 # common log config

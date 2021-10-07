@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: protolambda/geth:rayonism
+eth1_image_name: parithoshj/geth:merge-efad795
 
 eth1_memory: 5000M
 eth1_kernel_memory: 5500M
@@ -8,14 +8,14 @@ eth1_kernel_memory: 5500M
 eth1endpoint_ws: ws://127.0.0.1:8546
 
 eth1_volumes:
-  - "{{eth1_node_dir}}:/gethdata"
+  - "{{eth1_node_dir}}:/eth1data"
   - "{{testnet_dir}}/genesis.json:/networkdata/genesis.json"
 
 geth_init_args: >
-  geth --datadir=/gethdata init /networkdata/genesis.json
+  geth --datadir=/eth1data init /networkdata/genesis.json
 
 eth1_start_args: >
-  geth --datadir=/gethdata
+  geth --datadir=/eth1data
   --networkid=1337002 --catalyst --http -http.api "engine,eth"
   --allow-insecure-unlock --mine
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
