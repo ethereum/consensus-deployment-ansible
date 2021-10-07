@@ -3,7 +3,10 @@
 ##############################################
 ansible_user: "ubuntu"
 github_user_pubkeys:
-  - example
+  - parithosh
+  - protolambda
+  - ralexstokes
+  - djrtwo
 
 ##############################################
 # eth1 endpoints
@@ -12,11 +15,19 @@ github_user_pubkeys:
 eth1endpoint_nimbus: wss://url
 eth1endpoint: https://url
 
+# Merge Engine endpoints
+# TODO change IP?
+# TODO: some engines might start using the 8550 port (or 8551 for ws)
+execution_engine_endpoint: http://127.0.0.1:8545
+
 ##############################################
 # testnet specific information
 ##############################################
-testnet_type: prater
-eth2_network_name: prater
+testnet_type: custom
+eth2_network_name: alpha
+
+# TODO: set TTD
+terminal_total_difficulty: 16
 
 # enter bootnodes here if needed
 #bootnode_enrs:
