@@ -34,7 +34,7 @@ beacon_start_args: >
   --log-destination=CONSOLE
   --log-file="/beacondata/log_outputs"
   --p2p-peer-upper-bound={{hi_peer_count}}
-  --eth1-endpoint "{{eth1endpoint}}"
+  --eth1-endpoints="{{eth1endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --p2p-discovery-bootnodes="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -48,6 +48,12 @@ beacon_start_args: >
   --metrics-host-allowlist="*"
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
+
+  --Xnetwork-merge-total-terminal-difficulty {{terminal_total_difficulty}}
+  --network={{consensus_base_preset}}
+  --Xnetwork-altair-fork-epoch=1
+  --Xnetwork-merge-fork-epoch=2
+
 
 validator_start_args: >
   validator-client

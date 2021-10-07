@@ -30,6 +30,12 @@ execution_engine_endpoint: http://127.0.0.1:8545
 testnet_type: custom
 eth2_network_name: alpha
 
+# teku needs this
+consensus_base_preset: minimal
+
+# TODO: teku documents fork epochs in CLI, but these are in the config? Can't they just use the config? Is this an artefact from the interop state setup
+altair_fork_epoch: 1
+
 # TODO: set TTD
 terminal_total_difficulty: 16
 
