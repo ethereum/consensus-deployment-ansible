@@ -12,12 +12,16 @@ github_user_pubkeys:
 # eth1 endpoints
 ##############################################
 # nimbus requires a websocket endpoint (http support unstable)
+# note: also used for execution engine endpoint in nimbus
 eth1endpoint_nimbus: wss://url
+
 eth1endpoint: https://url
 
 # Merge Engine endpoints
 # TODO change IP?
 # TODO: some engines might start using the 8550 port (or 8551 for ws)
+
+# lighthouse uses this
 execution_engine_endpoint: http://127.0.0.1:8545
 
 ##############################################

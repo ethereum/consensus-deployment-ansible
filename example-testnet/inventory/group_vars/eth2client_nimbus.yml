@@ -2,6 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: nimbus
+
+# TODO: switch to merge f2f, but mainnet preset
 beacon_image_name: statusteam/nimbus_beacon_node:deploy-eth2-prod
 validator_image_name: statusteam/nimbus_beacon_node:deploy-eth2-prod
 
@@ -23,6 +25,7 @@ validator_volumes:
 ##############################################
 beacon_start_args: >
   beacon_node
+  --non-interactive=true
   --network="/custom_config_data"
   --max-peers="{{hi_peer_count}}"
   --data-dir="/beacondata"
@@ -36,23 +39,25 @@ beacon_start_args: >
   --graffiti="{{graffiti}}"
   --nat="extip:{{public_ip_address}}"
   --enr-auto-update=false
-  --rpc --rpc-port={{beacon_api_port}} --rpc-address=0.0.0.0
+  --rest --rest-port={{beacon_api_port}} --rest-address=0.0.0.0
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0
   --log-level="{{ beacon_log_level | upper }}"
   --log-file="/dev/null"
+  --doppelganger-detection=off
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
 
-#validator_start_args: >
-#  validator_client
-#  --log-level="{{ beacon_log_level | upper }}"
-#  --log-file="/dev/null"
-#  --data-dir="/validatordata"
-#  --non-interactive=true
-#  --graffiti="{{graffiti}}"
-#  --beacon-node=http://127.0.0.1:{{beacon_api_port}}
-#  --validators-dir="/validatordata/keys"
-#  --secrets-dir="/validatordata/secrets"
+validator_start_args: >
+  validator_client
+  --log-level="{{ beacon_log_level | upper }}"
+  --log-file="/dev/null"
+  --data-dir="/validatordata"
+  --non-interactive=true
+  --graffiti="{{graffiti}}"
+  --beacon-node=http://127.0.0.1:{{beacon_api_port}}
+  --validators-dir="/validatordata/keys"
+  --secrets-dir="/validatordata/secrets"
+
 ##############################################
 # memory limits
 ##############################################
