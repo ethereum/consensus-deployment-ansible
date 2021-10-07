@@ -2,6 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: lighthouse
+
+# TODO: switch to merge f2f, but mainnet preset
 beacon_image_name: sigp/lighthouse:v1.5.1
 validator_image_name: sigp/lighthouse:v1.5.1
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
@@ -44,6 +46,12 @@ beacon_start_args: >
   --listen-address 0.0.0.0
   --graffiti="{{graffiti}}"
   --target-peers={{hi_peer_count}}
+  --http-allow-sync-stalled
+  --merge
+  --execution-endpoints {{execution_engine_endpoint}}
+  --terminal-total-difficulty-override {{terminal_total_difficulty}}
+
+# in case of eth1 deposit endpoint problems: --dummy-eth1
 
 validator_start_args: >
   lighthouse
@@ -55,6 +63,7 @@ validator_start_args: >
   --server={{beacon_endpoint}}
   --graffiti="{{graffiti}}"
   --http --http-port={{validator_rpc_port}}
+
 ##############################################
 # memory limits
 ##############################################
