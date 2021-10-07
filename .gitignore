@@ -6,3 +6,4 @@ selected_validator_keys
 custom_config.data.tar.gz
 external_roles
 vars.env
+mnemonics.yaml

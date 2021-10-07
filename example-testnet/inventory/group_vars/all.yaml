@@ -20,15 +20,14 @@ oh_my_zsh_config:
 # nimbus requires a websocket endpoint (http support unstable)
 # note: also used for execution engine endpoint in nimbus
 consensus_endpoint_nimbus: ws://127.0.0.1:8546
+# lighthouse uses this
+execution_engine_endpoint: http://127.0.0.1:8545
 
 eth1endpoint: http://127.0.0.1:8545
 
 # Merge Engine endpoints
 # TODO change IP?
 # TODO: some engines might start using the 8550 port (or 8551 for ws)
-
-# lighthouse uses this
-execution_engine_endpoint: http://127.0.0.1:8545
 
 ##############################################
 # testnet specific information

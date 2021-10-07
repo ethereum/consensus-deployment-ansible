@@ -16,7 +16,7 @@ This directory contains the configs required to run an example testnet.
 is not needed, then replace it with a static `inventory.ini` file (same for all the commands below)
 - Generate the keys from the mnemonic by running the `generate_keys.sh` file (after exporting the mnemonic)
 - Modify the client distribution in `select_keys_for_clients.sh` and run the script to get keys in the needed format
-- If needed, modify the `example-testnet/custom_config_data/` folder with the `genesis.ssz` and `eth2_config.yaml`
+- If needed, modify the `example-testnet/custom_config_data/` folder with the `genesis.ssz` and `config.yaml`
 - Modify the `example-testnet/inventory/group_vars/eth2client_<client_name>.yml` if required
 - Check the inventory with `ansible-inventory -i example-testnet/inventory/dynamic.py --list`
 - Run the playbook to run all beacon nodes and validators with ` ansible-playbook -i example-testnet/inventory/dynamic.py playbooks/setup_beacon_and_validators_full.yml`

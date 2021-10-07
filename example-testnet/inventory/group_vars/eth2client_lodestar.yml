@@ -8,6 +8,9 @@ beacon_image_name: chainsafe/lodestar:next
 validator_image_name: chainsafe/lodestar:next
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
+beacon_env:
+  LODESTAR_PRESET: minimal
+
 ##############################################
 # volume mappings on remote host
 ##############################################
@@ -24,25 +27,25 @@ validator_volumes:
 ##############################################
 beacon_start_args: >
   beacon
-        --rootDir /beacondata
-        --paramsFile: /custom_config_data/eth2_config.yaml
-        --genesisStateFile: /custom_config_data/genesis.ssz
+        --rootDir=/beacondata
+        --paramsFile=/custom_config_data/config.yaml
+        --genesisStateFile=/custom_config_data/genesis.ssz
         {% if (bootnode_enrs is defined) and bootnode_enrs %}
-        --network.discv5.bootEnrs: "{{ bootnode_enrs | join(',') }}"
+        --network.discv5.bootEnrs="{{ bootnode_enrs | join(',') }}"
         {% endif %}
-        --port {{beacon_p2p_port}}
-        --eth1.enabled: true
-        --eth1.disableEth1DepositDataTracker: true
-        --eth1.providerUrls: {{execution_engine_endpoint}}
-        --execution.urls: {{execution_engine_endpoint}}
-        --api.rest.enabled: true
-        --api.rest.host: 0.0.0.0
-        --api.rest.api: "*"
-        --logLevel info
-        --logLevelFile debug
-        --logFile /beacondata/beacon.log
+        --eth1.enabled=true
+        --eth1.disableEth1DepositDataTracker=true
+        --eth1.providerUrls={{execution_engine_endpoint}}
+        --execution.urls={{execution_engine_endpoint}}
+        --discoveryPort=9000
+        --api.rest.enabled=true
+        --api.rest.host=0.0.0.0
+        --api.rest.api="*"
+        --logLevel=info
+        --logLevelFile=debug
+        --logFile=/beacondata/beacon.log
         --logRotate
-        --logMaxFiles 5
+        --logMaxFiles=5
 
 validator_start_args: >
   validator

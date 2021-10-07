@@ -37,7 +37,7 @@ beacon_start_args: >
   --rest --rest-port={{beacon_api_port}} --rest-address=0.0.0.0
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0
   --log-level="{{ beacon_log_level | upper }}"
-  --log-file="/dev/null"
+  --log-file="/beacondata/nimbus.log"
   --doppelganger-detection=off
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
@@ -54,8 +54,8 @@ beacon_kernel_memory: 5500M
 # file permissions and user ids
 ##############################################
 keystores_file_mode: "0700"
-beacon_user_id: "1000:1000"
-validator_user_id: "1000:1000"
+beacon_user_id: "1000:100"
+validator_user_id: "1000:100"
 
 # Nimbus currently runs on a combined beacon validator process, future versions will work as separate processes
 separate_validator_process_enabled: false

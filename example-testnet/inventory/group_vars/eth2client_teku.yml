@@ -11,18 +11,16 @@ beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 ##############################################
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/eth2_config.yaml"
   - "{{testnet_dir}}/genesis.ssz:/custom_config_data/genesis.ssz"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/eth2_config.yaml"
 
 ##############################################
 # arguments to run the containers with
 ##############################################
 beacon_start_args: >
-  --network "/custom_config_data/eth2_config.yaml"
+  --network "/custom_config_data/config.yaml"
   --initial-state "/custom_config_data/genesis.ssz"
   --data-path "/beacondata"
   --data-storage-mode=PRUNE
@@ -56,7 +54,7 @@ beacon_start_args: >
 
 validator_start_args: >
   validator-client
-  --network "/custom_config_data/eth2_config.yaml"
+  --network "/custom_config_data/config.yaml"
   --data-path "/validatordata"
   --beacon-node-api-endpoint "{{beacon_endpoint}}"
   --validators-graffiti="{{graffiti}}"
