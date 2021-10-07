@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: consensys/teku:21.8.2
-validator_image_name: consensys/teku:21.8.2
+beacon_image_name: parithoshj/teku:merge-4cce741
+validator_image_name: parithoshj/teku:merge-4cce741
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 ##############################################
@@ -11,10 +11,11 @@ beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 ##############################################
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
-  - "{{testnet_dir}}/genesis.ssz:/custom_config_data/genesis.ssz"
+  - "{{testnet_dir}}:/custom_config_data"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
+  - "{{testnet_dir}}:/custom_config_data"
 
 ##############################################
 # arguments to run the containers with
@@ -47,27 +48,25 @@ beacon_start_args: >
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
   --Xnetwork-merge-total-terminal-difficulty {{terminal_total_difficulty}}
-  --network={{consensus_base_preset}}
-  --Xnetwork-altair-fork-epoch=1
-  --Xnetwork-merge-fork-epoch=2
 
 
 validator_start_args: >
   validator-client
-  --network "/custom_config_data/config.yaml"
-  --data-path "/validatordata"
-  --beacon-node-api-endpoint "{{beacon_endpoint}}"
+  --network=auto
+  --data-path="/validatordata"
+  --beacon-node-api-endpoint="{{beacon_endpoint}}"
   --validators-graffiti="{{graffiti}}"
-  --validator-keys "/validatordata/keys:/validatordata/secrets"
+  --validator-keys="/validatordata/keys:/validatordata/secrets"
+
 ##############################################
 # memory limits
 ##############################################
-beacon_memory: 7000M
-beacon_kernel_memory: 7500M
+beacon_memory: 14000M
+beacon_kernel_memory: 14500M
 validator_memory: 2000M
 validator_kernel_memory: 2500M
 beacon_env:
-  JAVA_OPTS: "-Xmx6000m -Xms6000m"
+  JAVA_OPTS: "-Xmx14000m -Xms14000m"
 
 # TODO: maybe configure logging style via env var later
 #  LOG4J_CONFIGURATION_FILE: "/beacondata/log_config.xml"

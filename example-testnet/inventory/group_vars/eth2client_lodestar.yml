@@ -37,7 +37,6 @@ beacon_start_args: >
         --eth1.disableEth1DepositDataTracker=true
         --eth1.providerUrls={{execution_engine_endpoint}}
         --execution.urls={{execution_engine_endpoint}}
-        --discoveryPort=9000
         --api.rest.enabled=true
         --api.rest.host=0.0.0.0
         --api.rest.api="*"
@@ -49,14 +48,14 @@ beacon_start_args: >
 
 validator_start_args: >
   validator
-   --rootDir /validatordata
-   --keystoresDir /validatordata/keystores
-   --secretsDir /validatordata/secrets/
-   --server {{beacon_endpoint}}
-   --logFile /validatordata/validator.log
-   --logLevelFile debug
+   --rootDir=/validatordata
+   --keystoresDir=/validatordata/keystores
+   --secretsDir=/validatordata/secrets/
+   --server={{beacon_endpoint}}
+   --logFile=/validatordata/validator.log
+   --logLevelFile=debug
    --logRotate
-   --logMaxFiles 5
+   --logMaxFiles=5
 
 ##############################################
 # memory limits

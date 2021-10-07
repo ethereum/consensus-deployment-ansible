@@ -35,21 +35,15 @@ eth1endpoint: http://127.0.0.1:8545
 testnet_type: custom
 eth2_network_name: alpha
 
-# teku needs this
-consensus_base_preset: minimal
-
-# TODO: teku documents fork epochs in CLI, but these are in the config? Can't they just use the config? Is this an artefact from the interop state setup
-altair_fork_epoch: 1
-
 # TODO: set TTD
-terminal_total_difficulty: 10000000
+terminal_total_difficulty: 20000000
 
 # enter bootnodes here if needed
 bootnode_enrs:
   - "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
 
 eth1_bootnode_enode:
-  - "enode://bee8b850ec6527bd8aac28e2a09ae4f67f41ee7666fabe47079f1eb63a1ceca4d2fc87f6528e30be26f4791d6e53cc5c29c0fd571b07d961b6ae127b9d47c43f@127.0.0.1:30303"
+  - "enode://2d4d4dcf91cae5cd49240300701128d80eee48305acbab434a4a50fdb83f73c177cc7c1f5bbf76d4309a9e6862f1e763dfa8db80072ddd8485e63d31dc3e9417@134.122.88.41:30303"
 
 ##############################################
 # metric information
