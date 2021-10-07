@@ -4,8 +4,8 @@
 eth2_client_name: nimbus
 
 # TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: parithoshj/nimbus
-validator_image_name: parithoshj/nimbus
+beacon_image_name: parithoshj/nimbus:merge-a80b001
+validator_image_name: parithoshj/nimbus:merge-a80b001
 
 ##############################################
 # volume mappings on remote host
@@ -13,7 +13,6 @@ validator_image_name: parithoshj/nimbus
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
   - "{{validator_node_dir}}:/validatordata"
 
 ##############################################
@@ -33,7 +32,7 @@ beacon_start_args: >
   --tcp-port={{beacon_p2p_port}}
   --listen-address=0.0.0.0
   --graffiti="{{graffiti}}"
-  --nat="extip:{{public_ip_address}}"
+  --nat="extip:{{ansible_host}}"
   --enr-auto-update=false
   --rest --rest-port={{beacon_api_port}} --rest-address=0.0.0.0
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0

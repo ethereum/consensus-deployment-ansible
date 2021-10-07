@@ -27,7 +27,7 @@ beacon_start_args: >
   --data-path "/beacondata"
   --data-storage-mode=PRUNE
   --p2p-enabled=true
-  --p2p-advertised-ip={{public_ip_address}}
+  --p2p-advertised-ip={{ansible_host}}
   --p2p-port="{{beacon_p2p_port}}"
   --p2p-advertised-port={{beacon_p2p_port}}
   --logging={{beacon_log_level}}

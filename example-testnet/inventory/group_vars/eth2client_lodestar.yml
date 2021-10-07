@@ -14,12 +14,10 @@ beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
   - "{{testnet_dir}}:/custom_config_data"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
 
 ##############################################
 # arguments to run the containers with
@@ -27,7 +25,7 @@ validator_volumes:
 beacon_start_args: >
   beacon
         --rootDir /beacondata
-        --paramsFile: /custom_config_data/config.yaml
+        --paramsFile: /custom_config_data/eth2_config.yaml
         --genesisStateFile: /custom_config_data/genesis.ssz
         {% if (bootnode_enrs is defined) and bootnode_enrs %}
         --network.discv5.bootEnrs: "{{ bootnode_enrs | join(',') }}"

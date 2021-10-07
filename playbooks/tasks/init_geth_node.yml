@@ -1,5 +1,5 @@
 - name: Init geth node
-  hosts: geth
+  hosts: eth1client_geth
   gather_facts: true
   serial: 20
   tasks:
@@ -18,4 +18,3 @@
         volumes: "{{eth1_volumes}}"
         command: "{{ geth_init_args }}"
         env: "{{ eth1_env | default({}) }}"
-        user: "{{ eth1_user_id }}"

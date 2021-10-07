@@ -36,7 +36,7 @@ beacon_start_args: >
     --bootstrap-node="{{ bootnode_enrs | join(',') }}"
   {% endif %}
   --verbosity="{{ beacon_log_level | lower }}"
-  --p2p-host-ip={{public_ip_address}}
+  --p2p-host-ip={{ansible_host}}
   --p2p-max-peers={{hi_peer_count}}
   --p2p-udp-port={{beacon_p2p_port}} --p2p-tcp-port={{beacon_p2p_port}}
   --monitoring-host=0.0.0.0 --monitoring-port={{beacon_metrics_port}}

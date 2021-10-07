@@ -31,13 +31,13 @@ function prep_group {
 }
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "shedinja-lighthouse"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "alpha-lighthouse"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "shedinja-lodestar"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "alpha-lodestar"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "shedinja-nimbus"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "alpha-nimbus"
 
 #echo "Teku keys"
-#prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 4 "shedinja-teku"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 4 "alpha-teku"

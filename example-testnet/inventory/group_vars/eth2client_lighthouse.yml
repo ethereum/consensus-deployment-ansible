@@ -31,7 +31,7 @@ beacon_start_args: >
   --testnet-dir="/custom_config_data"
   bn
   --disable-enr-auto-update
-  --enr-address={{public_ip_address}}
+  --enr-address={{ansible_host}}
   --enr-tcp-port={{beacon_p2p_port}} --enr-udp-port={{beacon_p2p_port}}
   --port={{beacon_p2p_port}} --discovery-port={{beacon_p2p_port}}
   --dummy-eth1

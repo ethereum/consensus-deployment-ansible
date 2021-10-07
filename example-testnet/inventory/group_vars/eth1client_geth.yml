@@ -9,15 +9,15 @@ eth1endpoint_ws: ws://127.0.0.1:8546
 
 eth1_volumes:
   - "{{eth1_node_dir}}:/eth1data"
-  - "{{testnet_dir}}/genesis.json:/networkdata/genesis.json"
+  - "{{testnet_dir}}:/networkdata"
 
 geth_init_args: >
-  geth --datadir=/eth1data init /networkdata/genesis.json
+  --datadir=/eth1data init /networkdata/genesis.json
 
 eth1_start_args: >
-  geth --datadir=/eth1data
-  --networkid=1337002 --catalyst --http -http.api "engine,eth"
-  --allow-insecure-unlock --mine
+  --datadir=/eth1data
+  --networkid=1337001 --catalyst --http -http.api "engine,eth"
+  --allow-insecure-unlock
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

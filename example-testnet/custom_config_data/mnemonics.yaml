@@ -1,0 +1,11 @@
+# 0-100 - lighthouse
+- mnemonic: "flock beyond move size arena limit shoe observe ship drop bacon phone satisfy lend evolve anchor sheriff when impulse physical certain future trophy series"  # a 24 word BIP 39 mnemonic
+  count: 100  # amount of validators
+
+# 100-200 - lodestar
+- mnemonic: "flock beyond move size arena limit shoe observe ship drop bacon phone satisfy lend evolve anchor sheriff when impulse physical certain future trophy series"  # a 24 word BIP 39 mnemonic
+  count: 100  # amount of validators
+
+# 200-300 - nimbus
+- mnemonic: "flock beyond move size arena limit shoe observe ship drop bacon phone satisfy lend evolve anchor sheriff when impulse physical certain future trophy series"  # a 24 word BIP 39 mnemonic
+  count: 100  # amount of validators

@@ -5,7 +5,7 @@
   tasks:
     - name: Start execution node container
       docker_container:
-        name: "{{ eth1_container_name }}"
+        name: "{{ eth1_client_name }}"
         state: started
         image: "{{ eth1_image_name }}"
         pull: true
@@ -21,4 +21,3 @@
         memory_swap: "{{eth1_memory}}"
         command: "{{ eth1_start_args }}"
         env: "{{ eth1_env | default({}) }}"
-        user: "{{ eth1_user_id }}"
