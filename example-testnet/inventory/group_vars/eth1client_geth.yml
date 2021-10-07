@@ -16,7 +16,7 @@ geth_init_args: >
 
 eth1_start_args: >
   --datadir=/eth1data
-  --networkid=1337001 --catalyst
+  --networkid=1337101 --catalyst
   --http --http.api "engine,net,eth,consensus"
   --http.port {{eth1_rpc_port}}
   --http.addr 0.0.0.0
@@ -27,7 +27,7 @@ eth1_start_args: >
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
-  --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
+  --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
 
 eth1_user_id: "1000:1000"

@@ -20,10 +20,9 @@ function prep_group {
     let validators_source_min=offset_i*validators_per_host
     let validators_source_max=validators_source_min+validators_per_host
 
-    echo $validators_source_mnemonic
     echo "writing keystores for host $naming_prefix-$node_index: $validators_source_min - $validators_source_max"
     eth2-val-tools keystores \
-    --insecure
+    --insecure \
     --prysm-pass="prysm" \
     --out-loc="validator_prep/$naming_prefix-$node_index" \
     --source-max="$validators_source_max" \
@@ -33,13 +32,13 @@ function prep_group {
 }
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 1 "alpha-lighthouse"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 5 "alpha-lighthouse"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 1 1 "alpha-lodestar"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 5 2 "alpha-lodestar"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 2 1 "alpha-nimbus"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 4 "alpha-nimbus"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 1 "alpha-teku"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 11 5 "alpha-teku"

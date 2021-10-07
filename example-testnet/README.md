@@ -38,3 +38,18 @@ This will stop existing beacon and validator containers and re-start them with t
 - If you wish to change the client distribution or want to fully wipe and re-deploy the entire node, then please run 
 `ansible-playbook -i example-testnet/inventory/dynamic.py consensus-deployment-ansible/playbooks/setup_beacon_and_validators_full.yml`
 - Manually check the grafana dashboards or ssh into the instance and confirm changes. 
+
+# Geth bootnode:
+- ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 init genesis.json
+- ~ ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 --ethash.dagdir=./hacknet/v2/ethash --catalyst --mine --miner.threads=1 --miner.etherbase=0xfb969eb20eca70c2800103bbb0d3757bc60f918a --http --http.corsdomain='*' --http.addr="0.0.0.0" --nat extip:165.22.77.68
+-  curl --location --request POST 'localhost:8545/' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "jsonrpc":"2.0",
+   "method":"eth_getBlockByNumber",
+   "params":[
+   "latest",
+   false
+   ],
+   "id":1
+   }'

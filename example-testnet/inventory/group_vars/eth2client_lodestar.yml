@@ -33,6 +33,7 @@ beacon_start_args: >
         {% if (bootnode_enrs is defined) and bootnode_enrs %}
         --network.discv5.bootEnrs="{{ bootnode_enrs | join(',') }}"
         {% endif %}
+        --network.bootMultiaddrs="/ip4/178.128.205.143/tcp/9000/p2p/16Uiu2HAmBYfxBcvGuCQeWJChHp9KT9K9aHwXf6VLkYUoUoAWzL8m"
         --eth1.enabled=true
         --eth1.disableEth1DepositDataTracker=true
         --eth1.providerUrls={{execution_engine_endpoint}}

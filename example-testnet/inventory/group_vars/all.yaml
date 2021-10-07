@@ -43,7 +43,7 @@ bootnode_enrs:
   - "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
 
 eth1_bootnode_enode:
-  - "enode://2d4d4dcf91cae5cd49240300701128d80eee48305acbab434a4a50fdb83f73c177cc7c1f5bbf76d4309a9e6862f1e763dfa8db80072ddd8485e63d31dc3e9417@134.122.88.41:30303"
+  - "enode://1ae9aaa5185f9be1c0b3a55c102b487f9c232318abc7d44c3b67adc7960647b1f291a9ad96d499bc5bd8dcdcb2e61cafa3483a89d359247d69cbf4f0642c5ab2@165.22.77.68:30303"
 
 ##############################################
 # metric information

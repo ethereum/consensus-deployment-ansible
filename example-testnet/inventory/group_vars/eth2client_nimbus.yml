@@ -4,8 +4,8 @@
 eth2_client_name: nimbus
 
 # TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: parithoshj/nimbus:merge-a80b001
-validator_image_name: parithoshj/nimbus:merge-a80b001
+beacon_image_name: parithoshj/nimbus:merge-98693ef
+validator_image_name: parithoshj/nimbus:merge-98693ef
 
 ##############################################
 # volume mappings on remote host
