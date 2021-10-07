@@ -1,18 +1,15 @@
 bootnode_container_name: bootnode
 bootnode_memory: 2000m
-bootnode_image_name: protolambda/eth2-bootnode:latest
+bootnode_image_name: protolambda/eth2-bootnode:cleanup
 
 bootnode_host_dir: "{{home_dir}}/bootnode_data"
 
 bootnode_port: 9001
 
-bootnode_ip: "{{public_ip_address}}"
+bootnode_ip: "{{ansible_host}}"
 
 # 32 bytes, hex encoded, no 0x.
-#bootnode_p2p_priv_key: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-
-bootnode_fork_version: "0x111111"
-bootnode_genesis_validators_root: "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+bootnode_p2p_priv_key: "fb852dd83f54a366ae8b280d50882ecc86c023083be1806187d72bda21a006ae"
 
 bootnode_start_args: >
   {% if (other_bootnodes is defined) and other_bootnodes %}
@@ -21,8 +18,6 @@ bootnode_start_args: >
   --color=false
   --enr-ip="{{bootnode_ip}}"
   --enr-udp="{{bootnode_port}}"
-  --fork-version="{{bootnode_fork_version}}"
-  --genesis-validators-root="{{bootnode_genesis_validators_root}}"
   --level=trace
   --listen-ip=0.0.0.0
   --listen-udp="{{bootnode_port}}"
