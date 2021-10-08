@@ -1,0 +1,16 @@
+mnemonic: "flock beyond move size arena limit shoe observe ship drop bacon phone satisfy lend evolve anchor sheriff when impulse physical certain future trophy series"
+eth1_premine:
+  "m/44'/60'/0'/0/0": 10000000ETH
+  "m/44'/60'/0'/0/1": 10000000ETH
+  "m/44'/60'/0'/0/2": 10000000ETH
+  "m/44'/60'/0'/0/3": 10000000ETH
+  "m/44'/60'/0'/0/4": 10000000ETH
+  "m/44'/60'/0'/0/5": 10000000ETH
+eth1_premine_addrs: {}
+#  "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": 1ETH
+chain_id: 700
+deposit_contract_address: "0x4242424242424242424242424242424242424242"
+eth1_genesis_timestamp: 0
+# Tweak this. actual_genesis_timestamp = eth1_genesis_timestamp + eth2_genesis_delay
+eth2_genesis_delay: 600
+terminal_total_difficulty: 20000000
