@@ -37,8 +37,8 @@ out = {
         "maximumExtraDataSize": "0x20",
         "minGasLimit": "0x1388",
         "networkID": hex(int(data['chain_id'])),
-        # "eip158Transition": "0x0", TODO: option existed before, but nethermind doesn't seem to use it anymore
         "eip150Transition": "0x0",
+        "eip158Transition": "0x0",
         "eip160Transition": "0x0",
         "eip161abcTransition": "0x0",
         "eip161dTransition": "0x0",
