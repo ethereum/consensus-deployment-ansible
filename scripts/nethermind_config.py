@@ -127,7 +127,10 @@ out = {
                 "0x0000000000000000000000000000000000000000000000000000000000000040": "0x985e929f70af28d0bdd1a90a808f977f597c7c778c489e98d3bd8910d31ac0f7"
             }
         }
-    }
+    },
+    "nodes": [
+        # TODO: list of enodes
+    ]
 }
 
 for key, value in data['eth1_premine'].items():
