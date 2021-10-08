@@ -9,10 +9,11 @@ eth1endpoint_ws: http://127.0.0.1:8546
 
 eth1_volumes:
   - "{{eth1_node_dir}}:/eth1data"
+  - "{{testnet_dir}}:/networkdata"
 
 eth1_start_args: >
   --datadir="/eth1data"
-  --config=hacknet_v3.cfg
+  --Init.ChainSpecPath="/networkdata/nethermind_genesis.json"
   --Init.WebSocketsEnabled=true
   --JsonRpc.Enabled=true
   --JsonRpc.EnabledModules="net,eth,consensus,engine"

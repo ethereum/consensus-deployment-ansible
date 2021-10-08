@@ -11,7 +11,7 @@
     "istanbulBlock": 0,
     "berlinBlock": 0,
     "londonBlock": 0,
-    "terminalTotalDifficulty": 16000000
+    "terminalTotalDifficulty": 60000000
   },
   "alloc": {
     "0x0000000000000000000000000000000000000000": {

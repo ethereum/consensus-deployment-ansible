@@ -2,7 +2,6 @@
 
 validators_per_host=100 # Number of validators in each host
 
-source secret.sh
 
 if [ -z "$VALIDATORS_MNEMONIC_0" ]; then
   echo "missing mnemonic 0"
@@ -34,37 +33,37 @@ function prep_group {
 }
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "beta-lighthouse-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 40 "amphora-lighthouse-geth"
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 3 "beta-lighthouse-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 40 3 "amphora-lighthouse-nethermind"
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 3 "beta-lighthouse-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 43 3 "amphora-lighthouse-besu"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "beta-lodestar-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 46 2 "amphora-lodestar-geth"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 10 1 "beta-lodestar-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 48 2 "amphora-lodestar-nethermind"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 11 1 "beta-lodestar-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 50 2 "amphora-lodestar-besu"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 12 1 "beta-nimbus-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 52 3 "amphora-nimbus-geth"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 13 1 "beta-nimbus-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 55 3 "amphora-nimbus-nethermind"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 14 1 "beta-nimbus-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 58 2 "amphora-nimbus-besu"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 15 3 "beta-teku-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 60 35 "amphora-teku-geth"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 18 3 "beta-teku-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 95 3 "amphora-teku-nethermind"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 21 3 "beta-teku-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 98 2 "amphora-teku-besu"

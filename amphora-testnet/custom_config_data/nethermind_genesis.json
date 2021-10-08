@@ -21,7 +21,7 @@
     "accountStartNonce": "0x0",
     "maximumExtraDataSize": "0x20",
     "minGasLimit": "0x1388",
-    "networkID": "0x0x146771",
+    "networkID": "0x146771",
     "eip150Transition": "0x0",
     "eip158Transition": "0x0",
     "eip160Transition": "0x0",
@@ -60,7 +60,7 @@
     },
     "difficulty": "0x01",
     "author": "0x0000000000000000000000000000000000000000",
-    "timestamp": "0x0x0",
+    "timestamp": "0x0",
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
     "extraData": "",
     "gasLimit": "0x400000"
@@ -887,5 +887,7 @@
       "balance": "10000000000000000000000000"
     }
   },
-  "nodes": []
+  "nodes": [
+    "enode://0775bcba056e03dd80704197bad5e780d83e47930410e5d225077e3363e9f47a393ff41b70d7786bd6bd8623a2dd8231d19ae661f981fe0dd2c9db5018d32d38@167.71.19.77:30303"
+  ]
 }

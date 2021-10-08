@@ -32,37 +32,37 @@ function prep_group {
 }
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "beta-lighthouse-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "amphora-lighthouse-geth"
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 3 "beta-lighthouse-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 3 "amphora-lighthouse-nethermind"
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 3 "beta-lighthouse-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 6 3 "amphora-lighthouse-besu"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "beta-lodestar-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 9 1 "amphora-lodestar-geth"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 10 1 "beta-lodestar-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 10 1 "amphora-lodestar-nethermind"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 11 1 "beta-lodestar-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 11 1 "amphora-lodestar-besu"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 12 1 "beta-nimbus-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 12 1 "amphora-nimbus-geth"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 13 1 "beta-nimbus-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 13 1 "amphora-nimbus-nethermind"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 14 1 "beta-nimbus-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 14 1 "amphora-nimbus-besu"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 15 3 "beta-teku-geth"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 15 3 "amphora-teku-geth"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 18 3 "beta-teku-nethermind"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 18 3 "amphora-teku-nethermind"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 21 3 "beta-teku-besu"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 21 3 "amphora-teku-besu"
