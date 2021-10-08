@@ -26,6 +26,7 @@ eth1_start_args: >
   --ws.addr 0.0.0.0
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
+  --vmodule=rpc=5
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
