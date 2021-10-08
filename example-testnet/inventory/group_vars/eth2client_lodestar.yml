@@ -11,6 +11,9 @@ beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 beacon_env:
   LODESTAR_PRESET: minimal
 
+validator_env:
+  LODESTAR_PRESET: minimal
+
 ##############################################
 # volume mappings on remote host
 ##############################################
@@ -21,7 +24,6 @@ beacon_volumes:
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
   - "{{testnet_dir}}:/custom_config_data"
-
 ##############################################
 # arguments to run the containers with
 ##############################################
@@ -33,8 +35,9 @@ beacon_start_args: >
         {% if (bootnode_enrs is defined) and bootnode_enrs %}
         --network.discv5.bootEnrs="{{ bootnode_enrs | join(',') }}"
         {% endif %}
-        --network.bootMultiaddrs="/ip4/178.128.205.143/tcp/9000/p2p/16Uiu2HAmBYfxBcvGuCQeWJChHp9KT9K9aHwXf6VLkYUoUoAWzL8m"
+        --network.discv5.enabled=true
         --eth1.enabled=true
+        --api.rest.port={{beacon_api_port}}
         --eth1.disableEth1DepositDataTracker=true
         --eth1.providerUrls={{execution_engine_endpoint}}
         --execution.urls={{execution_engine_endpoint}}
@@ -46,10 +49,12 @@ beacon_start_args: >
         --logFile=/beacondata/beacon.log
         --logRotate
         --logMaxFiles=5
+        --enr.ip={{ansible_host}}
 
 validator_start_args: >
   validator
    --rootDir=/validatordata
+  --paramsFile=/custom_config_data/config.yaml
    --keystoresDir=/validatordata/keystores
    --secretsDir=/validatordata/secrets/
    --server={{beacon_endpoint}}

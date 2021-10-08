@@ -36,14 +36,15 @@ testnet_type: custom
 eth2_network_name: alpha
 
 # TODO: set TTD
-terminal_total_difficulty: 20000000
+terminal_total_difficulty: "0x3938700"
+teku_terminal_total_difficulty: "60000000"
 
 # enter bootnodes here if needed
 bootnode_enrs:
   - "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
 
 eth1_bootnode_enode:
-  - "enode://1ae9aaa5185f9be1c0b3a55c102b487f9c232318abc7d44c3b67adc7960647b1f291a9ad96d499bc5bd8dcdcb2e61cafa3483a89d359247d69cbf4f0642c5ab2@165.22.77.68:30303"
+  - "enode://b5716c2c31b1492026d35dc6d3765c3b904e276438c012ed9a54944afdb708bc829c1df494cba6685ec10443ae53501b9fc9669e3efb25e1f1d358bef8f9ef57@165.22.10.80:30303"
 
 ##############################################
 # metric information
@@ -103,7 +104,7 @@ common_log_options:
   mode: non-blocking
   max-buffer-size: 4m
 common_log_driver: json-file
-beacon_log_level: info
+beacon_log_level: debug
 
 ##############################################
 # container names

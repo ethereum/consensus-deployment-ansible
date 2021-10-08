@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: parithoshj/teku:merge-1750164
-validator_image_name: parithoshj/teku:merge-1750164
+beacon_image_name: parithoshj/teku:merge-7a246df
+validator_image_name: parithoshj/teku:merge-7a246df
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 ##############################################
@@ -47,7 +47,7 @@ beacon_start_args: >
   --metrics-host-allowlist="*"
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
-  --Xnetwork-merge-total-terminal-difficulty {{terminal_total_difficulty}}
+  --Xnetwork-merge-total-terminal-difficulty={{teku_terminal_total_difficulty}}
 
 
 validator_start_args: >

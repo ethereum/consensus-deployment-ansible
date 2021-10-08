@@ -48,7 +48,7 @@ beacon_start_args: >
   --merge
   --disable-packet-filter 
   --execution-endpoints {{execution_engine_endpoint}}
-  --terminal-total-difficulty-override {{terminal_total_difficulty}}
+  --terminal-total-difficulty-override={{terminal_total_difficulty}}
 
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 
