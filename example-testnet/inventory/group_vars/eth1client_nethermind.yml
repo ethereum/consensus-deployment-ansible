@@ -1,5 +1,5 @@
 eth1_client_name: nethermind
-eth1_image_name: protolambda/nethermind:TODOTODOTODO  # TODO nethermind image
+eth1_image_name: nethermind/nethermind:themerge
 
 eth1_memory: 5000M
 eth1_kernel_memory: 5500M
@@ -9,23 +9,20 @@ eth1endpoint_ws: http://127.0.0.1:8546
 
 eth1_volumes:
   - "{{eth1_node_dir}}:/eth1data"
-  - "{{testnet_dir}}/genesis_nethermind.json:/networkdata/genesis_nethermind.json"
 
 eth1_start_args: >
-  -c catalyst
-  --datadir "/eth1data"
-  --Init.ChainSpecPath "/networkdata/genesis_nethermind.json"
-  --Init.WebSocketsEnabled true
-  --JsonRpc.Enabled true
-  --JsonRpc.EnabledModules "net,eth,consensus,engine"
-  --JsonRpc.Port {{eth1_rpc_port}}
-  --JsonRpc.WebSocketsPort {{eth1_ws_rpc_port}}
-  --JsonRpc.Host 0.0.0.0
-  --Network.DiscoveryPort 30303
-  --Network.P2PPort 30303
-  --Merge.Enabled true
-  --Merge.TerminalTotalDifficulty {{terminal_total_difficulty}}
-  --Merge.BlockAuthorAccount 0x1000000000000000000000000000000000000000
+  --datadir="/eth1data"
+  --config=hacknet_v3.cfg
+  --Init.WebSocketsEnabled=true
+  --JsonRpc.Enabled=true
+  --JsonRpc.EnabledModules="net,eth,consensus,engine"
+  --JsonRpc.Port={{eth1_rpc_port}}
+  --JsonRpc.WebSocketsPort={{eth1_ws_rpc_port}}
+  --JsonRpc.Host=0.0.0.0
+  --Network.DiscoveryPort=30303
+  --Network.P2PPort=30303
+  --Merge.Enabled=true
+  --Merge.TerminalTotalDifficulty={{teku_terminal_total_difficulty}}
 
 # run as root, the nethermind image doesn't handle running regular user well
 eth1_user_id: "0:0"

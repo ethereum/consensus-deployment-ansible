@@ -36,7 +36,7 @@ out = {
         "accountStartNonce": "0x0",
         "maximumExtraDataSize": "0x20",
         "minGasLimit": "0x1388",
-        "networkID": hex(int(data['chain_id'])),
+        "networkID": "0x" + hex(int(data['chain_id'])),
         "eip150Transition": "0x0",
         "eip158Transition": "0x0",
         "eip160Transition": "0x0",
@@ -75,7 +75,7 @@ out = {
         },
         "difficulty": "0x01",
         "author": "0x0000000000000000000000000000000000000000",
-        "timestamp": str(data['eth1_genesis_timestamp']),
+        "timestamp": "0x"+hex(data['eth1_genesis_timestamp']),
         "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "extraData": "",
         "gasLimit": "0x400000"

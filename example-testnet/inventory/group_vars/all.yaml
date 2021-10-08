@@ -33,7 +33,7 @@ eth1endpoint: http://127.0.0.1:8545
 # testnet specific information
 ##############################################
 testnet_type: custom
-eth2_network_name: alpha
+eth2_network_name: beta
 
 # TODO: set TTD
 terminal_total_difficulty: "0x3938700"
@@ -44,7 +44,7 @@ bootnode_enrs:
   - "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
 
 eth1_bootnode_enode:
-  - "enode://b5716c2c31b1492026d35dc6d3765c3b904e276438c012ed9a54944afdb708bc829c1df494cba6685ec10443ae53501b9fc9669e3efb25e1f1d358bef8f9ef57@165.22.10.80:30303"
+  - "enode://0688781baaa6b42cbc7b128013aa9883a667bbe9a4808d50bdae5275a2d33f39893525ea481da224fe321d84be1245e0331ddbfb6c58540adcf520354328319a@147.182.161.56:30303"
 
 ##############################################
 # metric information

@@ -41,8 +41,8 @@ This will stop existing beacon and validator containers and re-start them with t
 
 # Geth bootnode:
 - ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 init genesis.json
-- ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 --ethash.dagdir=./hacknet/v2/ethash --catalyst --mine --miner.threads=1 --miner.etherbase=0xfb969eb20eca70c2800103bbb0d3757bc60f918a --http --http.corsdomain='*' --http.addr="0.0.0.0" --nat extip:165.22.10.80 --networkid=1337101 console
-- ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 --ethash.dagdir=./hacknet/v2/ethash --catalyst  --http --http.corsdomain='*' --http.addr="0.0.0.0" --nat extip:165.22.10.80 --networkid=1337101 --http.api "engine,eth" console
+- ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 --ethash.dagdir=./hacknet/v2/ethash --catalyst --mine --miner.threads=1 --miner.etherbase=0xfb969eb20eca70c2800103bbb0d3757bc60f918a --http --http.corsdomain='*' --http.addr="0.0.0.0" --nat extip:147.182.161.56 --networkid=1337201 console
+- ./go-ethereum/build/bin/geth --datadir=./hacknet/v2 --ethash.dagdir=./hacknet/v2/ethash --catalyst  --http --http.corsdomain='*' --http.addr="0.0.0.0" --nat extip:147.182.161.56 --networkid=1337201 --http.api "engine,eth" console
 - curl --location --request POST 'localhost:8545/' \
    --header 'Content-Type: application/json' \
    --data-raw '{
