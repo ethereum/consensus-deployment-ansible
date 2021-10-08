@@ -35,7 +35,7 @@ beacon_start_args: >
         {% if (bootnode_enrs is defined) and bootnode_enrs %}
         --network.discv5.bootEnrs="{{ bootnode_enrs | join(',') }}"
         {% endif %}
-        --network.bootMultiaddrs="/ip4/165.22.10.231/tcp/9000/p2p/16Uiu2HAkxWX84C76edb1a7KbCo3vcRE8pyHxPRQ5nCexP66MEEBy"
+        --network.discv5.enabled=true
         --eth1.enabled=true
         --api.rest.port={{beacon_api_port}}
         --eth1.disableEth1DepositDataTracker=true
@@ -54,6 +54,7 @@ beacon_start_args: >
 validator_start_args: >
   validator
    --rootDir=/validatordata
+  --paramsFile=/custom_config_data/config.yaml
    --keystoresDir=/validatordata/keystores
    --secretsDir=/validatordata/secrets/
    --server={{beacon_endpoint}}
