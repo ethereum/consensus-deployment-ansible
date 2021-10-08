@@ -17,11 +17,14 @@ eth1_start_args: >
   --Init.ChainSpecPath "/networkdata/genesis_nethermind.json"
   --Init.WebSocketsEnabled true
   --JsonRpc.Enabled true
-  --JsonRpc.EnabledModules "net,eth,consensus"
+  --JsonRpc.EnabledModules "net,eth,consensus,engine"
   --JsonRpc.Port {{eth1_rpc_port}}
   --JsonRpc.WebSocketsPort {{eth1_ws_rpc_port}}
   --JsonRpc.Host 0.0.0.0
-  --config TODOTODO --Merge.TerminalTotalDifficulty {{terminal_total_difficulty}}
+  --Network.DiscoveryPort 30303
+  --Network.P2PPort 30303
+  --Merge.Enabled true
+  --Merge.TerminalTotalDifficulty {{terminal_total_difficulty}}
   --Merge.BlockAuthorAccount 0x1000000000000000000000000000000000000000
 
 # run as root, the nethermind image doesn't handle running regular user well
