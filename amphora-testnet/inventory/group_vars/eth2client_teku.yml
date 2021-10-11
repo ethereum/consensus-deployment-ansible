@@ -6,6 +6,10 @@ beacon_image_name: parithoshj/teku:merge-7a246df
 validator_image_name: parithoshj/teku:merge-7a246df
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
+github_external_user_pubkeys:
+  - tbenr
+  - ajsutton
+
 ##############################################
 # volume mappings on remote host
 ##############################################

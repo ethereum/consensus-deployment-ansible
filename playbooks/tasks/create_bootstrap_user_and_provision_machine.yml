@@ -12,8 +12,14 @@
         name: "{{ bootstrap_user }}"
         groups: "{{ bootstrap_user }},sudo"
         append: true
-    - name: "Add authorized keys"
+    - name: "Add generic authorized keys"
       loop: "{{ github_user_pubkeys }}"
+      authorized_key:
+        user: "{{ bootstrap_user }}"
+        state: present
+        key: "https://github.com/{{ item }}.keys"
+    - name: "Add client specific authorized keys"
+      loop: "{{ github_external_user_pubkeys }}"
       authorized_key:
         user: "{{ bootstrap_user }}"
         state: present
@@ -24,52 +30,52 @@
         state: "present"
         regexp: "^%{{ bootstrap_user }}"
         line: "%devops ALL=(ALL) NOPASSWD: ALL"
-
-- name: Run bootstrap playbook to ensure basic stuff works and add oh-my-zsh
-  hosts: all
-  remote_user: "{{ bootstrap_user }}"
-  gather_facts: false
-  become: true
-  roles:
-    # Prepare system to be managed by Ansible.
-    - role: robertdebock.bootstrap
-      tags: [bootstrap]
-    - role: robertdebock.fail2ban
-      tags: [ fail2ban ]
-      vars:
-        - fail2ban_loglevel: INFO
-        - fail2ban_logtarget: /var/log/fail2ban.log
-        - fail2ban_maxretry: 10
-        - fail2ban_bantime: 6000
-    - role: gantsign.oh-my-zsh
-      users:
-        - username: "{{ bootstrap_user }}"
-          theme: powerlevel9k/powerlevel9
-  tasks:
-    - name: Set custom .zshrc config
-      lineinfile:
-        dest: "/home/{{ bootstrap_user }}/.zshrc"
-        state: present
-        regexp: "^{{ item.key }}="
-        line: "{{ item.key }}=\"{{ item.value }}\""
-      loop: "{{ oh_my_zsh_config | dict2items }}"
-
-- name: Log in as new user to disable root
-  hosts: all
-  user: "{{ bootstrap_user }}"
-  gather_facts: false
-  become: true
-  tasks:
-    - name: Disable root login over SSH
-      lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
-      notify:
-        - restart sshd
-    - name: Disable password login
-      lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
-      notify:
-        - restart sshd
-  handlers:
-    - name: restart sshd
-      service:
-        name: sshd
-        state: restarted
+#
+#- name: Run bootstrap playbook to ensure basic stuff works and add oh-my-zsh
+#  hosts: all
+#  remote_user: "{{ bootstrap_user }}"
+#  gather_facts: false
+#  become: true
+#  roles:
+#    # Prepare system to be managed by Ansible.
+#    - role: robertdebock.bootstrap
+#      tags: [bootstrap]
+#    - role: robertdebock.fail2ban
+#      tags: [ fail2ban ]
+#      vars:
+#        - fail2ban_loglevel: INFO
+#        - fail2ban_logtarget: /var/log/fail2ban.log
+#        - fail2ban_maxretry: 10
+#        - fail2ban_bantime: 6000
+#    - role: gantsign.oh-my-zsh
+#      users:
+#        - username: "{{ bootstrap_user }}"
+#          theme: powerlevel9k/powerlevel9
+#  tasks:
+#    - name: Set custom .zshrc config
+#      lineinfile:
+#        dest: "/home/{{ bootstrap_user }}/.zshrc"
+#        state: present
+#        regexp: "^{{ item.key }}="
+#        line: "{{ item.key }}=\"{{ item.value }}\""
+#      loop: "{{ oh_my_zsh_config | dict2items }}"
+#
+#- name: Log in as new user to disable root
+#  hosts: all
+#  user: "{{ bootstrap_user }}"
+#  gather_facts: false
+#  become: true
+#  tasks:
+#    - name: Disable root login over SSH
+#      lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+#      notify:
+#        - restart sshd
+#    - name: Disable password login
+#      lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+#      notify:
+#        - restart sshd
+#  handlers:
+#    - name: restart sshd
+#      service:
+#        name: sshd
+#        state: restarted
