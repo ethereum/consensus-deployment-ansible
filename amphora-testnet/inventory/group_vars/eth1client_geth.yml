@@ -16,7 +16,7 @@ geth_init_args: >
 
 eth1_start_args: >
   --datadir=/eth1data
-  --networkid=1337101 --catalyst
+  --networkid=1337201 --catalyst
   --http --http.api "engine,net,eth,consensus"
   --http.port {{eth1_rpc_port}}
   --http.addr 0.0.0.0

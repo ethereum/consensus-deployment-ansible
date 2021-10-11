@@ -1,6 +1,7 @@
+#!/bin/bash
+
 validators_per_host=100 # Number of validators in each host
 
-export VALIDATORS_MNEMONIC_0="flock beyond move size arena limit shoe observe ship drop bacon phone satisfy lend evolve anchor sheriff when impulse physical certain future trophy series"
 
 if [ -z "$VALIDATORS_MNEMONIC_0" ]; then
   echo "missing mnemonic 0"
@@ -32,13 +33,37 @@ function prep_group {
 }
 
 echo "Lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 10 "alpha-lighthouse"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 40 "amphora-lighthouse-geth"
+
+echo "Lighthouse keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 40 3 "amphora-lighthouse-nethermind"
+
+echo "Lighthouse keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 43 3 "amphora-lighthouse-besu"
 
 echo "Lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 10 2 "alpha-lodestar"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 46 2 "amphora-lodestar-geth"
+
+echo "Lodestar keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 48 2 "amphora-lodestar-nethermind"
+
+echo "Lodestar keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 50 2 "amphora-lodestar-besu"
 
 echo "Nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 12 4 "alpha-nimbus"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 52 3 "amphora-nimbus-geth"
+
+echo "Nimbus keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 55 3 "amphora-nimbus-nethermind"
+
+echo "Nimbus keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 58 2 "amphora-nimbus-besu"
 
 echo "Teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 16 10 "alpha-teku"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 60 35 "amphora-teku-geth"
+
+echo "Teku keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 95 3 "amphora-teku-nethermind"
+
+echo "Teku keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 98 2 "amphora-teku-besu"

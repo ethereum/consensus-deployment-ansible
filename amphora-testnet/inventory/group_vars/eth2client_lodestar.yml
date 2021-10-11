@@ -35,6 +35,7 @@ beacon_start_args: >
         {% if (bootnode_enrs is defined) and bootnode_enrs %}
         --network.discv5.bootEnrs="{{ bootnode_enrs | join(',') }}"
         {% endif %}
+        --network.connectToDiscv5Bootnodes
         --network.discv5.enabled=true
         --eth1.enabled=true
         --api.rest.port={{beacon_api_port}}
