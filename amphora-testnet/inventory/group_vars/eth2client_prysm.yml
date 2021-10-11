@@ -13,12 +13,10 @@ beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
 ##############################################
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/eth2_config.yaml"
   - "{{testnet_dir}}/genesis.ssz:/custom_config_data/genesis.ssz"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
-  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/eth2_config.yaml"
 
 ##############################################
 # arguments to run the containers with
@@ -27,7 +25,7 @@ beacon_start_args: >
   --accept-terms-of-use=true
   --datadir="/beacondata"
   --genesis-state="/custom_config_data/genesis.ssz"
-  --chain-config-file="/custom_config_data/eth2_config.yaml"
+  --chain-config-file="/custom_config_data/config.yaml"
   --http-web3provider="{{eth1endpoint}}"
   {% if failover_eth1_rpc is defined %}
     --fallback-web3provider={{failover_eth1_rpc}}
@@ -36,7 +34,7 @@ beacon_start_args: >
     --bootstrap-node="{{ bootnode_enrs | join(',') }}"
   {% endif %}
   --verbosity="{{ beacon_log_level | lower }}"
-  --p2p-host-ip={{public_ip_address}}
+  --p2p-host-ip={{ansible_host}}
   --p2p-max-peers={{hi_peer_count}}
   --p2p-udp-port={{beacon_p2p_port}} --p2p-tcp-port={{beacon_p2p_port}}
   --monitoring-host=0.0.0.0 --monitoring-port={{beacon_metrics_port}}
@@ -50,7 +48,7 @@ beacon_start_args: >
 validator_start_args: >
   --accept-terms-of-use=true
   --datadir="/validatordata"
-  --chain-config-file="/custom_config_data/eth2_config.yaml"
+  --chain-config-file="/custom_config_data/config.yaml"
   --beacon-rpc-provider={{beacon_endpoint}}
   --monitoring-host=0.0.0.0 --monitoring-port={{validator_metrics_port}}
   --graffiti="{{graffiti}}"
