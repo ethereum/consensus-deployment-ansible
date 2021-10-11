@@ -8,6 +8,10 @@ beacon_image_name: sigp/lighthouse:merge-f2f
 validator_image_name: sigp/lighthouse:merge-f2f
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
+github_external_user_pubkeys:
+  - AgeManning
+  - paulhauner
+
 ##############################################
 # volume mappings on remote host
 ##############################################

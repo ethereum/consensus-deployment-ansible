@@ -12,8 +12,14 @@
         name: "{{ bootstrap_user }}"
         groups: "{{ bootstrap_user }},sudo"
         append: true
-    - name: "Add authorized keys"
+    - name: "Add generic authorized keys"
       loop: "{{ github_user_pubkeys }}"
+      authorized_key:
+        user: "{{ bootstrap_user }}"
+        state: present
+        key: "https://github.com/{{ item }}.keys"
+    - name: "Add client specific authorized keys"
+      loop: "{{ github_external_user_pubkeys }}"
       authorized_key:
         user: "{{ bootstrap_user }}"
         state: present
