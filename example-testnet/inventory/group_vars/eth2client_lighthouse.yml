@@ -2,10 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: lighthouse
-
-# TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: sigp/lighthouse:merge-f2f
-validator_image_name: sigp/lighthouse:merge-f2f
+beacon_image_name: sigp/lighthouse:v1.5.1
+validator_image_name: sigp/lighthouse:v1.5.1
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 ##############################################
@@ -14,10 +12,12 @@ beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
+  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
   - "{{testnet_dir}}:/custom_config_data"
+  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
 
 ##############################################
 # arguments to run the containers with
@@ -29,10 +29,10 @@ beacon_start_args: >
   --testnet-dir="/custom_config_data"
   bn
   --disable-enr-auto-update
-  --enr-address={{ansible_host}}
+  --enr-address={{public_ip_address}}
   --enr-tcp-port={{beacon_p2p_port}} --enr-udp-port={{beacon_p2p_port}}
   --port={{beacon_p2p_port}} --discovery-port={{beacon_p2p_port}}
-  --dummy-eth1
+  --eth1 --eth1-endpoints "{{eth1endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --boot-nodes="{{ bootnode_enrs | join(',') }}"
   {% endif %}  --http
@@ -44,13 +44,6 @@ beacon_start_args: >
   --listen-address 0.0.0.0
   --graffiti="{{graffiti}}"
   --target-peers={{hi_peer_count}}
-  --http-allow-sync-stalled
-  --merge
-  --disable-packet-filter 
-  --execution-endpoints {{execution_engine_endpoint}}
-  --terminal-total-difficulty-override={{terminal_total_difficulty}}
-
-# in case of eth1 deposit endpoint problems: --dummy-eth1
 
 validator_start_args: >
   lighthouse
@@ -62,7 +55,6 @@ validator_start_args: >
   --server={{beacon_endpoint}}
   --graffiti="{{graffiti}}"
   --http --http-port={{validator_rpc_port}}
-
 ##############################################
 # memory limits
 ##############################################

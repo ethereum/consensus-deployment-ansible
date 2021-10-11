@@ -1,50 +1,25 @@
 ##############################################
 # generic ansible config information
 ##############################################
-ansible_user: "devops"
-bootstrap_user: "devops"
-
+ansible_user: "ubuntu"
 github_user_pubkeys:
-  - parithosh
-  - protolambda
-  - ralexstokes
-  - djrtwo
-
-ansible_python_interpreter: /usr/bin/python3
-oh_my_zsh_config:
-  PROMPT: "%{$fg[yellow]%}%n%{$fg[white]%}@%{$fg[red]%}%m%{$reset_color%} ${PROMPT}"
+  - example
 
 ##############################################
 # eth1 endpoints
 ##############################################
 # nimbus requires a websocket endpoint (http support unstable)
-# note: also used for execution engine endpoint in nimbus
-consensus_endpoint_nimbus: ws://127.0.0.1:8546
-# lighthouse uses this
-execution_engine_endpoint: http://127.0.0.1:8545
-
-eth1endpoint: http://127.0.0.1:8545
-
-# Merge Engine endpoints
-# TODO change IP?
-# TODO: some engines might start using the 8550 port (or 8551 for ws)
+eth1endpoint_nimbus: wss://url
+eth1endpoint: https://url
 
 ##############################################
 # testnet specific information
 ##############################################
-testnet_type: custom
-eth2_network_name: amphora
-
-# TODO: set TTD
-terminal_total_difficulty: "0x3938700"
-teku_terminal_total_difficulty: "60000000"
+testnet_type: prater
+eth2_network_name: prater
 
 # enter bootnodes here if needed
-bootnode_enrs:
-  - "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
-
-eth1_bootnode_enode:
-  - "enode://0775bcba056e03dd80704197bad5e780d83e47930410e5d225077e3363e9f47a393ff41b70d7786bd6bd8623a2dd8231d19ae661f981fe0dd2c9db5018d32d38@167.71.19.77:30303"
+#bootnode_enrs:
 
 ##############################################
 # metric information
@@ -83,8 +58,8 @@ local_custom_config_data_host_dir: "{{inventory_dir}}/../custom_config_data"
 local_custom_config_data_host_archive: "{{inventory_dir}}/../custom_config_data.tar.gz"
 # private dirs
 # Validator assignments
-local_validator_host_dir: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}"
-local_validator_host_archive: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}.tar.gz"
+local_validator_host_dir: "{{inventory_dir}}/../selected_validator_keys/host_{{eth2_node_index}}"
+local_validator_host_archive: "{{inventory_dir}}/../selected_validator_keys/host_{{eth2_node_index}}.tar.gz"
 
 ##############################################
 # remote host data directories
@@ -93,7 +68,6 @@ home_dir: "/home/{{ ansible_user }}"
 beacon_node_dir: "{{home_dir}}/beacon"
 validator_node_dir: "{{home_dir}}/validator"
 testnet_dir: "{{home_dir}}/custom_config_data"
-eth1_node_dir: "{{home_dir}}/eth1data"
 
 ##############################################
 # common log config
@@ -104,7 +78,7 @@ common_log_options:
   mode: non-blocking
   max-buffer-size: 4m
 common_log_driver: json-file
-beacon_log_level: debug
+beacon_log_level: info
 
 ##############################################
 # container names

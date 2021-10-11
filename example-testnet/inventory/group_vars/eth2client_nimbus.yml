@@ -2,10 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: nimbus
-
-# TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: parithoshj/nimbus:merge-98693ef
-validator_image_name: parithoshj/nimbus:merge-98693ef
+beacon_image_name: statusteam/nimbus_beacon_node:deploy-eth2-prod
+validator_image_name: statusteam/nimbus_beacon_node:deploy-eth2-prod
 
 ##############################################
 # volume mappings on remote host
@@ -13,18 +11,22 @@ validator_image_name: parithoshj/nimbus:merge-98693ef
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
+  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/config.yaml"
   - "{{validator_node_dir}}:/validatordata"
+
+validator_volumes:
+  - "{{validator_node_dir}}:/validatordata"
+  # Note: nimbus validators fetch the spec config from the beacon node
 
 ##############################################
 # arguments to run the containers with
 ##############################################
 beacon_start_args: >
   beacon_node
-  --non-interactive=true
   --network="/custom_config_data"
   --max-peers="{{hi_peer_count}}"
   --data-dir="/beacondata"
-  --web3-url="{{consensus_endpoint_nimbus}}"
+  --web3-url="{{eth1endpoint_nimbus}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --bootstrap-node="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -32,16 +34,25 @@ beacon_start_args: >
   --tcp-port={{beacon_p2p_port}}
   --listen-address=0.0.0.0
   --graffiti="{{graffiti}}"
-  --nat="extip:{{ansible_host}}"
+  --nat="extip:{{public_ip_address}}"
   --enr-auto-update=false
-  --rest --rest-port={{beacon_api_port}} --rest-address=0.0.0.0
+  --rpc --rpc-port={{beacon_api_port}} --rpc-address=0.0.0.0
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0
   --log-level="{{ beacon_log_level | upper }}"
-  --log-file="/beacondata/nimbus.log"
-  --doppelganger-detection=off
+  --log-file="/dev/null"
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
 
+#validator_start_args: >
+#  validator_client
+#  --log-level="{{ beacon_log_level | upper }}"
+#  --log-file="/dev/null"
+#  --data-dir="/validatordata"
+#  --non-interactive=true
+#  --graffiti="{{graffiti}}"
+#  --beacon-node=http://127.0.0.1:{{beacon_api_port}}
+#  --validators-dir="/validatordata/keys"
+#  --secrets-dir="/validatordata/secrets"
 ##############################################
 # memory limits
 ##############################################
@@ -54,8 +65,8 @@ beacon_kernel_memory: 5500M
 # file permissions and user ids
 ##############################################
 keystores_file_mode: "0700"
-beacon_user_id: "1000:100"
-validator_user_id: "1000:100"
+beacon_user_id: "1000:1000"
+validator_user_id: "1000:1000"
 
 # Nimbus currently runs on a combined beacon validator process, future versions will work as separate processes
 separate_validator_process_enabled: false
