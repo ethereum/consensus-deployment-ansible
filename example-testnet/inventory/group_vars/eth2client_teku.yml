@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: parithoshj/teku:merge-7a246df
-validator_image_name: parithoshj/teku:merge-7a246df
+beacon_image_name: consensys/teku:21.8.2
+validator_image_name: consensys/teku:21.8.2
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 ##############################################
@@ -11,29 +11,30 @@ beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 ##############################################
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
-  - "{{testnet_dir}}:/custom_config_data"
+  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/eth2_config.yaml"
+  - "{{testnet_dir}}/genesis.ssz:/custom_config_data/genesis.ssz"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
-  - "{{testnet_dir}}:/custom_config_data"
+  - "{{testnet_dir}}/eth2_config.yaml:/custom_config_data/eth2_config.yaml"
 
 ##############################################
 # arguments to run the containers with
 ##############################################
 beacon_start_args: >
-  --network "/custom_config_data/config.yaml"
+  --network "/custom_config_data/eth2_config.yaml"
   --initial-state "/custom_config_data/genesis.ssz"
   --data-path "/beacondata"
   --data-storage-mode=PRUNE
   --p2p-enabled=true
-  --p2p-advertised-ip={{ansible_host}}
+  --p2p-advertised-ip={{public_ip_address}}
   --p2p-port="{{beacon_p2p_port}}"
   --p2p-advertised-port={{beacon_p2p_port}}
   --logging={{beacon_log_level}}
   --log-destination=CONSOLE
   --log-file="/beacondata/log_outputs"
   --p2p-peer-upper-bound={{hi_peer_count}}
-  --eth1-endpoints="{{eth1endpoint}}"
+  --eth1-endpoint "{{eth1endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --p2p-discovery-bootnodes="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -47,26 +48,23 @@ beacon_start_args: >
   --metrics-host-allowlist="*"
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
-  --Xnetwork-merge-total-terminal-difficulty={{teku_terminal_total_difficulty}}
-
 
 validator_start_args: >
   validator-client
-  --network=auto
-  --data-path="/validatordata"
-  --beacon-node-api-endpoint="{{beacon_endpoint}}"
+  --network "/custom_config_data/eth2_config.yaml"
+  --data-path "/validatordata"
+  --beacon-node-api-endpoint "{{beacon_endpoint}}"
   --validators-graffiti="{{graffiti}}"
-  --validator-keys="/validatordata/keys:/validatordata/secrets"
-
+  --validator-keys "/validatordata/keys:/validatordata/secrets"
 ##############################################
 # memory limits
 ##############################################
-beacon_memory: 14000M
-beacon_kernel_memory: 14500M
+beacon_memory: 7000M
+beacon_kernel_memory: 7500M
 validator_memory: 2000M
 validator_kernel_memory: 2500M
 beacon_env:
-  JAVA_OPTS: "-Xmx14000m -Xms14000m"
+  JAVA_OPTS: "-Xmx6000m -Xms6000m"
 
 # TODO: maybe configure logging style via env var later
 #  LOG4J_CONFIGURATION_FILE: "/beacondata/log_config.xml"

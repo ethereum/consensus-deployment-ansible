@@ -7,9 +7,3 @@
 [submodule "robertdebock.bootstrap"]
 	path = external_roles/robertdebock.bootstrap
 	url = git@github.com:robertdebock/ansible-role-bootstrap.git
-[submodule "gantsign.oh-my-zsh"]
-	path = external_roles/gantsign.oh-my-zsh
-	url = git@github.com:gantsign/ansible-role-oh-my-zsh.git
-[submodule "robertdebock.fail2ban"]
-	path = external_roles/robertdebock.fail2ban
-	url = git@github.com:robertdebock/ansible-role-fail2ban.git

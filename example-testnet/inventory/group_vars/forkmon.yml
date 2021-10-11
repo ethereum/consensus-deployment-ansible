@@ -1,0 +1,12 @@
+forkmon_memory: 3000m
+forkmon_image_name: "ralexstokes/eth2-fork-mon:latest"
+forkmon_require_restart: true
+forkmon_http_listen_port: 5002
+forkmon_container_name: example
+
+forkmon_host_dir: "{{home_dir}}/forkmon_data"
+
+forkmon_volumes:
+  - "{{forkmon_host_dir}}:/data"
+
+forkmon_start_args: "-config-file=/data/config.yaml"

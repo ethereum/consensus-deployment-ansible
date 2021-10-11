@@ -22,15 +22,6 @@
       file:
         path: "{{validator_node_dir}}"
         state: absent
-    - name: Stop geth client container
-      shell: "docker stop --time=10 {{eth1_client_name}}"
-      register: stop_result
-      failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
-    - name: Remove geth data
-      become: true
-      file:
-        path: "{{eth1_node_dir}}"
-        state: absent
     - name: Remove testnet dir
       become: true
       when: (testnet_type == 'custom') or

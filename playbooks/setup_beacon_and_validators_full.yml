@@ -1,6 +1,6 @@
 ---
 # setups up the machine with docker, updates apt cache, adds user keys
-#- import_playbook: tasks/setup_machine.yml
+- import_playbook: tasks/setup_machine.yml
 
 # stop any running beacon/validator docker image, remove existing validator keys and beacon node data
 - import_playbook: tasks/stop_and_wipe_beacon_and_validator.yml
@@ -16,13 +16,6 @@
   when: (testnet_type == 'custom') or
         (testnet_type == 'prater' and eth2_client_name == 'prysm')
 
-# inits geth instance
-- import_playbook: tasks/init_geth_node.yml
-  when: eth1_client_name == 'geth'
-
-# starts execution container
-- import_playbook: tasks/start_execution_node.yml
-
 # stars beacon node docker container
 - import_playbook: tasks/start_beacon.yml
 
@@ -30,6 +23,6 @@
 - import_playbook: tasks/start_validator.yml
   when: separate_validator_process_enabled
 
-## install node_exporter and metric pusher
-#- import_playbook: tasks/deploy_node_exporter_and_metric_pusher.yml
-#  when: push_metrics_enabled
+# install node_exporter and metric pusher
+- import_playbook: tasks/deploy_node_exporter_and_metric_pusher.yml
+  when: push_metrics_enabled
