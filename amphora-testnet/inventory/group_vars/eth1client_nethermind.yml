@@ -26,7 +26,7 @@ eth1_start_args: >
   --Network.DiscoveryPort=30303
   --Network.P2PPort=30303
   --Merge.Enabled=true
-  --Merge.TerminalTotalDifficulty={{teku_terminal_total_difficulty}}
+  --Merge.TerminalTotalDifficulty={{terminal_total_difficulty}}
 
 # run as root, the nethermind image doesn't handle running regular user well
 eth1_user_id: "0:0"

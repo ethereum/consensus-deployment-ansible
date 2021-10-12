@@ -51,7 +51,7 @@ beacon_start_args: >
   --metrics-host-allowlist="*"
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
-  --Xnetwork-merge-total-terminal-difficulty={{teku_terminal_total_difficulty}}
+  --Xnetwork-merge-total-terminal-difficulty={{terminal_total_difficulty}}
 
 
 validator_start_args: >
