@@ -1,0 +1,32 @@
+version: "3.4"
+services:
+  init_geth:
+    image: parithoshj/geth:merge-ac736f9
+    container_name: geth_init
+    volumes:
+      - ./geth_data:/execution_data
+      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
+    command: >
+      --datadir=/execution_data init /custom_config_data/genesis.json
+    network_mode: host
+  geth:
+    image: parithoshj/geth:merge-ac736f9
+    container_name: geth
+    depends_on:
+      - init_geth
+    volumes:
+      - ./geth_data:/execution_data
+    command: >
+      --datadir=/execution_data --networkid=$NETWORK_ID --catalyst --http --http.api "engine,eth" --nat extip:$IP_ADDRESS --bootnodes=$ENODE
+    network_mode: host
+  teku_beacon:
+    image: parithoshj/teku:merge-d3f827e
+    container_name: teku_beacon
+    depends_on:
+      - geth
+    volumes:
+      - ./beacon_data:/consensus_data
+      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
+    command: >
+      --network "/custom_config_data/config.yaml" --initial-state "/custom_config_data/genesis.ssz" --data-path "/consensus_data" --data-storage-mode=PRUNE --p2p-enabled=true --eth1-endpoints=http://127.0.0.1:8545 --p2p-advertised-ip=$IP_ADDRESS --p2p-discovery-bootnodes=$ENR --rest-api-enabled=true --rest-api-docs-enabled=true --rest-api-interface=0.0.0.0 --rest-api-port=4000 --rest-api-host-allowlist=* --Xdata-storage-non-canonical-blocks-enabled=true --Xnetwork-merge-total-terminal-difficulty=$TOTAL_TERMINAL_DIFFICULTY --log-destination=CONSOLE
+    network_mode: host
