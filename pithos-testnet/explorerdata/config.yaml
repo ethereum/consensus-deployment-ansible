@@ -1,0 +1,51 @@
+# Database credentials
+database:
+  user: "postgres"
+  name: "db"
+  host: "127.0.0.1"
+  port: "5432"
+  password: "example-pass"
+# Chain network configuration
+chain:
+  slotsPerEpoch: 32
+  secondsPerSlot: 12
+  minGenesisActiveValidatorCount: 35000
+  genesisTimestamp: 1634213100
+  mainnet: false  # hide mainnet staking pool etc. info
+  phase0path: "./eth2_config.yaml"
+# Note: It is possible to run either the frontend or the indexer or both at the same time
+# Frontend config
+frontend:
+  enabled: true # Enable or disable to web frontend
+  imprint: "./imprint.html"  # Path to the imprint page content
+  siteName: "Pithos Explorer" # Name of the site, displayed in the title tag
+  siteSubtitle: "Merge explorer" # Subtitle shown on the main page
+  csrfAuthKey: '0123456789abcdef000000000000000000000000000000000000000000000000'
+  jwtSigningSecret: "0123456789abcdef000000000000000000000000000000000000000000000000"
+  jwtIssuer: "localblockexplorer"
+  jwtValidityInMinutes: 30
+  server:
+    host: "127.0.0.1" # Address to listen on
+    port: "3333" # Port to listen on
+  database:
+    user: "postgres"
+    name: "db"
+    host: "127.0.0.1"
+    port: "5432"
+    password: "example-pass"
+  # sessionSecret: "<sessionSecret>"
+  # flashSecret: "" # Encryption secret for flash cookies
+# Indexer config
+indexer:
+  enabled: true # Enable or disable the indexing service
+  fullIndexOnStartup: true # Perform a one time full db index on startup
+  indexMissingEpochsOnStartup: true # Check for missing epochs and export them after startup
+  node:
+    host: "127.0.0.1" # Address of the backend node
+    port: "4000" # GRPC port of the Prysm node
+    type: "lighthouse" # can be either prysm or lighthouse
+    pageSize: 100 # the amount of entries to fetch per paged rpc call, TODO set to 500
+  eth1Endpoint: 'http://127.0.0.1:8545'
+  eth1DepositContractAddress: '0x0000000000000000000000000000000000000000'
+  # Note: 0 is correct, but due to an underflow bug (being fixed), doesn't work.
+  eth1DepositContractFirstBlock: 1
