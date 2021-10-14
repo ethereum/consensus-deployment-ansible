@@ -1,0 +1,11 @@
+version: "3.4"
+services:
+  nethermind_beacon:
+    image: nethermind/nethermind:themerge_devnet
+    container_name: nethermind_beacon
+    volumes:
+      - ./nethermind_data:/execution_data
+      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
+    command: >
+      --datadir="/execution_data" --Init.ChainSpecPath="/custom_config_data/nethermind_genesis.json" --Init.WebSocketsEnabled=true --JsonRpc.Enabled=true --JsonRpc.EnabledModules="net,eth,consensus,engine" --JsonRpc.Port=8545 --JsonRpc.WebSocketsPort=8546 --JsonRpc.Host=0.0.0.0 --Network.DiscoveryPort=30303 --Network.P2PPort=30303 --Merge.Enabled=true --Merge.TerminalTotalDifficulty=$TOTAL_TERMINAL_DIFFICULTY
+    network_mode: host

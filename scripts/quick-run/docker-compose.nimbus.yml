@@ -1,29 +1,8 @@
 version: "3.4"
 services:
-  init_geth:
-    image: parithoshj/geth:merge-ac736f9
-    container_name: geth_init
-    volumes:
-      - ./geth_data:/execution_data
-      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
-    command: >
-      --datadir=/execution_data init /custom_config_data/genesis.json
-    network_mode: host
-  geth:
-    image: parithoshj/geth:merge-ac736f9
-    container_name: geth
-    depends_on:
-      - init_geth
-    volumes:
-      - ./geth_data:/execution_data
-    command: >
-      --datadir=/execution_data --networkid=$NETWORK_ID --catalyst --http --http.api "engine,eth" --ws --ws.api "engine,eth" --nat extip:$IP_ADDRESS --bootnodes=$ENODE
-    network_mode: host
   nimbus_beacon:
     image: parithoshj/nimbus:merge-98693ef
     container_name: nimbus_beacon
-    depends_on:
-      - geth
     volumes:
       - ./beacon_data:/consensus_data
       - ../../$TESTNET_NAME/custom_config_data:/custom_config_data

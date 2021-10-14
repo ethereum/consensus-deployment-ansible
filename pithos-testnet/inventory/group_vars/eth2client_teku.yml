@@ -16,10 +16,11 @@ github_external_user_pubkeys:
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
-
-validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
-  - "{{testnet_dir}}:/custom_config_data"
+
+#validator_volumes:
+#  - "{{validator_node_dir}}:/validatordata"
+#  - "{{testnet_dir}}:/custom_config_data"
 
 ##############################################
 # arguments to run the containers with
@@ -52,15 +53,17 @@ beacon_start_args: >
   --rest-api-host-allowlist="*"
   --Xdata-storage-non-canonical-blocks-enabled=true
   --Xnetwork-merge-total-terminal-difficulty={{terminal_total_difficulty}}
-
-
-validator_start_args: >
-  validator-client
-  --network=auto
-  --data-path="/validatordata"
-  --beacon-node-api-endpoint="{{beacon_endpoint}}"
   --validators-graffiti="{{graffiti}}"
   --validator-keys="/validatordata/keys:/validatordata/secrets"
+
+
+#validator_start_args: >
+#  validator-client
+#  --network=auto
+#  --data-path="/validatordata"
+#  --beacon-node-api-endpoint="{{beacon_endpoint}}"
+#  --validators-graffiti="{{graffiti}}"
+#  --validator-keys="/validatordata/keys:/validatordata/secrets"
 
 ##############################################
 # memory limits
@@ -81,3 +84,6 @@ beacon_env:
 keystores_file_mode: "0704"
 beacon_user_id: "1000:1000"
 validator_user_id: "1000:1000"
+
+# Teku currently runs on a combined beacon validator process for the merge code, future versions will work as separate processes
+separate_validator_process_enabled: false

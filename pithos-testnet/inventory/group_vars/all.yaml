@@ -111,3 +111,13 @@ beacon_container_name: beacon
 validator_container_name: validator
 hi_peer_count: 25
 separate_validator_process_enabled: true
+
+firewall_allowed_tcp_ports:
+  - 22
+  - 30303
+  - 3333
+  - 9000
+
+firewall_allowed_udp_ports:
+  - 30303
+  - 9000

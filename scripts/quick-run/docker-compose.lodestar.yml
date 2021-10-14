@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  lodestar_beacon:
+    image: chainsafe/lodestar:next
+    container_name: lodestar_beacon
+    volumes:
+      - ./beacon_data:/consensus_data
+      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
+    command: >
+      beacon --rootDir=/consensus_data --paramsFile=/custom_config_data/config.yaml --genesisStateFile=/custom_config_data/genesis.ssz --network.discv5.bootEnrs=$ENR --network.connectToDiscv5Bootnodes --network.discv5.enabled=true --eth1.enabled=true --api.rest.port=4000 --eth1.disableEth1DepositDataTracker=true --eth1.providerUrls=http://127.0.0.1:8545 --execution.urls=http://127.0.0.1:8545 --api.rest.enabled=true --api.rest.host=0.0.0.0 --api.rest.api="*" --enr.ip=$IP_ADDRESS
+
+    network_mode: host

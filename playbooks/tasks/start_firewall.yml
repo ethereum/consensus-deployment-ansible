@@ -1,0 +1,7 @@
+- name: Start firewall
+  hosts: all
+  gather_facts: true
+  serial: 20
+  become: yes
+  roles:
+    - geerlingguy.firewall
