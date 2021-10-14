@@ -12,3 +12,5 @@ pithos-testnet/secret.sh
 pithos-testnet/mergenet.yaml
 pithos-testnet/custom_config_data/venv
 backups
+explorerdata
+pithos-testnet/inventory/group_vars/explorer.yml

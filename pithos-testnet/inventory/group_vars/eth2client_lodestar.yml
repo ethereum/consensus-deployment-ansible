@@ -14,10 +14,10 @@ github_external_user_pubkeys:
   - tuyennhv
 
 beacon_env:
-  LODESTAR_PRESET: minimal
+  LODESTAR_PRESET: mainnet
 
 validator_env:
-  LODESTAR_PRESET: minimal
+  LODESTAR_PRESET: mainnet
 
 ##############################################
 # volume mappings on remote host
