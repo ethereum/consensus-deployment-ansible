@@ -21,3 +21,4 @@ The client specific variables also contains the commands used to start the docke
 6. Run your chosen execution engine, e.g: `docker-compose --env-file pithos.vars -f docker-compose.geth.yml up -d`  
 7. Run your chosen consensus engine, e.g: `docker-compose --env-file pithos.vars -f docker-compose.lighthouse.yml up -d`  
 8. Check your logs to confirm that they are up and syncing, e.g `docker logs lighthouse_beacon -f --tail=20`  
+9. To stop the clients, run `docker-compose -f <insert file name you used earlier here> down`
