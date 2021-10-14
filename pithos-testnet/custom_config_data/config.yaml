@@ -8,9 +8,9 @@ CONFIG_NAME: "pithos"
 MIN_GENESIS_ACTIVE_VALIDATOR_COUNT: 35000
 # Oct 14th, 2021, 12pm UTC
 MIN_GENESIS_TIME: 1634212800
-# Location for the altair star is 19h 50m 46.99855
+# Gensis fork
 GENESIS_FORK_VERSION: 0x10000069
-# 300 seconds (1 hour)
+# 300 seconds (5 min)
 GENESIS_DELAY: 300
 
 
@@ -42,7 +42,7 @@ SECONDS_PER_ETH1_BLOCK: 14
 MIN_VALIDATOR_WITHDRAWABILITY_DELAY: 256
 # 2**8 (= 256) epochs ~27 hours
 SHARD_COMMITTEE_PERIOD: 256
-# 2**11 (= 2,048) Eth1 blocks ~8 hours
+# 16 blocks is ~190s
 ETH1_FOLLOW_DISTANCE: 16
 
 

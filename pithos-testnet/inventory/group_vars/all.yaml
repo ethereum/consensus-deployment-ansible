@@ -102,7 +102,7 @@ common_log_options:
   mode: non-blocking
   max-buffer-size: 4m
 common_log_driver: json-file
-beacon_log_level: debug
+beacon_log_level: info
 
 ##############################################
 # container names
