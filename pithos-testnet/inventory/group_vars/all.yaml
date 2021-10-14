@@ -33,7 +33,7 @@ eth1endpoint: http://127.0.0.1:8545
 # testnet specific information
 ##############################################
 testnet_type: custom
-eth2_network_name: amphora
+eth2_network_name: pithos
 
 terminal_total_difficulty: "60000000"
 
