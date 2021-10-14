@@ -1,6 +1,6 @@
 version: "3.4"
 services:
-  nethermind_beacon:
+  nethermind:
     image: nethermind/nethermind:themerge_devnet
     container_name: nethermind_beacon
     volumes:
