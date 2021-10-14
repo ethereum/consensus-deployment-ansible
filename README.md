@@ -16,7 +16,7 @@ The client specific variables also contains the commands used to start the docke
 1. Clone this repository  
 2. Ensure `docker` and `docker-compose` is installed  
 3. Change directories with `cd scripts/quick-run`  
-4. Create the required directories for persistent data with `mkdir execution_data beacon_data`  
+4. Create the required directories for persistent data with `mkdir -p execution_data beacon_data`  
 5. Find your IP address and add it to the `pithos.vars` file, this is just to ensure easy peering  
 6. Run your chosen execution engine, e.g: `docker-compose --env-file pithos.vars -f docker-compose.geth.yml up -d`  
 7. Run your chosen consensus engine, e.g: `docker-compose --env-file pithos.vars -f docker-compose.lighthouse.yml up -d`  
