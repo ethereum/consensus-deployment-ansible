@@ -8,6 +8,9 @@ external_roles
 vars.env
 mnemonics.yaml
 scripts/venv
-amphora-testnet/secret.sh
-amphora-testnet/mergenet.yaml
-
+pithos-testnet/secret.sh
+pithos-testnet/mergenet.yaml
+pithos-testnet/custom_config_data/venv
+backups
+explorerdata
+pithos-testnet/inventory/group_vars/explorer.yml

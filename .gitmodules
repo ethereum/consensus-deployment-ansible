@@ -13,3 +13,6 @@
 [submodule "robertdebock.fail2ban"]
 	path = external_roles/robertdebock.fail2ban
 	url = git@github.com:robertdebock/ansible-role-fail2ban.git
+[submodule "geerlingguy.firewall"]
+        path = external_roles/geerlingguy.firewall
+        url = git@github.com:geerlingguy/ansible-role-firewall.git
