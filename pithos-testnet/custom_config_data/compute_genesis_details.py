@@ -1,5 +1,5 @@
 import os
-from eth2spec.phase0.spec import *
+from eth2spec.phase0.mainnet import *
 
 with open('genesis.ssz', 'rb') as f:
     genesis_state = BeaconState.deserialize(f, os.stat('genesis.ssz').st_size)
