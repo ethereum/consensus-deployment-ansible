@@ -7,5 +7,5 @@ services:
       - ./beacon_data:/consensus_data
       - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
     command: >
-      lighthouse --debug-level=info --datadir=/execution_data --testnet-dir=/custom_config_data bn --disable-enr-auto-update --enr-address=$IP_ADDRESS --dummy-eth1 --boot-nodes=$ENR --http --http-port=4000 --merge --http-allow-sync-stalled --disable-packet-filter --execution-endpoints=http://127.0.0.1:8545 --terminal-total-difficulty-override=$TOTAL_TERMINAL_DIFFICULTY
+      lighthouse --debug-level=info --datadir=/execution_data --testnet-dir=/custom_config_data bn --disable-enr-auto-update --enr-address=$IP_ADDRESS --enr-udp-port 9000 --enr-tcp-port 9000 --dummy-eth1 --boot-nodes=$ENR --http --http-port=4000 --merge --http-allow-sync-stalled --disable-packet-filter --execution-endpoints=http://127.0.0.1:8545 --terminal-total-difficulty-override=$TOTAL_TERMINAL_DIFFICULTY
     network_mode: host
