@@ -8,7 +8,7 @@ beacon_image_name: chainsafe/lodestar:next
 validator_image_name: chainsafe/lodestar:next
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
-github_external_user_pubkeys:
+eth2_github_external_user_pubkeys:
   - dapplion
   - wemeetagain
   - tuyennhv

@@ -7,7 +7,7 @@ eth2_client_name: nimbus
 beacon_image_name: parithoshj/nimbus:merge-872879b
 validator_image_name: parithoshj/nimbus:merge-872879b
 
-github_external_user_pubkeys:
+eth2_github_external_user_pubkeys:
   - zahary
   - tersec
 

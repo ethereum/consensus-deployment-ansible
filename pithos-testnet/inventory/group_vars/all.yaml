@@ -68,7 +68,7 @@ node_exporter_web_listen_address: "0.0.0.0:9100"
 ##############################################
 # name of the validator to display
 ##############################################
-graffiti: "{{eth2_client_name}}"
+graffiti: "{{eth2_client_name}}-{{eth1_client_name}}"
 
 ##############################################
 # local data directories
@@ -121,3 +121,6 @@ firewall_allowed_tcp_ports:
 firewall_allowed_udp_ports:
   - 30303
   - 9000
+
+firewall_additional_rules:
+  - "iptables -A INPUT -p tcp --dport 4000 -s 54.144.95.116 -j ACCEPT"

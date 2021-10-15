@@ -8,7 +8,7 @@ beacon_image_name: parithoshj/lighthouse:merge-mainnetconfig-09a5d62
 validator_image_name: parithoshj/lighthouse:merge-mainnetconfig-09a5d62
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
-github_external_user_pubkeys:
+eth2_github_external_user_pubkeys:
   - AgeManning
   - paulhauner
 
