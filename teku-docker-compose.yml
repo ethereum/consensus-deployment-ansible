@@ -1,0 +1,48 @@
+version: "3.4"
+services:
+  eth2_val_tools:
+    image: suburbandad/eth2-val-tools:latest
+    volumes:
+      - ./validator_data:/validator_data
+    command: > 
+      keystores
+      --insecure 
+      --prysm-pass="prysm" 
+      --out-loc="/validator_data/keys" 
+      --source-max=${VALIDATOR_INDEX_MAX} 
+      --source-min=${VALIDATOR_INDEX_MIN} 
+      --source-mnemonic="${VALIDATOR_MNEMONIC_0}"
+
+  teku:
+    image: suburbandad/teku:merge-interop
+    container_name: teku
+    depends_on:
+      - eth2_val_tools
+      - besu
+    volumes:
+      - ./beacon_data:/consensus_data
+      - ./$TESTNET_NAME/custom_config_data:/custom_config_data
+      - ./validator_data/keys:/keys
+    #ports:
+    #  - "9000:9000" # P2P port
+    #  - "9596:9596" # REST API port
+    command: >
+      --network /custom_config_data/config.yaml 
+      --initial-state /custom_config_data/genesis.ssz
+      --data-path /consensus_data 
+      --data-storage-mode PRUNE 
+      --validator-keys /keys/teku-keys:/keys/teku-secrets 
+      --p2p-enabled true 
+      --eth1-endpoints http://127.0.0.1:8545 
+      --p2p-advertised-ip ${IP_ADDRESS} 
+      --p2p-discovery-bootnodes ${ENR} 
+      --rest-api-enabled true 
+      --rest-api-docs-enabled true 
+      --rest-api-interface 0.0.0.0 
+      --rest-api-port 4000 
+      --rest-api-host-allowlist * 
+      --Xdata-storage-non-canonical-blocks-enabled true 
+      --Xnetwork-merge-total-terminal-difficulty ${TOTAL_TERMINAL_DIFFICULTY} 
+      --log-destination=CONSOLE
+    network_mode: host
+
