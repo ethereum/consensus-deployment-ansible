@@ -24,3 +24,6 @@ The client specific variables also contains the commands used to start the docke
 7. Run your chosen consensus engine, e.g: `docker-compose --env-file pithos.vars -f docker-compose.lighthouse.yml up -d`  
 8. Check your logs to confirm that they are up and syncing, e.g `docker logs lighthouse_beacon -f --tail=20`  
 9. To stop the clients, run `docker-compose -f <insert file name you used earlier here> down`
+
+## Alternative Instructions to join testnet
+ - [How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less by CoinCashew](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less)
