@@ -68,6 +68,7 @@ validator_start_args: >
    --logLevelFile=debug
    --logRotate
    --logMaxFiles=5
+  --graffiti={{graffiti}}
 
 ##############################################
 # memory limits
