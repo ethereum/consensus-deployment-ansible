@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   nimbus_beacon:
-    image: parithoshj/nimbus:merge-872879b
+    image: parithoshj/nimbus:merge-7ac8cb7
     container_name: nimbus_beacon
     volumes:
       - ./beacon_data:/consensus_data

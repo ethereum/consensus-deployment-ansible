@@ -4,10 +4,10 @@
 eth2_client_name: nimbus
 
 # TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: parithoshj/nimbus:merge-872879b
-validator_image_name: parithoshj/nimbus:merge-872879b
+beacon_image_name: parithoshj/nimbus:merge-7ac8cb7
+validator_image_name: parithoshj/nimbus:merge-7ac8cb7
 
-github_external_user_pubkeys:
+eth2_github_external_user_pubkeys:
   - zahary
   - tersec
 
@@ -19,6 +19,7 @@ beacon_volumes:
   - "{{testnet_dir}}:/custom_config_data"
   - "{{validator_node_dir}}:/validatordata"
 
+beacon_log_level: debug
 ##############################################
 # arguments to run the containers with
 ##############################################

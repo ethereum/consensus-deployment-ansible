@@ -19,11 +19,19 @@
         state: present
         key: "https://github.com/{{ item }}.keys"
     - name: "Add client specific authorized keys"
-      loop: "{{ github_external_user_pubkeys }}"
+      loop: "{{ eth1_github_external_user_pubkeys }}"
       authorized_key:
         user: "{{ bootstrap_user }}"
         state: present
         key: "https://github.com/{{ item }}.keys"
+      ignore_errors: yes
+    - name: "Add client specific authorized keys"
+      loop: "{{ eth2_github_external_user_pubkeys }}"
+      authorized_key:
+        user: "{{ bootstrap_user }}"
+        state: present
+        key: "https://github.com/{{ item }}.keys"
+      ignore_errors: yes
     - name: "Allow admin users to sudo without a password"
       lineinfile:
         dest: "/etc/sudoers" # path: in version 2.3

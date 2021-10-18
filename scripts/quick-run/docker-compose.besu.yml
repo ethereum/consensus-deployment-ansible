@@ -1,0 +1,27 @@
+version: "3.4"
+services:
+  besu:
+    image: suburbandad/besu:merge-interop
+    container_name: besu
+    volumes:
+      - ./execution_data:/execution_data
+      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
+    command: >
+      --data-path="/execution_data"
+      --genesis-file="/custom_config_data/besu_genesis.json"
+      --network-id=$NETWORK_ID
+      --rpc-http-enabled=true
+      --rpc-ws-enabled=true
+      --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,EXECUTION
+      --rpc-ws-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,EXECUTION
+      --host-allowlist="*"
+      --rpc-http-cors-origins="*"
+      --p2p-enabled=true
+      --Xmerge-support=true
+      --miner-enabled=true
+      --rpc-http-host=0.0.0.0
+      --rpc-ws-host=0.0.0.0
+      --p2p-host=$IP_ADDRESS
+      --bootnodes=$ENODE
+      --miner-coinbase="0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73"
+    network_mode: host
