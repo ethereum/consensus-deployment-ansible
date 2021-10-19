@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   nethermind:
-    image: nethermind/nethermind:themerge_devnet
+    image: nethermind/nethermind:themerge_pithos
     container_name: nethermind
     volumes:
       - ./execution_data:/execution_data
