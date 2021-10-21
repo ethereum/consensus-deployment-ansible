@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: parithoshj/teku:merge-d3f827e
-validator_image_name: parithoshj/teku:merge-d3f827e
+beacon_image_name: parithoshj/teku:merge-cd17a20
+validator_image_name: parithoshj/teku:merge-cd17a20
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:

@@ -8,7 +8,7 @@ beacon_image_name: parithoshj/nimbus:merge-7ac8cb7
 validator_image_name: parithoshj/nimbus:merge-7ac8cb7
 
 eth2_github_external_user_pubkeys:
-  - zahary
+  - zah
   - tersec
 
 ##############################################

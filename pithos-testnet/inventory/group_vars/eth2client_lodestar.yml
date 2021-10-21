@@ -50,7 +50,7 @@ beacon_start_args: >
         --api.rest.enabled=true
         --api.rest.host=0.0.0.0
         --api.rest.api="*"
-        --logLevel=info
+        --logLevel={{ beacon_log_level | lower }}
         --logLevelFile=debug
         --logFile=/beacondata/beacon.log
         --logRotate
