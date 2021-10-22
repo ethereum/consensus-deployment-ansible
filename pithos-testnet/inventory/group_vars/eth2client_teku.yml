@@ -55,7 +55,7 @@ beacon_start_args: >
   --Xnetwork-merge-total-terminal-difficulty={{terminal_total_difficulty}}
   --validators-graffiti="{{graffiti}}"
   --validator-keys="/validatordata/keys:/validatordata/secrets"
-
+  --validators-keystore-locking-enabled=false
 
 #validator_start_args: >
 #  validator-client
