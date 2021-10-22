@@ -27,3 +27,18 @@ The client specific variables also contains the commands used to start the docke
 
 ## Alternative Instructions to join testnet
  - [How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less by CoinCashew](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less)
+ 
+## Instructions for running ansible playbooks (Only works if you have access)
+1. Clone this repository
+2. Ensure `ansible` is installed
+3. Make changes in the required variable, e.g: Change the `pithos-testnet/inventory/group_vars/eth1client_ethereumjs.yaml`
+with the new docker image or the `eth1_start_args` for commands to run the container with
+4. The `update_execution_beacon_and_validator.yml` will stop the execution, beacon and validator containers and restart them
+with the new configurations specified as variables. Please use the `limit=eth1/2_xxxx` flag to limit the playbook execution to just update
+the nodes you have access to (otherwise it won't change the config on the others, but will show a lot of errors).
+Run this playbook with: `ansible-playbook -i pithos-testnet/inventory/inventory.ini playbooks/update_execution_beacon_and_validator.yml --limit=eth1client_ethereumjs`
+5. If you just want to update an execution node without touching the other docker containers use the `tasks`, e.g to restart execution node with the new parameters use, 
+```bash
+ansible-playbook -i pithos-testnet/inventory/inventory.ini playbooks/tasks/stop_execution_node.yml --limit=eth1client_ethereumjs
+ansible-playbook -i pithos-testnet/inventory/inventory.ini playbooks/tasks/start_execution_node.yml --limit=eth1client_ethereumjs
+```
