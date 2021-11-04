@@ -67,3 +67,16 @@ prep_group 1 "$VALIDATORS_MNEMONIC_0" 38 1 "pithos-teku-nethermind"
 
 echo "Teku keys"
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 39 1 "pithos-teku-besu"
+
+#0-15000 lighthouse-geth
+#15000-16000 lighthouse-nethermind
+#16000-17000 lighthouse-besu
+#17000-18000 lodestar-geth
+#18000-19000 lodestar-nethermind
+#19000-20000 lodestar-besu
+#20000-21000 nimbus-geth
+#21000-22000 nimbus-nethermind
+#22000-23000 nimbus-besu
+#23000-38000 teku-geth
+#38000-39000 teku-nethermind
+#39000-40000 teku-besu

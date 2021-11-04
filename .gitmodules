@@ -16,3 +16,6 @@
 [submodule "geerlingguy.firewall"]
         path = external_roles/geerlingguy.firewall
         url = git@github.com:geerlingguy/ansible-role-firewall.git
+[submodule "cloudalchemy.prometheus"]
+        path = external_roles/cloudalchemy.prometheus
+        url = git@github.com:cloudalchemy/ansible-prometheus

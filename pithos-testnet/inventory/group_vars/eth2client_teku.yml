@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: parithoshj/teku:merge-cd17a20
-validator_image_name: parithoshj/teku:merge-cd17a20
+beacon_image_name: parithoshj/teku:merge-30e5d16
+validator_image_name: parithoshj/teku:merge-30e5d16
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
@@ -43,8 +43,6 @@ beacon_start_args: >
   --p2p-discovery-bootnodes="{{ bootnode_enrs | join(',') }}"
   {% endif %}
   --metrics-enabled=true --metrics-interface=0.0.0.0 --metrics-port="{{beacon_metrics_port}}"
-  --p2p-discovery-enabled=true
-  --p2p-peer-lower-bound=1
   --rest-api-enabled=true
   --rest-api-docs-enabled=true
   --rest-api-interface=0.0.0.0
