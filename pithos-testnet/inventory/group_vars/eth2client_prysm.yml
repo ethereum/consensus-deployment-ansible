@@ -68,3 +68,5 @@ beacon_kernel_memory: 5500M
 keystores_file_mode: "0700"
 beacon_user_id: "1000:1000"
 validator_user_id: "1000:1000"
+
+separate_validator_process_enabled: true

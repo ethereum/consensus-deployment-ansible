@@ -56,6 +56,8 @@ beacon_start_args: >
         --logRotate
         --logMaxFiles=5
         --enr.ip={{ansible_host}}
+        --metrics.enabled
+        --metrics.serverPort={{ beacon_metrics_port }}
 
 validator_start_args: >
   validator
@@ -84,3 +86,5 @@ beacon_kernel_memory: 5500M
 keystores_file_mode: "0700"
 beacon_user_id: "1000:1000"
 validator_user_id: "1000:1000"
+
+separate_validator_process_enabled: true

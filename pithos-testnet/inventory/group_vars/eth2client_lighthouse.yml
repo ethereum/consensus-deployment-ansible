@@ -66,6 +66,7 @@ validator_start_args: >
   --server={{beacon_endpoint}}
   --graffiti="{{graffiti}}"
   --http --http-port={{validator_rpc_port}}
+  --metrics --metrics-address 0.0.0.0 --metrics-port "{{validator_metrics_port}}"
 
 ##############################################
 # memory limits
@@ -81,3 +82,5 @@ beacon_kernel_memory: 5500M
 keystores_file_mode: "0700"
 beacon_user_id: "1000:1000"
 validator_user_id: "1000:1000"
+
+separate_validator_process_enabled: true
