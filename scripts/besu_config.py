@@ -5,7 +5,7 @@ import sys
 
 w3.eth.account.enable_unaudited_hdwallet_features()
 
-mergenet_config_path = "../pithos-testnet/mergenet.yaml"
+mergenet_config_path = "../merge-devnet-0/mergenet.yaml"
 if len(sys.argv) > 1:
     mergenet_config_path = sys.argv[1]
 
