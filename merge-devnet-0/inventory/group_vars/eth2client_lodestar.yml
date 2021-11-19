@@ -12,6 +12,7 @@ eth2_github_external_user_pubkeys:
   - dapplion
   - wemeetagain
   - tuyennhv
+  - g11tech
 
 beacon_env:
   LODESTAR_PRESET: mainnet

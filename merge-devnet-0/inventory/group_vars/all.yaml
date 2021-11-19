@@ -50,7 +50,7 @@ eth1_bootnode_enode:
 # enter pushgateway config if needed
 prometheus_config_file: "prometheus/prometheus.yml.j2"
 thanos_url: "http://thanos.ethdevops.io:19291/api/v1/receive/"
-push_metrics_enabled: false
+push_metrics_enabled: true
 
 ##############################################
 # ports to configure
