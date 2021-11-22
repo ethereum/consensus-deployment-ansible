@@ -14,9 +14,10 @@ provider_endpoint = "http://eth2-ws-provider_eth2_ws_server_1:80"
 output_dir = "public"
 port = 8080
 
-{% for host in beacon %}
+{% for host in groups['beacon'] %}
 [[monitor.endpoints]]
-consensus = "http://{{ ansible_host }}:{{ beacon_api_port }}"
-execution = "{{ eth1_client_name }}"
+consensus = "http://{{ hostvars[host].ansible_host }}:{{ hostvars[host].beacon_api_port }}"
+execution = "{{ hostvars[host].eth1_client_name }}"
+
 {% endfor %}
 

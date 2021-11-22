@@ -17,6 +17,6 @@
 #      dest: "{{ forkmon_host_dir }}/"
   - name: Move the forkmon config j2 template to remote
     template:
-      src: forkmondata/config.yaml.j2
-      dest:  "{{forkmon_host_dir}}/config.yaml"
+      src: forkmon/config.toml.j2
+      dest:  "{{forkmon_host_dir}}/config.toml"
       mode: '755'

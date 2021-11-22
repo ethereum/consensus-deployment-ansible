@@ -7,6 +7,8 @@ forkmon_container_name: merge_devnet_1_forkmon
 forkmon_host_dir: "{{home_dir}}/forkmon_data"
 
 forkmon_volumes:
-  - "{{forkmon_host_dir}}:/data"
+  - "{{forkmon_host_dir}}/config.toml:/config.toml"
 
-forkmon_start_args: "-config-file=/data/config.yaml"
+forkmon_start_args: ""
+
+forkmon_debug_level: info

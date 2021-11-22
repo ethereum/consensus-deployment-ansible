@@ -48,4 +48,4 @@
         command: "{{ forkmon_start_args }}"
         volumes: "{{forkmon_volumes}}"
         env:
-          VIRTUAL_PORT: "'{{ forkmon_http_listen_port }}'"
+          RUST_LOG: "{{ forkmon_debug_level }}"
