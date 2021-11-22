@@ -3,36 +3,36 @@
   gather_facts: true
   serial: 20
   tasks:
-    - name: Nginx proxy server
-      docker_container:
-        name: nginx-proxy
-        state: started
-        image: "jwilder/nginx-proxy:latest"
-        restart_policy: unless-stopped
-        network_mode: host
-        restart: false
-        volumes:
-          - "/etc/nginx/certs:/etc/nginx/certs"
-          - "/etc/nginx/vhost.d:/etc/nginx/vhost.d"
-          - "/usr/share/nginx/html:/usr/share/nginx/html"
-          - "/var/run/docker.sock:/tmp/docker.sock:ro"
-
-    - name: Nginx proxy companion
-      docker_container:
-        name: nginx-proxy-companion
-        state: started
-        image: "jrcs/letsencrypt-nginx-proxy-companion:latest"
-        restart_policy: unless-stopped
-        network_mode: host
-        restart: false
-        volumes:
-          - "/etc/nginx/certs:/etc/nginx/certs"
-          - "/etc/nginx/vhost.d:/etc/nginx/vhost.d"
-          - "/usr/share/nginx/html:/usr/share/nginx/html"
-          - "/var/run/docker.sock:/var/run/docker.sock:ro"
-        env:
-          DEFAULT_EMAIL: "{{letsencrypt_email}}"
-          NGINX_PROXY_CONTAINER: nginx-proxy
+#    - name: Nginx proxy server
+#      docker_container:
+#        name: nginx-proxy
+#        state: started
+#        image: "jwilder/nginx-proxy:latest"
+#        restart_policy: unless-stopped
+#        network_mode: host
+#        restart: false
+#        volumes:
+#          - "/etc/nginx/certs:/etc/nginx/certs"
+#          - "/etc/nginx/vhost.d:/etc/nginx/vhost.d"
+#          - "/usr/share/nginx/html:/usr/share/nginx/html"
+#          - "/var/run/docker.sock:/tmp/docker.sock:ro"
+#
+#    - name: Nginx proxy companion
+#      docker_container:
+#        name: nginx-proxy-companion
+#        state: started
+#        image: "jrcs/letsencrypt-nginx-proxy-companion:latest"
+#        restart_policy: unless-stopped
+#        network_mode: host
+#        restart: false
+#        volumes:
+#          - "/etc/nginx/certs:/etc/nginx/certs"
+#          - "/etc/nginx/vhost.d:/etc/nginx/vhost.d"
+#          - "/usr/share/nginx/html:/usr/share/nginx/html"
+#          - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#        env:
+#          DEFAULT_EMAIL: "{{letsencrypt_email}}"
+#          NGINX_PROXY_CONTAINER: nginx-proxy
     - name: Start Eth2 forkmon
       docker_container:
         name: "{{ forkmon_container_name }}"

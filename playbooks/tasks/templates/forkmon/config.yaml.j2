@@ -1,0 +1,22 @@
+[network]
+name = "{{ eth2_network_name }}"
+etherscan_api_key = "some-etherscan-api-key"
+
+[consensus_chain]
+seconds_per_slot = 12
+slots_per_epoch = 32
+genesis_time = 1637593200
+
+[weak_subjectivity]
+provider_endpoint = "http://eth2-ws-provider_eth2_ws_server_1:80"
+
+[monitor]
+output_dir = "public"
+port = 8080
+
+{% for host in beacon %}
+[[monitor.endpoints]]
+consensus = "http://{{ ansible_host }}:{{ beacon_api_port }}"
+execution = "{{ eth1_client_name }}"
+{% endfor %}
+
