@@ -6,15 +6,6 @@
     file:
       path: "{{forkmon_host_dir}}"
       state: directory
-#  - name: Archive forkmondata dir to prepare for upload
-#    archive:
-#      path: "{{local_forkmondata_host_dir}}/*"
-#      dest: "{{local_forkmondata_host_archive}}"
-#    delegate_to: localhost
-#  - name: Upload new forkmon config
-#    unarchive:
-#      src: "{{ local_forkmondata_host_archive }}"
-#      dest: "{{ forkmon_host_dir }}/"
   - name: Move the forkmon config j2 template to remote
     template:
       src: forkmon/config.toml.j2

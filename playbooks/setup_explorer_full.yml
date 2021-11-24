@@ -1,9 +1,0 @@
----
-#- import_playbook: tasks/setup_machine.yml
-- import_playbook: tasks/upload_explorer_data.yml
-- import_playbook: tasks/start_explorer_net.yml
-- import_playbook: tasks/start_explorer_postgres.yml
-- import_playbook: tasks/init_explorer_sql_tables.yml
-#- import_playbook: tasks/start_explorer_beacon.yml
-- import_playbook: tasks/start_explorer.yml
-- import_playbook: tasks/start_explorer_statistics.yml
