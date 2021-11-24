@@ -1,10 +1,10 @@
 ---
-#- import_playbook: tasks/setup_machine.yml
-#- import_playbook: tasks/upload_beacon_explorer_data.yml
+- import_playbook: tasks/setup_machine.yml
+- import_playbook: tasks/upload_beacon_explorer_data.yml
 - import_playbook: tasks/upload_execution_explorer_data.yml
-#- import_playbook: tasks/start_explorer_net.yml
-#- import_playbook: tasks/start_explorer_postgres.yml
-#- import_playbook: tasks/init_explorer_sql_tables.yml
-#- import_playbook: tasks/start_beacon_explorer.yml
-#- import_playbook: tasks/start_explorer_statistics.yml
+- import_playbook: tasks/start_explorer_net.yml
+- import_playbook: tasks/start_explorer_postgres.yml
+- import_playbook: tasks/init_explorer_sql_tables.yml
+- import_playbook: tasks/start_beacon_explorer.yml
+- import_playbook: tasks/start_explorer_statistics.yml
 - import_playbook: tasks/start_execution_explorer.yml
