@@ -1,0 +1,28 @@
+##############################################
+# generic faucet info
+##############################################
+faucet_node_dir: "{{home_dir}}/faucet_data"
+debug: false
+
+##############################################
+# captcha info
+##############################################
+captcha_site_key: 6LejE1sdAAAAAIZ2e5puZjVeliMjN9d_Vktbw5-3
+captcha_secret: 6LejE1sdAAAAAKr1h-gHorreywGA86cjzd0q67aY
+
+##############################################
+# faucet config
+##############################################
+ether_to_transfer: 100000
+rpc_url: http://137.184.108.205:8545
+faucet_send_account: "0x596cBfd4888A438A5f0b3140Ad9019563739fDEb"
+faucet_private_key: bc3532b85751015d20d2116752411ca506407d7a309c9ab9bc857ff10cb3812f
+
+##############################################
+# faucet container info
+##############################################
+faucet_container_name: faucet
+faucet_image_name: parithoshj/testnet-faucet:v1.0.3
+faucet_volumes:
+  - "{{faucet_node_dir}}/config.json:/app/config.json"
+  - "{{faucet_node_dir}}/index.html:/app/public/index.html"

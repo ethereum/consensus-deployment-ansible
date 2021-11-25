@@ -1,0 +1,21 @@
+- name: Start faucet
+  hosts: faucet
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start faucet
+      docker_container:
+        name: "{{ faucet_container_name }}"
+        state: started
+        image: "{{ faucet_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "172.1.1.105"
+        ports:
+          - "5003:5001"
+        restart: "{{ explorer_require_restart | default(false) }}"
+        memory: "{{explorer_memory}}"
+        volumes: "{{ faucet_volumes }}"

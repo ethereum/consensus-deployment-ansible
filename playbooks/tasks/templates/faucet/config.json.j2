@@ -1,0 +1,16 @@
+{
+    "environment": "prod",
+    "debug": false,
+    "Captcha": {
+        "secret": "{{ captcha_secret }}"
+    },
+    "Ethereum": {
+        "milliEtherToTransfer": {{ ether_to_transfer }},
+        "gasLimit": "30000",
+        "prod": {
+            "rpc": "{{ rpc_url }}",
+            "account": "{{ faucet_send_account }}",
+            "privateKey": "{{ faucet_private_key }}"
+        }
+    }
+}
