@@ -38,16 +38,6 @@
       file:
         path: "{{testnet_dir}}"
         state: absent
-    - name: 'Ensure metric pusher is not present'
-      cron:
-        name: "metric-pusher"
-        state: absent
-        user: "{{ ansible_user }}"
-    - name: 'Remove the metric pusher file'
-      become: true
-      file:
-        path: /opt/metric-pusher.sh
-        state: absent
     - name: Stop node_exporter service
       systemd:
         state: stopped

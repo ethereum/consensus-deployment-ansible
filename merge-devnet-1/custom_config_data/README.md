@@ -1,11 +1,11 @@
-# merge-devnet-0
-TTD: `2000000000`  
+# merge-devnet-1
+TTD: `200000000`  
 ENR for consensus clients: `enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk`    
-enode for execution clients: 
+enode for execution clients:
 ```yaml
   - "enode://68d3eb775d6c1da735d7584cf7f7a069ad5031ae85613d9bc1723b2d60778e09e9f07734a3c9e5c149ae2c385dca448374064b3d9d0e5b73d0efa65e66039c01@137.184.108.205:30303"
   - "enode://3a514176466fa815ed481ffad09110a2d344f6c9b78c1d14afc351c3a51be33d8072e77939dc03ba44790779b7a1025baf3003f6732430e20cd9b76d953391b3@137.184.97.41:30303"
-  - "enode://68d3eb775d6c1da735d7584cf7f7a069ad5031ae85613d9bc1723b2d60778e09e9f07734a3c9e5c149ae2c385dca448374064b3d9d0e5b73d0efa65e66039c01@137.184.108.205:30303"
+  - "enode://cdeabbfb1a56c39911366b5d6d0012e4b9e1c5a97e4392936c35f12e7ca27b2bc10172045387ffbdc7a2d43ff7e6b7c7107bc55a372561d33282f1a6b320925d@137.184.109.34:30303"
 ```
 
 Altair will fork at epoch 4 and merge epoch at 10.
