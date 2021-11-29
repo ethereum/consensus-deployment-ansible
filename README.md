@@ -12,7 +12,7 @@ The client specific variables also contains the commands used to start the docke
 ## Instructions to join testnet  
 1. Clone this repository  
 2. Ensure `docker` and `docker-compose` is installed: `docker-compose --version` and `docker --version`
-3. Change directories with `cd consensus-deployment-ansible/scripts/quick-run/`  
+3. Change directories with `cd consensus-deployment-ansible/scripts/quick-run/<testnet-type>`  
 4. Create the required directories for persistent data with `mkdir -p execution_data beacon_data`  
 5. Find your IP address(public IP) and add it to the `<testnet-name>.vars` file file located in `consensus-deployment-ansible/scripts/quick-run/`, this is just to ensure easy peering  
 5.1 `curl ifconfig.me` or visit https://whatismyipaddress.com  

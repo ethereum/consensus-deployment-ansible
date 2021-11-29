@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:v2.0.0-rc.1
-validator_image_name: gcr.io/prysmaticlabs/prysm/validator:v2.0.0-rc.1
+beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain@sha256:dfd7f6177142fa09064969413ea0e04372db2d4447bb3e2fc568ccb11895c36a
+validator_image_name: gcr.io/prysmaticlabs/prysm/validator@sha256:5d0f2f5e9b4db74c2dfb6084db0fe350fbcb50e7d37c7d1d67b5ab400f9fd3d3
 
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
@@ -13,10 +13,11 @@ beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
 ##############################################
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
-  - "{{testnet_dir}}/genesis.ssz:/custom_config_data/genesis.ssz"
+  - "{{testnet_dir}}:/custom_config_data"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
+  - "{{testnet_dir}}:/custom_config_data"
 
 ##############################################
 # arguments to run the containers with
@@ -41,9 +42,9 @@ beacon_start_args: >
   --rpc-host=0.0.0.0 --rpc-port={{beacon_grpc_port}}
   --grpc-gateway-host=0.0.0.0
   --grpc-gateway-port={{beacon_api_port}}
-  --verbosity="trace"
   --enable-debug-rpc-endpoints
   --min-sync-peers 1
+  --merge-testnet
 
 validator_start_args: >
   --accept-terms-of-use=true
@@ -54,6 +55,8 @@ validator_start_args: >
   --graffiti="{{graffiti}}"
   --wallet-dir=/validatordata/wallet
   --wallet-password-file="/validatordata/wallet_pass.txt"
+
+
 ##############################################
 # memory limits
 ##############################################
