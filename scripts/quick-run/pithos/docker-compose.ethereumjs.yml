@@ -5,7 +5,7 @@ services:
     container_name: ethereumjs
     volumes:
       - ./execution_data:/execution_data
-      - ../../$TESTNET_NAME/custom_config_data:/custom_config_data
+      - ../../../$TESTNET_NAME/custom_config_data:/custom_config_data
     network_mode: host
     command: >
       --datadir=/execution_data --gethGenesis=/custom_config_data/genesis.json --rpc --rpcEngine --rpcEnginePort=8545 --rpcStubGetLogs --rpcDebug --loglevel=debug --bootnodes=$ENODE --extIP=$IP_ADDRESS
