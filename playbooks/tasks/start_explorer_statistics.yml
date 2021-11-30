@@ -7,7 +7,7 @@
       docker_container:
         name: "{{ explorer_stats_container_name }}"
         state: started
-        image: "{{ explorer_image_name }}"
+        image: "{{ beacon_explorer_image_name }}"
         pull: true
         restart_policy: unless-stopped
         network_mode: bridge

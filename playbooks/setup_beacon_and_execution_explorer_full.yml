@@ -1,5 +1,5 @@
 ---
-- import_playbook: tasks/setup_machine.yml
+#- import_playbook: tasks/setup_machine.yml
 - import_playbook: tasks/upload_beacon_explorer_data.yml
 - import_playbook: tasks/upload_execution_explorer_data.yml
 - import_playbook: tasks/start_explorer_net.yml
