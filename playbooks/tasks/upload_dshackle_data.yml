@@ -1,0 +1,13 @@
+- name: Upload dshackle data
+  hosts: dshackle
+  gather_facts: true
+  tasks:
+    - name: Creates dshackle dir
+      file:
+        path: "{{dshackle_dir}}"
+        state: directory
+    - name: Move the dshackle config j2 template to remote
+      template:
+        src: "{{inventory_dir}}/../dshackle_data/dshackle.yaml.j2"
+        dest:  "{{dshackle_dir}}/dshackle.yaml"
+        mode: '755'

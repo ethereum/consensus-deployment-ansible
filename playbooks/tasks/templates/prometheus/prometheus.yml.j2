@@ -26,17 +26,12 @@ scrape_configs:
         instance: "{{ ansible_hostname }}"
       targets:
       - localhost:9100
-  {% if eth2_client_name != "teku" %}
-
   - job_name: beacon
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
       targets:
       - localhost:{{ beacon_metrics_port }}
-
-
-  {% endif %}
 
 
 {% if separate_validator_process_enabled == true %}

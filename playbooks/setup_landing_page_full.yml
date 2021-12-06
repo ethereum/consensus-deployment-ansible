@@ -1,0 +1,3 @@
+---
+- import_playbook: tasks/upload_landing_page_data.yml
+- import_playbook: tasks/start_landing_page.yml

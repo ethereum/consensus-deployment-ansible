@@ -1,0 +1,19 @@
+- name: Start landing_page
+  hosts: landing_page
+  gather_facts: true
+  tasks:
+    - name: Start landing_page
+      docker_container:
+        name: "{{ landing_page_container_name }}"
+        state: started
+        image: "{{ landing_page_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "{{landing_page_ip}}"
+        ports:
+          - "{{landing_page_port}}:1313"
+        restart: "{{ landing_page_require_restart | default(false) }}"
+        volumes: "{{ landing_page_volumes }}"

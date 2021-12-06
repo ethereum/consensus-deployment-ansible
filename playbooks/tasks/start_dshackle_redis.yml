@@ -1,0 +1,31 @@
+- name: Start dshackle redis db
+  hosts: dshackle
+  gather_facts: true
+  tasks:
+    - name: Creates dshackle dir
+      file:
+        path: "{{dshackle_dir}}"
+        state: directory
+    - name: Move the dshackle config j2 template to remote
+      template:
+        src: "{{inventory_dir}}/../dshackle_data/redis.conf.j2"
+        dest: "{{dshackle_dir}}/redis.conf"
+        mode: '755'
+    - name: Start redis database
+      docker_container:
+        name: "dshackle_redis"
+        state: started
+        image: "redis:alpine"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "{{dshackle_redis_ip}}"
+        expose:
+          - "{{dshackle_redis_port}}"
+        restart: "{{ redis_require_restart | default(false) }}"
+        command: "{{ dshackle_redis_start_args }}"
+        volumes: "{{dshackle_redis_volumes}}"
+        env:
+          REDIS_REPLICATION_MODE: "master"

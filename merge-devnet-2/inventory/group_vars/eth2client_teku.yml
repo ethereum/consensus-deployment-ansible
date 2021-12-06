@@ -33,7 +33,7 @@ beacon_start_args: >
   --logging={{beacon_log_level}}
   --p2p-peer-upper-bound={{hi_peer_count}}
   --eth1-endpoints="{{eth1endpoint}}"
-  ----Xee-endpoint="{{eth1endpoint}}"
+  --Xee-endpoint="{{eth1endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --p2p-discovery-bootnodes="{{ bootnode_enrs | join(',') }}"
   {% endif %}

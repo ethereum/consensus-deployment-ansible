@@ -35,7 +35,7 @@ eth1endpoint: http://127.0.0.1:8545
 ##############################################
 testnet_type: custom
 eth2_network_name: merge-devnet-2
-
+chainID: 1337502
 terminal_total_difficulty: "1000000000"
 
 # enter bootnodes here if needed
