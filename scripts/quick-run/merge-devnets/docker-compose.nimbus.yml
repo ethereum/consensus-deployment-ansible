@@ -11,5 +11,5 @@ services:
       --data-dir="/consensus_data" --web3-url=ws://127.0.0.1:8546
       --bootstrap-node=$ENR --nat="extip:$IP_ADDRESS" --enr-auto-update=false
       --rest --rest-port=4000
-      --terminal-total-difficulty-override={{terminal_total_difficulty}}
+      --terminal-total-difficulty-override=$TOTAL_TERMINAL_DIFFICULTY
     network_mode: host
