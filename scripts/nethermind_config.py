@@ -5,7 +5,7 @@ import sys
 
 w3.eth.account.enable_unaudited_hdwallet_features()
 
-mergenet_config_path = "../merge-devnet-2/mergenet.yaml"
+mergenet_config_path = "../merge-devnet-3/mergenet.yaml"
 if len(sys.argv) > 1:
     mergenet_config_path = sys.argv[1]
 
@@ -13,7 +13,7 @@ with open(mergenet_config_path) as stream:
     data = yaml.safe_load(stream)
 
 out = {
-    "name": "mergeDevnet1",
+    "name": "mergeDevnet3",
     "engine": {
         "Ethash": {
             "params": {
@@ -37,6 +37,7 @@ out = {
         "maximumExtraDataSize": "0x20",
         "minGasLimit": "0x1388",
         "networkID": hex(int(data['chain_id'])),
+        "MergeForkIdTransition": hex(int(data['mergeForkBlock'])),
         "eip150Transition": "0x0",
         "eip158Transition": "0x0",
         "eip160Transition": "0x0",

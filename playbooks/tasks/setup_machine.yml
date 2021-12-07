@@ -60,5 +60,7 @@
             state: present
         - name: Add ansible user to docker group
           shell: 'usermod -aG docker {{ ansible_user }}'
-    - name: Unconditionally reboot the machine with all defaults
-      reboot:
+    - name: Reload service docker, in all cases
+      ansible.builtin.service:
+        name: docker
+        state: restarted
