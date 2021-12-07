@@ -37,7 +37,7 @@
         dest: "/etc/sudoers" # path: in version 2.3
         state: "present"
         regexp: "^%{{ bootstrap_user }}"
-        line: "%devops ALL=(ALL) NOPASSWD: ALL"
+        line: "%{{ bootstrap_user }} ALL=(ALL) NOPASSWD: ALL"
 
 - name: Run bootstrap playbook to ensure basic stuff works and add oh-my-zsh
   hosts: all
