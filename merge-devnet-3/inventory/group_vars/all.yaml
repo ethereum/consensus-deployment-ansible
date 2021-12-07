@@ -118,6 +118,8 @@ firewall_allowed_tcp_ports:
   - 22
   - 30303
   - 9000
+  - 80
+  - 443
 
 firewall_allowed_udp_ports:
   - 30303
