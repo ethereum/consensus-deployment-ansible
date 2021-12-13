@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: lighthouse
 
-beacon_image_name: sigp/lighthouse:latest-unstable
-validator_image_name: sigp/lighthouse:kintsugi
+beacon_image_name: skylenet/lighthouse:merge-devnet-3
+validator_image_name: skylenet/lighthouse:merge-devnet-3
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
@@ -82,6 +82,6 @@ beacon_kernel_memory: 5500M
 ##############################################
 keystores_file_mode: "0700"
 beacon_user_id: "1000:1000"
-validator_user_id: "1000:1000"
+validator_user_id: "0:0"
 
 separate_validator_process_enabled: true
