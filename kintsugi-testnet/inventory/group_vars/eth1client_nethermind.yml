@@ -31,7 +31,7 @@ eth1_start_args: >
   --Init.DiagnosticMode="None"
   --EthStats.Enabled=true
   --EthStats.Name={{inventory_hostname}}
-  --EthStats.Secret=PrivateNetwork
+  --EthStats.Secret=KintsugiNetwork
   --EthStats.Server=wss://ethstats.kintsugi.themerge.dev/api/
 
 # run as root, the nethermind image doesn't handle running regular user well
