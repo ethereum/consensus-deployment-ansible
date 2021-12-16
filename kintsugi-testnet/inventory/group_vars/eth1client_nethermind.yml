@@ -29,6 +29,7 @@ eth1_start_args: >
   --Merge.Enabled=true
   --Merge.TerminalTotalDifficulty={{terminal_total_difficulty}}
   --Init.DiagnosticMode="None"
+  --Init.IsMining=false
   --EthStats.Enabled=true
   --EthStats.Name={{inventory_hostname}}
   --EthStats.Secret=KintsugiNetwork

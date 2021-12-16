@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   lighthouse_beacon:
-    image: sigp/lighthouse:kintsugi
+    image: sigp/lighthouse:latest-unstable
     container_name: lighthouse_beacon
     volumes:
       - ./beacon_data:/consensus_data
