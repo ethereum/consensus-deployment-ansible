@@ -34,7 +34,7 @@ eth1endpoint: http://127.0.0.1:8545
 # testnet specific information
 ##############################################
 testnet_type: custom
-eth2_network_name: merge-devnet-2
+eth2_network_name: kintsugi
 chainID: 1337502
 terminal_total_difficulty: "1000000000"
 

@@ -5,7 +5,7 @@ import sys
 
 w3.eth.account.enable_unaudited_hdwallet_features()
 
-mergenet_config_path = "../merge-devnet-3/mergenet.yaml"
+mergenet_config_path = "../kintsugi-testnet/mergenet.yaml"
 if len(sys.argv) > 1:
     mergenet_config_path = sys.argv[1]
 
@@ -87,6 +87,7 @@ out = {
 }
 
 for key, value in data['eth1_premine'].items():
+    print(key)
     acct = w3.eth.account.from_mnemonic(data['mnemonic'], account_path=key, passphrase='')
     weival = value.replace('ETH', '0' * 18)
     out["alloc"][acct.address] = {"balance": weival}

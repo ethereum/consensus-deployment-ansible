@@ -5,7 +5,7 @@ import sys
 
 w3.eth.account.enable_unaudited_hdwallet_features()
 
-mergenet_config_path = "../merge-devnet-3/mergenet.yaml"
+mergenet_config_path = "../kintsugi-testnet/mergenet.yaml"
 if len(sys.argv) > 1:
     mergenet_config_path = sys.argv[1]
 
@@ -13,7 +13,7 @@ with open(mergenet_config_path) as stream:
     data = yaml.safe_load(stream)
 
 out = {
-    "name": "mergeDevnet3",
+    "name": "kintsugi",
     "engine": {
         "Ethash": {
             "params": {

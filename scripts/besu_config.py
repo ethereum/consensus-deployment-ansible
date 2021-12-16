@@ -5,7 +5,7 @@ import sys
 
 w3.eth.account.enable_unaudited_hdwallet_features()
 
-mergenet_config_path = "../merge-devnet-3/mergenet.yaml"
+mergenet_config_path = "../kintsugi-testnet/mergenet.yaml"
 if len(sys.argv) > 1:
     mergenet_config_path = sys.argv[1]
 
@@ -26,7 +26,7 @@ out = {
         "istanbulBlock":0,
         "berlinBlock":0,
         "londonBlock":0,
-        "preMergeForkBlock": 100,
+        "preMergeForkBlock":int(data['mergeForkBlock']),
         "terminalTotalDifficulty":int(data['terminal_total_difficulty'])
     },
     "alloc": {

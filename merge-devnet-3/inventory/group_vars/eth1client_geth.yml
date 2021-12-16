@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: parithoshj/geth:merge-eb2f01c
+eth1_image_name: parithoshj/geth:merge-d99ac5a
 
 eth1_memory: 5000M
 eth1_kernel_memory: 5500M
