@@ -27,6 +27,7 @@ eth1_start_args: >
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
   --vmodule=rpc=5
+  --maxpeers=200
   --ethstats={{inventory_hostname}}:KintsugiNetwork@ethstats.kintsugi.themerge.dev
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
