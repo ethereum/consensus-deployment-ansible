@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   nethermind:
-    image: nethermindeth/nethermind:kintsugi_v3_0.1
+    image: nethermindeth/nethermind:kintsugi_0.5
     container_name: nethermind
     volumes:
       - ./execution_data:/execution_data
