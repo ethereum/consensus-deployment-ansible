@@ -22,8 +22,8 @@ The client specific variables also contains the commands used to start the docke
 8. Check your logs to confirm that they are up and syncing, e.g `docker logs lighthouse_beacon -f --tail=20`  
 9. To stop the clients, run `docker-compose -f <insert file name you used earlier here> down`
 
-## Alternative Instructions to join the Pithos testnet
- - [How to setup a validator for Ethereum staking on Pithos testnet in 10 minutes or less by CoinCashew](https://www.coincashew.com/coins/overview-eth/guide-or-how-to-setup-a-validator-for-ethereum-staking-on-pithos-testnet-in-10-minutes-or-less)
+## Alternative Instructions to join the Kintsugi testnet
+ - [ethstaker instructions to join Kintsugi](https://github.com/remyroy/ethstaker/blob/main/merge-devnet.md)
  
 ## Instructions for running ansible playbooks (Only works if you have access)
 1. Clone this repository
