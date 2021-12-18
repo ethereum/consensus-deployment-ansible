@@ -6,6 +6,7 @@ eth1_kernel_memory: 5500M
 
 eth1_github_external_user_pubkeys:
   - garyschulte
+  - jflo
 
 # websocket with /ws suffix
 eth1endpoint_ws: ws://127.0.0.1:8546/ws
@@ -28,7 +29,6 @@ eth1_start_args: >
   --host-allowlist="*"
   --p2p-enabled=true
   --Xmerge-support=true
-  --discovery-enabled=false
   --miner-coinbase="0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73"
   --ethstats={{inventory_hostname}}:KintsugiNetwork@ethstats.kintsugi.themerge.dev:443
   --p2p-host={{ansible_host}}

@@ -1,5 +1,5 @@
 eth1_client_name: nethermind
-eth1_image_name: nethermindeth/nethermind:kintsugi_v3_0.1
+eth1_image_name: nethermindeth/nethermind:kintsugi_0.5
 
 eth1_github_external_user_pubkeys:
   - MarekM25
@@ -29,7 +29,7 @@ eth1_start_args: >
   --Merge.Enabled=true
   --Merge.TerminalTotalDifficulty={{terminal_total_difficulty}}
   --Init.DiagnosticMode="None"
-  --Init.IsMining=false
+  --Init.IsMining=true
   --EthStats.Enabled=true
   --EthStats.Name={{inventory_hostname}}
   --EthStats.Secret=KintsugiNetwork
