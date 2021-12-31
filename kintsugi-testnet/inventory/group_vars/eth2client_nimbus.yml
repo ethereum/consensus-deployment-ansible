@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-e623091
-validator_image_name: parithoshj/nimbus:merge-e623091
+beacon_image_name: parithoshj/nimbus:merge-d8c4c81
+validator_image_name: parithoshj/nimbus:merge-d8c4c81
 
 eth2_github_external_user_pubkeys:
   - zah
@@ -18,7 +18,7 @@ beacon_volumes:
   - "{{testnet_dir}}:/custom_config_data"
   - "{{validator_node_dir}}:/validatordata"
 
-beacon_log_level: info
+beacon_log_level: debug
 ##############################################
 # arguments to run the containers with
 ##############################################
