@@ -13,8 +13,6 @@
 
 # uploads custom chain config and genesis data if needed
 - import_playbook: tasks/upload_custom_config_data.yml
-  when: (testnet_type == 'custom') or
-        (testnet_type == 'prater' and eth2_client_name == 'prysm')
 
 # stars beacon node docker container
 - import_playbook: tasks/start_beacon.yml
