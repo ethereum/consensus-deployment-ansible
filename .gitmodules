@@ -7,3 +7,6 @@
 [submodule "robertdebock.bootstrap"]
 	path = external_roles/robertdebock.bootstrap
 	url = git@github.com:robertdebock/ansible-role-bootstrap.git
+[submodule "external_roles/robertdebock.bootstrap"]
+	path = external_roles/robertdebock.bootstrap
+	url = git@github.com:robertdebock/ansible-role-bootstrap.git

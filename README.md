@@ -2,10 +2,18 @@
 
 This repository is a minimal set of playbooks and inventories required to set up an eth2 node or an eth2 testnet.
 
+# Git submodules
+
+This repository uses git submodules for some dependencies. You can fetch submodules using:
+
+```sh
+git submodule update --init --recursive
+```
+
 # Usage
 - Fork this repository for your required devnet (Ideally it is a throwaway devnet)
 - Modify the `testnets/<name>/inventory/dynamic.py` file with the correct tags and client distribution
-- Generate the keys from the mnemonic by running the `generate_keys.sh` file (after exporting the mnemonic)  
+- Generate the keys from the mnemonic by running the `generate_keys.sh` file (after exporting the mnemonic)
 - If needed, modify the `testnets/<name>/custom_config_data/` folder with the `genesis.ssz` and `eth2_config.yaml`
 - Modify the `testnets/<name>/inventory/group_vars/eth2client_<client_name>.yml` if required
 - Check the inventory with `ansible-inventory -i testnets/<name>/inventory/dynamic.py --list`
