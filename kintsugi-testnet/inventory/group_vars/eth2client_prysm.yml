@@ -2,7 +2,7 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:kintsugi-97027b
+beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:kintsugi-a9ac91
 validator_image_name: gcr.io/prysmaticlabs/prysm/validator:kintsugi-30ed0d
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
@@ -28,9 +28,9 @@ validator_volumes:
 ##############################################
 beacon_start_args: >
   --accept-terms-of-use=true
+  --kintsugi-testnet
   --datadir="/beacondata"
   --genesis-state="/custom_config_data/genesis.ssz"
-  --chain-config-file="/custom_config_data/config.yaml"
   --http-web3provider="{{eth1endpoint}}"
   {% if failover_eth1_rpc is defined %}
     --fallback-web3provider={{failover_eth1_rpc}}

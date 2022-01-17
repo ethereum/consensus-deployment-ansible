@@ -18,3 +18,18 @@
         volumes: "{{eth1_volumes}}"
         command: "{{ geth_init_args }}"
         env: "{{ eth1_env | default({}) }}"
+#     - name: Run geth db cleanup
+#       docker_container:
+#        name: "geth_cleanup_db"
+#        state: started
+#        image: "{{ eth1_image_name }}"
+#        pull: true
+#        restart_policy: no
+#        auto_remove: false
+#        detach: no
+#        network_mode: host
+#        log_options: "{{ common_log_options }}"
+#        log_driver: "{{ common_log_driver }}"
+#        volumes: "{{eth1_volumes}}"
+#        command: "{{ geth_cleanup_args }}"
+#        env: "{{ eth1_env | default({}) }}"

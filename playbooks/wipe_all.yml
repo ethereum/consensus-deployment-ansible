@@ -43,15 +43,30 @@
         state: stopped
         name: node_exporter
       ignore_errors: yes
+    - name: Stop prometheus service
+      systemd:
+        state: stopped
+        name: prometheus
+      ignore_errors: yes
     - name: Disable node exporter
       systemd:
         name: node_exporter
         enabled: no
         masked: no
       ignore_errors: yes
+    - name: Disable prometheus
+      systemd:
+        name: prometheus
+        enabled: no
+        masked: no
+      ignore_errors: yes
     - name: Delete the systemD unit file
       file:
         path: /etc/systemd/system/node_exporter.service
+        state: absent
+    - name: Delete the systemD unit file
+      file:
+        path: /etc/systemd/system/prometheus.service
         state: absent
     - name: Reload systemD
       systemd:
@@ -62,11 +77,21 @@
         state: absent
     - name: Delete user
       user:
-        name: node_exporter
+        name: node_exp
         state: absent
-        group: node_exporter
+        group: node_exp
+        shell: "/sbin/nologin"
+    - name: Delete user
+      user:
+        name: prometheus
+        state: absent
+        group: prometheus
         shell: "/sbin/nologin"
     - name: Delete the node exporter config
       file:
         path: /etc/default/node_exporter
+        state: absent
+    - name: Delete the prometheus config
+      file:
+        path: /etc/default/prometheus
         state: absent

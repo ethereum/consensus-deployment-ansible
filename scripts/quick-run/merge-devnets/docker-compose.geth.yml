@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   init_geth:
-    image: parithoshj/geth:merge-d99ac5a
+    image: parithoshj/geth:merge-f72c361
     container_name: geth_init
     volumes:
       - ./execution_data:/execution_data
