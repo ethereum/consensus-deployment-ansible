@@ -4,8 +4,8 @@
 eth2_client_name: lodestar
 
 # TODO: switch to merge f2f, but mainnet preset
-beacon_image_name: chainsafe/lodestar:next
-validator_image_name: chainsafe/lodestar:next
+beacon_image_name: g11tech/lodestar:355ef6
+validator_image_name: g11tech/lodestar:355ef6
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
