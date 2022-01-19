@@ -1,0 +1,47 @@
+global:
+  evaluation_interval: 15s
+  scrape_interval: 15s
+  scrape_timeout: 10s
+
+  external_labels:
+    consensus_client: "{{ eth2_client_name }}"
+    instance: "{{ ansible_hostname }}"
+    testnet: "{{ eth2_network_name }}"
+    ip_address: "{{ ansible_host }}"
+
+
+remote_write:
+  - queue_config:
+      batch_send_deadline: 5s
+      max_backoff: 500ms
+      max_samples_per_send: 500
+      min_backoff: 50ms
+    url: {{ thanos_url }}
+
+scrape_configs:
+  - job_name: node
+    static_configs:
+      - labels:
+          instance: "{{ ansible_hostname }}"
+        targets:
+          - localhost:9100
+  - job_name: beacon
+    static_configs:
+      - labels:
+          instance: "{{ ansible_hostname }}"
+        targets:
+          - localhost:{{ beacon_metrics_port }}
+
+
+
+{% if separate_validator_process_enabled == true %}
+
+  - job_name: validator
+    static_configs:
+      - labels:
+          instance: "{{ ansible_hostname }}"
+        targets:
+          - localhost:{{ validator_metrics_port }}
+
+
+{% endif %}
