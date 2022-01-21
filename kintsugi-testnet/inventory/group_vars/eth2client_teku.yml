@@ -44,7 +44,7 @@ beacon_start_args: >
   --metrics-host-allowlist="*"
   --rest-api-host-allowlist="*"
   --data-storage-non-canonical-blocks-enabled=true
-  --Xvalidators-suggested-fee-recipient-address="0xA18Fd83a55A9BEdB96d66C24b768259eED183be3"
+  --Xvalidators-proposer-default-fee-recipient="0xA18Fd83a55A9BEdB96d66C24b768259eED183be3"
   --validators-graffiti="{{graffiti}}"
   --validator-keys="/validatordata/keys:/validatordata/secrets"
   --validators-keystore-locking-enabled=false
