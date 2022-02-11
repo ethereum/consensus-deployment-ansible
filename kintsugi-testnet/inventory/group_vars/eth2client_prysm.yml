@@ -46,6 +46,7 @@ beacon_start_args: >
   --grpc-gateway-port={{beacon_api_port}}
   --enable-debug-rpc-endpoints
   --min-sync-peers=1
+  --weak-subjectivity-checkpoint=0x82ce51b3cd21d490e5a382afe0ac220078abe5e1b2c976b28a8b4fc63748ceba:10839
 
 validator_start_args: >
   --accept-terms-of-use=true

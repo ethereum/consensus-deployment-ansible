@@ -55,6 +55,7 @@ beacon_start_args: >
   --execution-endpoints={{execution_engine_endpoint}}
   --eth1-endpoints={{eth1endpoint}}
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
+  --validator-monitor-auto
 
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 
