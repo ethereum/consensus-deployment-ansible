@@ -29,7 +29,7 @@ validator_volumes:
 beacon_start_args: >
   --accept-terms-of-use=true
   --datadir="/beacondata"
-  --chain-config-file=""/custom_config_data/config.yaml"
+  --chain-config-file="/custom_config_data/config.yaml"
   --genesis-state="/custom_config_data/genesis.ssz"
   --http-web3provider="{{eth1endpoint}}"
   {% if failover_eth1_rpc is defined %}
