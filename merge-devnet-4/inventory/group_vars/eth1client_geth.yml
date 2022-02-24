@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: parithoshj/geth:merge-8f408a2
+eth1_image_name: parithoshj/geth:merge-371a525
 
 eth1_github_external_user_pubkeys:
   - mariusVanDerWijden
@@ -30,6 +30,7 @@ eth1_start_args: >
   --ws.addr 0.0.0.0
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
+  --metrics --pprof --pprof.addr 0.0.0.0
   --vmodule=rpc=5
   --maxpeers=200
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}

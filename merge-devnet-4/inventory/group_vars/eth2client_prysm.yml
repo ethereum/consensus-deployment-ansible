@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:kiln-a424f5
-validator_image_name: gcr.io/prysmaticlabs/prysm/validator:kiln-7d6046
+beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:kiln-1e32cd
+validator_image_name: gcr.io/prysmaticlabs/prysm/validator:kiln-a424f5
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
 
@@ -35,7 +35,11 @@ beacon_start_args: >
   {% if failover_eth1_rpc is defined %}
     --fallback-web3provider={{failover_eth1_rpc}}
   {% endif %}
-  --bootstrap-node="enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
+    {% if (bootnode_enrs is defined) and bootnode_enrs %}
+    {% for bootnode_enrs in bootnode_enrs %}
+    --bootstrap-node="{{ bootnode_enrs }}"
+    {% endfor %}
+    {% endif %}
   --verbosity="{{ beacon_log_level | lower }}"
   --p2p-host-ip={{ansible_host}}
   --p2p-max-peers={{hi_peer_count}}
@@ -45,6 +49,7 @@ beacon_start_args: >
   --grpc-gateway-host=0.0.0.0
   --grpc-gateway-port={{beacon_api_port}}
   --enable-debug-rpc-endpoints
+  --execution-provider="{{eth1endpoint}}"
   --min-sync-peers=1
 
 validator_start_args: >
