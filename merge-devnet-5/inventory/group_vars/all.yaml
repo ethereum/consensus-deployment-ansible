@@ -134,3 +134,5 @@ firewall_allowed_udp_ports:
 firewall_additional_rules:
   - "iptables -A INPUT -p tcp --dport 4000 -s 134.209.253.71 -j ACCEPT"
   - "iptables -A INPUT -p tcp --dport 8545 -s 134.209.253.71 -j ACCEPT"
+  - "iptables -A INPUT -p tcp --dport 4000 -s 64.225.73.234 -j ACCEPT"
+  - "iptables -A INPUT -p tcp --dport 8545 -s 64.225.73.234 -j ACCEPT"
