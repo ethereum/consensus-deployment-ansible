@@ -52,7 +52,7 @@ beacon_start_args: >
   --http-allow-sync-stalled
   --merge
   --disable-packet-filter 
-  --execution-endpoints={{execution_engine_endpoint}}
+  --execution-endpoints={{execution_endpoint}}
   --eth1-endpoints={{eth1endpoint}}
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --validator-monitor-auto
