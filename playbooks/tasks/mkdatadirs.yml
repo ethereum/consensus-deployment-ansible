@@ -17,7 +17,7 @@
         path: "{{validator_node_dir}}"
         state: directory
 - name: Init eth1 data dirs for nodes
-  hosts: eth1
+  hosts: execution
   gather_facts: false
   serial: 20
   tasks:
@@ -26,7 +26,7 @@
         path: "{{eth1_node_dir}}"
         state: directory
 - name: Init testnet data dirs for nodes
-  hosts: [beacon, eth1, validator]
+  hosts: [beacon, execution, validator]
   gather_facts: false
   serial: 20
   tasks:
@@ -34,3 +34,10 @@
       file:
         path: "{{testnet_dir}}"
         state: directory
+- name: Init JWT secret
+  hosts: [beacon, execution]
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates JWT secret
+      shell: openssl rand -hex 32 | tr -d "\n" > "{{ home_dir }}/jwtsecret"
