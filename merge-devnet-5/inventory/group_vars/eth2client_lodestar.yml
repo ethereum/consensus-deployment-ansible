@@ -26,6 +26,7 @@ validator_env:
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
@@ -43,8 +44,8 @@ beacon_start_args: >
         --network.discv5.enabled=true
         --eth1.enabled=true
         --api.rest.port={{beacon_api_port}}
-        --eth1.providerUrls={{execution_engine_endpoint}}
-        --execution.urls={{execution_engine_endpoint}}
+        --eth1.providerUrls={{eth1endpoint}}
+        --execution.urls={{execution_endpoint}}
         --api.rest.enabled=true
         --api.rest.host=0.0.0.0
         --api.rest.api="*"
@@ -57,7 +58,7 @@ beacon_start_args: >
         --metrics.enabled
         --metrics.serverPort={{ beacon_metrics_port }}
         --eth1.depositContractDeployBlock=0
-
+        --jwt-secret="/jwtsecret"
 
 validator_start_args: >
   validator

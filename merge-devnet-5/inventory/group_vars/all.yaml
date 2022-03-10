@@ -64,8 +64,9 @@ push_metrics_enabled: true
 ##############################################
 eth1_rpc_port: 8545
 eth1_ws_rpc_port: 8546
-eth1_engine_port: 8550
-eth1_engine_ws_port: 8551
+eth1_engine_port_no_auth: 8550
+eth1_engine_port: 8551
+eth1_engine_ws_port: 8552
 nimbus_rpc_port: 4009
 beacon_api_port: 4000
 beacon_grpc_port: 4001

@@ -17,6 +17,7 @@ beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
   - "{{validator_node_dir}}:/validatordata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 ##############################################
 # arguments to run the containers with
@@ -34,7 +35,7 @@ beacon_start_args: >
   --logging={{beacon_log_level}}
   --p2p-peer-upper-bound={{hi_peer_count}}
   --eth1-endpoints="{{eth1endpoint}}"
-  --Xee-endpoint="{{execution_endpoint}}"
+  --ee-endpoint="{{execution_endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --p2p-discovery-bootnodes="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -50,6 +51,7 @@ beacon_start_args: >
   --validators-graffiti="{{graffiti}}"
   --validator-keys="/validatordata/keys:/validatordata/secrets"
   --validators-keystore-locking-enabled=false
+  --ee-jwt-secret-file="/jwtsecret"
 
 ##############################################
 # memory limits

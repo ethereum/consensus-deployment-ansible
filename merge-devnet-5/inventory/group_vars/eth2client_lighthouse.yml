@@ -19,6 +19,7 @@ eth2_github_external_user_pubkeys:
 beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
@@ -51,12 +52,13 @@ beacon_start_args: >
   --target-peers={{hi_peer_count}}
   --http-allow-sync-stalled
   --merge
-  --disable-packet-filter 
+  --disable-packet-filter
   --execution-endpoints={{execution_endpoint}}
   --eth1-endpoints={{eth1endpoint}}
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --validator-monitor-auto
   --suggested-fee-recipient={{fee_recipient}}
+  --jwt-secrets="/jwtsecret"
 
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 

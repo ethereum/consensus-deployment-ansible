@@ -1,5 +1,5 @@
 eth1_client_name: nethermind
-eth1_image_name: nethermindeth/nethermind:kiln_0.5
+eth1_image_name: nethermindeth/nethermind:kiln_0.6
 execution_endpoint: http://127.0.0.1:{{eth1_engine_port}}
 
 eth1_github_external_user_pubkeys:
@@ -22,7 +22,7 @@ eth1_start_args: >
   --Init.ChainSpecPath="/networkdata/nethermind_genesis.json"
   --Init.WebSocketsEnabled=true
   --JsonRpc.Enabled=true
-  --JsonRpc.EnabledModules="net,eth,consensus,engine,subscribe,web3,admin"
+  --JsonRpc.EnabledModules="net,eth,consensus,subscribe,web3,admin"
   --JsonRpc.Port={{eth1_rpc_port}}
   --JsonRpc.WebSocketsPort={{eth1_ws_rpc_port}}
   --JsonRpc.Host=0.0.0.0
@@ -34,7 +34,7 @@ eth1_start_args: >
   --Init.DiagnosticMode="None"
   --Init.IsMining=true
   --JsonRpc.JwtSecretFile=/jwtsecret
-  --JsonRpc.AdditionalRpcUrls "http://localhost:{{eth1_engine_port_no_auth}}|http;ws|net;eth;subscribe;engine;web3;client|no-auth,http://localhost:{{eth1_engine_port}}|http;ws|net;eth;subscribe;engine;web3;client"
+  --JsonRpc.AdditionalRpcUrls="http://localhost:{{eth1_engine_port_no_auth}}|http;ws|net;eth;subscribe;engine;web3;client|no-auth,http://localhost:{{eth1_engine_port}}|http;ws|net;eth;subscribe;engine;web3;client"
 
 # run as root, the nethermind image doesn't handle running regular user well
 eth1_user_id: "0:0"

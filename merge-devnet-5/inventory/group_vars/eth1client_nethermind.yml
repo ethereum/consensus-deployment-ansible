@@ -1,5 +1,6 @@
 eth1_client_name: nethermind
-eth1_image_name: nethermindeth/nethermind:kiln_0.5
+eth1_image_name: nethermindeth/nethermind:kiln_0.6
+execution_endpoint: http://127.0.0.1:{{eth1_engine_port}}
 
 eth1_github_external_user_pubkeys:
   - MarekM25
@@ -13,6 +14,7 @@ eth1endpoint_ws: http://127.0.0.1:8546
 eth1_volumes:
   - "{{eth1_node_dir}}:/eth1data"
   - "{{testnet_dir}}:/networkdata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 eth1_start_args: >
   --config=kiln
@@ -20,7 +22,7 @@ eth1_start_args: >
   --Init.ChainSpecPath="/networkdata/nethermind_genesis.json"
   --Init.WebSocketsEnabled=true
   --JsonRpc.Enabled=true
-  --JsonRpc.EnabledModules="net,eth,consensus,engine,subscribe,web3,admin"
+  --JsonRpc.EnabledModules="net,eth,consensus,subscribe,web3,admin"
   --JsonRpc.Port={{eth1_rpc_port}}
   --JsonRpc.WebSocketsPort={{eth1_ws_rpc_port}}
   --JsonRpc.Host=0.0.0.0
@@ -31,6 +33,8 @@ eth1_start_args: >
   --Merge.TerminalTotalDifficulty={{terminal_total_difficulty}}
   --Init.DiagnosticMode="None"
   --Init.IsMining=true
+  --JsonRpc.JwtSecretFile=/jwtsecret
+
 
 # run as root, the nethermind image doesn't handle running regular user well
 eth1_user_id: "0:0"
