@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-f6e4c31
-validator_image_name: parithoshj/nimbus:merge-f6e4c31
+beacon_image_name: parithoshj/nimbus:merge-a35c5f8
+validator_image_name: parithoshj/nimbus:merge-a35c5f8
 
 eth2_github_external_user_pubkeys:
   - zah
@@ -17,6 +17,7 @@ beacon_volumes:
   - "{{beacon_node_dir}}:/beacondata"
   - "{{testnet_dir}}:/custom_config_data"
   - "{{validator_node_dir}}:/validatordata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 beacon_log_level: debug
 ##############################################
@@ -49,6 +50,7 @@ beacon_start_args: >
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
+  --jwt-secret=/jwtsecret
 
 ##############################################
 # memory limits

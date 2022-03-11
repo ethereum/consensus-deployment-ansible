@@ -21,7 +21,7 @@ oh_my_zsh_config:
 ##############################################
 # nimbus requires a websocket endpoint (http support unstable)
 # note: also used for execution engine endpoint in nimbus
-consensus_endpoint_nimbus: ws://127.0.0.1:8546
+consensus_endpoint_nimbus: ws://127.0.0.1:8551
 
 eth1endpoint: http://127.0.0.1:8545
 
