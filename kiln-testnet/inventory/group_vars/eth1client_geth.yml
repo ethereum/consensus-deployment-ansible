@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: parithoshj/geth:merge-876ca42
+eth1_image_name: parithoshj/geth:merge-b951e9c
 execution_endpoint: http://127.0.0.1:{{eth1_engine_port}}
 
 eth1_github_external_user_pubkeys:
@@ -37,6 +37,7 @@ eth1_start_args: >
   --metrics --pprof --pprof.addr 0.0.0.0
   --vmodule=rpc=5
   --maxpeers=200
+  --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
