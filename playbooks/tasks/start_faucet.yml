@@ -11,11 +11,10 @@
         pull: true
         restart_policy: unless-stopped
         network_mode: bridge
-        networks:
-          - name: "{{explorer_docker_network_name}}"
-            ipv4_address: "172.1.1.105"
         ports:
-          - "5003:5001"
+          - "8001:8000"
         restart: "{{ explorer_require_restart | default(false) }}"
-        memory: "{{explorer_memory}}"
         volumes: "{{ faucet_volumes }}"
+        env:
+          HCAPTCHA_SITEKEY: "{{ hcaptcha_site_key }}"
+          HCAPTCHA_SECRET: "{{ hcaptcha_secret }}"

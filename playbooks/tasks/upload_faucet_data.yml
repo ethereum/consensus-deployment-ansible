@@ -6,13 +6,13 @@
       file:
         path: "{{faucet_node_dir}}"
         state: directory
-    - name: Move the forkmon config j2 template to remote
+    - name: Move the faucet config j2 template to remote
       template:
-        src: faucet/config.json.j2
-        dest:  "{{faucet_node_dir}}/config.json"
+        src: faucet/chains.json.j2
+        dest:  "{{faucet_node_dir}}/chains.json"
         mode: '755'
-    - name: Move the forkmon index.html j2 template to remote
+    - name: Move the faucet faucet.properties j2 template to remote
       template:
-        src: faucet/index.html.j2
-        dest: "{{faucet_node_dir}}/index.html"
+        src: faucet/fauceth.properties.j2
+        dest: "{{faucet_node_dir}}/fauceth.properties"
         mode: '755'

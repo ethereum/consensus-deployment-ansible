@@ -40,4 +40,4 @@
   serial: 20
   tasks:
     - name: Creates JWT secret
-      shell: openssl rand -hex 32 | tr -d "\n" > "{{ home_dir }}/jwtsecret"
+      shell: echo -n 0x$(openssl rand -hex 32 | tr -d "\n") > "{{ home_dir }}/jwtsecret"

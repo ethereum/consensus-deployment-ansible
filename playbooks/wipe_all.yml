@@ -38,6 +38,11 @@
       file:
         path: "{{testnet_dir}}"
         state: absent
+    - name: Remove jwt secret
+      become: true
+      file:
+        path: "{{ home_dir }}/jwtsecret"
+        state: absent
     - name: Stop node_exporter service
       systemd:
         state: stopped

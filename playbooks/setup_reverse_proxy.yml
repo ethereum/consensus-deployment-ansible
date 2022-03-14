@@ -1,0 +1,53 @@
+- hosts: reverse_proxy
+  become: yes
+  tasks:
+    - name: install certbot
+      apt:
+        pkg:
+          - certbot
+    - name: make sure errors dir
+      file:
+        path: /etc/haproxy/errors
+        state: directory
+
+    - name: make sure certificate dir exists
+      file:
+        path: /etc/certificates
+        state: directory
+
+    - name: check if certificate exists
+      loop: "{{ certificates | dict2items }}"
+      stat:
+        path: "/etc/letsencrypt/live/{{ item.key }}/fullchain.pem"
+      register: cert_stat
+
+    - name: get lets encrypt certificate
+      loop: "{{ cert_stat.results }}"
+      when: not item.stat.exists
+      command: certbot certonly --standalone -d {{ item.item.key }} --staple-ocsp -m {{le_email}} --agree-tos
+
+    - name: prepare haproxy certs
+      loop: "{{ cert_stat.results }}"
+      shell: "cat /etc/letsencrypt/live/{{ item.item.key }}/fullchain.pem /etc/letsencrypt/live/{{ item.item.key }}/privkey.pem > /etc/certificates/{{ item.item.key }}.pem"
+      args:
+        executable: /bin/bash
+
+- hosts: reverse_proxy
+  become: yes
+  roles:
+    - { role: ansible-haproxy }
+
+- name: Copy certificate renew configuration in place
+  hosts: reverse_proxy
+  become: yes
+  tasks:
+    - template:
+        src: tasks/templates/cerbot-renew/certs-renew.sh.j2
+        dest: /etc/haproxy/certs-renew.sh
+        mode: 0755
+    - name: Enable cronjob to auto-renew certs
+      cron:
+        name: "certs-renew"
+        day: "1"
+        job: "/etc/haproxy/certs-renew.sh"
+        user: "devops"

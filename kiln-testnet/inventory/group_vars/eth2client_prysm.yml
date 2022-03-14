@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:kiln-f6eb6c
-validator_image_name: gcr.io/prysmaticlabs/prysm/validator:kiln-f6eb6c
+beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:kiln-ee1ee6
+validator_image_name: gcr.io/prysmaticlabs/prysm/validator:kiln-ee1ee6
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
 
