@@ -38,6 +38,7 @@ eth1_start_args: >
   --Xmerge-support=true
   --miner-coinbase="0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73"
   --p2p-host={{ansible_host}}
+  --sync-mode=FAST
   {% if (eth1_bootnode_enode is defined) and bootnode_enrs %}
   --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

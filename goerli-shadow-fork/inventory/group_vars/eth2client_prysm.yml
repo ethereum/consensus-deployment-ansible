@@ -2,7 +2,7 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:kiln-0a1e93
+beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:kiln-763b81
 validator_image_name: gcr.io/prysmaticlabs/prysm/validator:kiln-ee1ee6
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
@@ -53,6 +53,7 @@ beacon_start_args: >
   --enable-debug-rpc-endpoints
   --execution-provider="{{execution_endpoint}}"
   --jwt-secret=/jwtsecret
+  --force-clear-db
 
 validator_start_args: >
   --accept-terms-of-use=true
@@ -80,4 +81,5 @@ keystores_file_mode: "0700"
 beacon_user_id: "1000:1000"
 validator_user_id: "1000:1000"
 
+beacon_log_level: debug
 separate_validator_process_enabled: true

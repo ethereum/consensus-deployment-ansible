@@ -51,6 +51,7 @@ beacon_start_args: >
   --secrets-dir="/validatordata/secrets"
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret
+  --dump:on
 
 ##############################################
 # memory limits

@@ -105,7 +105,7 @@ eth1_node_dir: "{{home_dir}}/eth1data"
 ##############################################
 common_log_options:
   max-file: "10"
-  max-size: 30m
+  max-size: 200m
   mode: non-blocking
   max-buffer-size: 4m
 common_log_driver: json-file
