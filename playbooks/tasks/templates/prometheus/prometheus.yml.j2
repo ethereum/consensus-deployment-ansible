@@ -20,6 +20,11 @@ remote_write:
       max_shards: 100
     url: {{ thanos_url }}
     remote_timeout: 10s
+{% if remote_write_auth == true %}
+    basic_auth:
+      username: {{remote_write_username}}
+      password: {{remote_write_password}}
+{% endif %}
 
 scrape_configs:
   - job_name: node

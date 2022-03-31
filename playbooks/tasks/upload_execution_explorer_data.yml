@@ -1,5 +1,5 @@
 - name: Upload execution explorer data
-  hosts: forkmon
+  hosts: explorer
   gather_facts: true
   tasks:
     - name: Creates explorer dir
