@@ -15,6 +15,7 @@ eth1endpoint_ws: ws://127.0.0.1:8546/ws
 eth1_volumes:
   - "{{eth1_node_dir}}:/eth1data"
   - "{{testnet_dir}}:/networkdata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 #######################
 # NO AUTH SUPPORT YET
@@ -22,21 +23,20 @@ eth1_volumes:
 
 eth1_start_args: >
   --data-path="/eth1data/data"
-  --genesis-file="/networkdata/besu_genesis.json"
-  --network-id={{chainID}}
-  --rpc-http-enabled=true --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE
+  --network=kiln
+  --rpc-http-enabled=true
   --rpc-http-host=0.0.0.0
   --rpc-http-port={{eth1_rpc_port}}
   --engine-rpc-http-port={{eth1_engine_port}}
-  --engine-host-allowlist="*"
   --rpc-http-cors-origins="*"
-  --rpc-ws-enabled=true --rpc-ws-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE
+  --rpc-ws-enabled=true
   --rpc-ws-host=0.0.0.0
   --rpc-ws-port={{eth1_ws_rpc_port}}
   --host-allowlist="*"
+  --engine-host-allowlist="*"
   --p2p-enabled=true
-  --Xmerge-support=true
-  --miner-coinbase="0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73"
+  --engine-jwt-enabled=true
+  --engine-jwt-secret=/jwtsecret
   --p2p-host={{ansible_host}}
   {% if (eth1_bootnode_enode is defined) and bootnode_enrs %}
   --bootnodes="{{ eth1_bootnode_enode | join(',') }}"

@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: grandine
 
-beacon_image_name: sigp/lighthouse:latest-unstable
-validator_image_name: sigp/lighthouse:latest-unstable
+beacon_image_name: parithoshj/grandine:v0.2.0-beta3
+validator_image_name: parithoshj/grandine:v0.2.0-beta3
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
