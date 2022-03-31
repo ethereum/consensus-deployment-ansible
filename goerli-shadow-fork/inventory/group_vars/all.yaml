@@ -49,11 +49,11 @@ eth1_bootnode_enode:
 ##############################################
 # enter pushgateway config if needed
 prometheus_config_file: "prometheus/prometheus.yml.j2"
-thanos_url: "https://victoriametrics-ethereum.puritydev.io/insert/0/prometheus/api/v1/write"
+thanos_url: "https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write"
 push_metrics_enabled: true
 remote_write_auth: true
-remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/victoriametrics-remote-write-user') }}"
-remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/victoriametrics-remote-write-pass') }}"
+remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-goerli-1.json | jq .username') }}"
+remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-goerli-1.json | jq .password') }}"
 
 ##############################################
 # ports to configure
@@ -103,12 +103,12 @@ eth1_node_dir: "{{home_dir}}/eth1data"
 ##############################################
 # common log config
 ##############################################
-common_log_options:
-  max-file: "10"
-  max-size: 200m
-  mode: non-blocking
-  max-buffer-size: 4m
-common_log_driver: json-file
+# common_log_options:
+#   max-file: "10"
+#   max-size: 200m
+#   mode: non-blocking
+#   max-buffer-size: 4m
+# common_log_driver: json-file
 beacon_log_level: info
 
 ##############################################

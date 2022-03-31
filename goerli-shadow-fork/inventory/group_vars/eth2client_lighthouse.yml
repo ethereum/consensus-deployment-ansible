@@ -75,13 +75,6 @@ validator_start_args: >
   --metrics --metrics-address 0.0.0.0 --metrics-port "{{validator_metrics_port}}"
   --suggested-fee-recipient={{fee_recipient}}
 
-##############################################
-# memory limits
-##############################################
-validator_memory: 2000M
-validator_kernel_memory: 2500M
-beacon_memory: 5000M
-beacon_kernel_memory: 5500M
 
 ##############################################
 # file permissions and user ids
