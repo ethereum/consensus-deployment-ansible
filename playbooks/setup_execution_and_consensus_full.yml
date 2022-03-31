@@ -1,12 +1,12 @@
 ---
 # setups up the firewall rules for the machine
-#- import_playbook: tasks/start_firewall.yml
+# - import_playbook: tasks/start_firewall.yml
 
 # setups up the machine with docker, updates apt cache, adds user keys
-#- import_playbook: tasks/setup_machine.yml
+# - import_playbook: tasks/setup_machine.yml
 
 # stop any running beacon/validator docker image, remove existing validator keys and beacon node data
-- import_playbook: tasks/stop_and_wipe_beacon_and_validator.yml
+# - import_playbook: tasks/stop_and_wipe_beacon_and_validator.yml
 
 # creates requisite directories for data and sets permissions
 - import_playbook: tasks/mkdatadirs.yml
@@ -26,6 +26,10 @@
 # starts execution container
 - import_playbook: tasks/start_execution_node.yml
 
+# starts the json rpc snooper
+- import_playbook: tasks/start_snooper.yml
+  when: eth2_client_name != 'nimbus'
+
 # stars beacon node docker container
 - import_playbook: tasks/start_beacon.yml
 
@@ -34,5 +38,5 @@
   when: separate_validator_process_enabled
 
 # install node_exporter and metric pusher
-- import_playbook: tasks/setup_node_exporter_and_prometheus.yml
-  when: push_metrics_enabled
+# - import_playbook: tasks/setup_node_exporter_and_prometheus.yml
+#   when: push_metrics_enabled
