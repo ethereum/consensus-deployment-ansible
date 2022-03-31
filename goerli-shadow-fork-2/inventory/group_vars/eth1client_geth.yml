@@ -1,6 +1,6 @@
 eth1_client_name: geth
 eth1_image_name: parithoshj/geth:master-127dc59
-execution_endpoint: http://127.0.0.1:{{eth1_engine_port}}
+execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 eth1_github_external_user_pubkeys:
   - mariusVanDerWijden
@@ -44,5 +44,5 @@ eth1_start_args: >
 eth1_user_id: "1000:1000"
 
 # ./go-ethereum/build/bin/geth --datadir=./goerli-shadow-fork init genesis.json
-# ./go-ethereum/build/bin/geth --datadir=./goerli-shadow-fork --ethash.dagdir=./goerli-shadow-fork/ethash --mine --miner.threads=1 --miner.etherbase=0xfb969eb20eca70c2800103bbb0d3757bc60f918a --http --http.corsdomain='*' --http.addr="0.0.0.0" --http.api="engine,net,eth,debug,txpool"  --nat extip:164.90.177.4 --networkid=5 console
+# ./go-ethereum/build/bin/geth --authrpc.jwtsecret=/home/devops/jwtsecret --datadir=./goerli-shadow-fork --ethash.dagdir=./goerli-shadow-fork/ethash --mine --miner.threads=1 --miner.etherbase=0xfb969eb20eca70c2800103bbb0d3757bc60f918a --http --http.corsdomain='*' --http.addr="0.0.0.0" --http.api="engine,net,eth,debug,txpool"  --nat extip:164.90.177.4 --networkid=5 console
 # ./go-ethereum/build/bin/geth --datadir=./goerli-shadow-fork --ethash.dagdir=./goerli-shadow-fork/ethash  --http --http.corsdomain='*' --http.addr="0.0.0.0" --http.vhosts="*" --http.api="engine,net,eth,debug,txpool" --ws --ws.api="eth,net,engine" --ws.port=8546 --ws.addr="0.0.0.0" --rpc.allow-unprotected-txs  --nat extip:164.90.177.4 --networkid=5 console

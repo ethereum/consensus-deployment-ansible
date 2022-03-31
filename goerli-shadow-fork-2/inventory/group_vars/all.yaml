@@ -62,6 +62,7 @@ eth1_rpc_port: 8545
 eth1_ws_rpc_port: 8546
 eth1_engine_port_no_auth: 8550
 eth1_engine_port: 8551
+eth1_engine_snoop_port: 8560
 eth1_engine_ws_port: 8552
 nimbus_rpc_port: 4009
 beacon_api_port: 4000
@@ -71,6 +72,13 @@ beacon_p2p_port: 9000
 validator_metrics_port: 8001
 validator_rpc_port: 4002
 node_exporter_web_listen_address: "0.0.0.0:9100"
+
+##############################################
+# Command for JSON RPC snooper
+##############################################
+snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port}}"
+snoop_image_name: parithoshj/json_rpc_snoop:v1.0.0-x86
+snoop_container_name: snooper
 
 ##############################################
 # name of the validator to display
