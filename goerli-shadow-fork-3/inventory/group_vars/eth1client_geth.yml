@@ -37,6 +37,7 @@ eth1_start_args: >
   --vmodule=rpc=5
   --maxpeers=200
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
+  --ethstats={{inventory_hostname}}:goerlishadowfork3@ethstats.goerlishadowfork3.ethdevops.io
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

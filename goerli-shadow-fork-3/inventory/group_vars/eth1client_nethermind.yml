@@ -1,5 +1,5 @@
 eth1_client_name: nethermind
-eth1_image_name: nethermindeth/nethermind:kiln_test_sync
+eth1_image_name: nethermindeth/nethermind:kiln_0.11
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 eth1_github_external_user_pubkeys:
@@ -35,6 +35,10 @@ eth1_start_args: >
   --Init.IsMining=true
   --JsonRpc.JwtSecretFile=/jwtsecret
   --JsonRpc.AdditionalRpcUrls="http://localhost:{{eth1_engine_port_no_auth}}|http;ws|net;eth;subscribe;engine;web3;client|no-auth,http://localhost:{{eth1_engine_port}}|http;ws|net;eth;subscribe;engine;web3;client"
+  --EthStats.Enabled=true
+  --EthStats.Name={{inventory_hostname}}
+  --EthStats.Secret=goerlishadowfork3
+  --EthStats.Server=wss://ethstats.goerlishadowfork3.ethdevops.io/api/
 
 # run as root, the nethermind image doesn't handle running regular user well
 eth1_user_id: "0:0"
