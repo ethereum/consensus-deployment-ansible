@@ -15,6 +15,7 @@ eth1endpoint_ws: ws://127.0.0.1:8546/ws
 eth1_volumes:
   - "{{eth1_node_dir}}:/eth1data"
   - "{{testnet_dir}}:/networkdata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 #######################
 # NO AUTH SUPPORT YET
@@ -44,6 +45,8 @@ eth1_start_args: >
   --sync-mode=FAST
   --data-storage-format="BONSAI"
   --miner-enabled=true
+  --engine-jwt-enabled
+  --engine-jwt-secret=/jwtsecret
   {% if (eth1_bootnode_enode is defined) and bootnode_enrs %}
   --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

@@ -1,0 +1,17 @@
+- name: Start ethstats server
+  hosts: ethstats_server
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start ethstats server
+      docker_container:
+        name: "{{ ethstats_container_name }}"
+        state: started
+        image: "{{ ethstats_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        published_ports:
+          - "3000:3000"  # just the container port exposed within the host, for the nginx setup
+        env:
+          WS_SECRET: "{{ ethstats_secret }}"
