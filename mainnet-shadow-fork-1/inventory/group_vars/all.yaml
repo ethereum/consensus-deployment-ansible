@@ -40,6 +40,7 @@ fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 # enter bootnodes here if needed
 bootnode_enrs:
   - "enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
+  - "enr:-Ly4QKU6UBX3dpu948xoag1Blrghw8EXQnOP3wc0hmnQZiaZeWO4yWnUIkwxzjLDlc5fIW4JMlo6gZmMtL1c2IPCEHYBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCu-ReLIQAQIzIAAAAAAAAAgmlkgnY0gmlwhJ_LXU-Jc2VjcDI1NmsxoQOCwMvceNEIIs4gmWeIjwWdjsmFJAy0Bnm8ZQp7UEjK9IhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
 
 eth1_bootnode_enode:
   - "enode://36ad5c6e0a10e58234cf9e17bd07107f1ed69659d27d3f0510bc9d8c109d6898d4bb7e20a64e69ee13fc8cc67e0a7291a09f6efd5a6ee26b26ad99d8f8458717@157.230.27.43:30303"
@@ -105,7 +106,6 @@ local_validator_host_archive: "{{inventory_dir}}/../validator_prep/{{ansible_hos
 ##############################################
 # remote host data directories
 ##############################################
-home_dir: /mnt/volume_{{ ansible_hostname  | replace('-','_') }}
 beacon_node_dir: "{{home_dir}}/beacon"
 validator_node_dir: "{{home_dir}}/validator"
 testnet_dir: "{{home_dir}}/custom_config_data"

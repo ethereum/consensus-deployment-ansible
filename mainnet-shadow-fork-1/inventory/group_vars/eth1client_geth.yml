@@ -2,6 +2,8 @@ eth1_client_name: geth
 eth1_image_name: parithoshj/geth:ttd-override-flag-87a9773
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
+home_dir: /mnt/volume_{{ ansible_hostname  | replace('-','_') }}
+
 eth1_github_external_user_pubkeys:
   - mariusVanDerWijden
 

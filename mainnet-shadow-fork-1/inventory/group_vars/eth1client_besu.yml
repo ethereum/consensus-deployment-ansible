@@ -2,6 +2,8 @@ eth1_client_name: besu
 eth1_image_name: hyperledger/besu:22.1.4-SNAPSHOT
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
+home_dir: /mnt/volume_{{ ansible_hostname  | replace('-','_') }}
+
 eth1_memory: 5000M
 eth1_kernel_memory: 5500M
 
