@@ -1,5 +1,5 @@
 - name: Start execution node
-  hosts: execution,!explorer
+  hosts: execution
   gather_facts: true
   serial: 20
   tasks:
