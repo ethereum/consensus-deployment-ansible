@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-2054a1c
-validator_image_name: parithoshj/nimbus:merge-2054a1c
+beacon_image_name: parithoshj/nimbus:merge-97cefaa
+validator_image_name: parithoshj/nimbus:merge-97cefaa
 
 eth2_github_external_user_pubkeys:
   - zah
@@ -23,9 +23,6 @@ beacon_log_level: debug
 ##############################################
 # arguments to run the containers with
 ##############################################
-#######################
-# NO AUTH SUPPORT YET
-#######################
 beacon_start_args: >
   beacon_node
   --non-interactive=true

@@ -1,21 +1,21 @@
 ---
 # stop any running beacon/validator/snooping docker image
-- import_playbook: tasks/stop_beacon.yml
-- import_playbook: tasks/stop_validator.yml
+# - import_playbook: tasks/stop_beacon.yml
+# - import_playbook: tasks/stop_validator.yml
 - import_playbook: tasks/stop_execution_node.yml
-- import_playbook: tasks/stop_snooper.yml
-  when: eth2_client_name != 'nimbus'
+# - import_playbook: tasks/stop_snooper.yml
+#   when: eth2_client_name != 'nimbus'
 
-# starts execution node docker container
+# # starts execution node docker container
 - import_playbook: tasks/start_execution_node.yml
 
 # starts the json rpc snooper
-- import_playbook: tasks/start_snooper.yml
-  when: eth2_client_name != 'nimbus'
+# - import_playbook: tasks/start_snooper.yml
+#   when: eth2_client_name != 'nimbus'
 
-# stars beacon node docker container
-- import_playbook: tasks/start_beacon.yml
-
-# stars validator docker container
-- import_playbook: tasks/start_validator.yml
-  when: separate_validator_process_enabled
+# # stars beacon node docker container
+# - import_playbook: tasks/start_beacon.yml
+#
+# # stars validator docker container
+# - import_playbook: tasks/start_validator.yml
+#   when: separate_validator_process_enabled
