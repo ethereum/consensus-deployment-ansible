@@ -49,6 +49,7 @@ eth1_start_args: >
   --miner-enabled=true
   --engine-jwt-enabled
   --engine-jwt-secret=/jwtsecret
+  --ethstats={{inventory_hostname}}:mainnetshadowfork1@ethstats.mainnetshadowfork1.ethdevops.io:3000
   {% if (eth1_bootnode_enode is defined) and bootnode_enrs %}
   --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

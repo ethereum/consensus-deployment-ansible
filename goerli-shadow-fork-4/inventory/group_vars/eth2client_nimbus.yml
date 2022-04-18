@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-376e15a
-validator_image_name: parithoshj/nimbus:merge-376e15a
+beacon_image_name: parithoshj/nimbus:merge-4e14728
+validator_image_name: parithoshj/nimbus:merge-4e14728
 
 eth2_github_external_user_pubkeys:
   - zah
