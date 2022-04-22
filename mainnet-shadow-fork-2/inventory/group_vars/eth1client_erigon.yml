@@ -5,7 +5,8 @@ execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 home_dir: "/home/{{ansible_user}}"
 
 eth1_github_external_user_pubkeys:
-  - mariusVanDerWijden
+  - Giulio2002
+  - yperbasis
 
 # bare websocket
 eth1endpoint_ws: ws://127.0.0.1:8546
@@ -32,6 +33,7 @@ eth1_start_args: >
   --authrpc.jwtsecret=/jwtsecret
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
+  --prune=htrc
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"

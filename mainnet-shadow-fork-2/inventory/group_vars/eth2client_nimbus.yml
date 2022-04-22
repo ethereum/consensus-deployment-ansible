@@ -9,6 +9,7 @@ validator_image_name: parithoshj/nimbus:merge-97cefaa
 eth2_github_external_user_pubkeys:
   - zah
   - tersec
+  - etan-status
 
 ##############################################
 # volume mappings on remote host
