@@ -13,6 +13,7 @@ eth2_github_external_user_pubkeys:
   - wemeetagain
   - tuyennhv
   - g11tech
+  - dadepo
 
 beacon_env:
   LODESTAR_PRESET: mainnet
