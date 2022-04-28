@@ -11,6 +11,9 @@ github_user_pubkeys:
   - djrtwo
   - skylenet
   - samcm
+  - z3n-chada
+  - infosecual
+  - jtraglia
 
 ansible_python_interpreter: /usr/bin/python3
 oh_my_zsh_config:
@@ -35,7 +38,7 @@ eth1endpoint: http://127.0.0.1:8545
 testnet_type: custom
 eth2_network_name: mainnet-shadow-fork-2
 chainID: 1
-terminal_total_difficulty: "47074600000000000000000"
+terminal_total_difficulty: "47101300000000000000000"
 fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 # enter bootnodes here if needed
 bootnode_enrs:
@@ -80,12 +83,13 @@ beacon_p2p_port: 9000
 validator_metrics_port: 8001
 validator_rpc_port: 4002
 node_exporter_web_listen_address: "0.0.0.0:9100"
+prometheus_web_listen_address: "0.0.0.0:9101"
 eth1_metrics_port: 8002
 
 ##############################################
 # Command for JSON RPC snooper
 ##############################################
-snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port}}"
+snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port_no_auth}}"
 snoop_image_name: parithoshj/json_rpc_snoop:v1.0.0-x86
 snoop_container_name: snooper
 

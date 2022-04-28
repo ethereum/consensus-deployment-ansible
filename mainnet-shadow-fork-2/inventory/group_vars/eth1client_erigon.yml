@@ -1,5 +1,5 @@
 eth1_client_name: erigon
-eth1_image_name: parithoshj/erigon:merge-280204b
+eth1_image_name: parithoshj/erigon:merge-0dd38
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 home_dir: "/home/{{ansible_user}}"
@@ -19,7 +19,6 @@ eth1_volumes:
 geth_init_args: >
   erigon --datadir=/eth1data init /networkdata/genesis.json
 
-
 eth1_start_args: >
   erigon --datadir=/eth1data
   --networkid={{chainID}}
@@ -34,7 +33,9 @@ eth1_start_args: >
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
   --prune=htrc
+  --syncmode=fast
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
+  --ethstats={{inventory_hostname}}:mainnetshadowfork2@ethstats.mainnetshadowfork2.ethdevops.io
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

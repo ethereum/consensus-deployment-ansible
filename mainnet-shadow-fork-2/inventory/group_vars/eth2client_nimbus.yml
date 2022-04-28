@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-97cefaa
-validator_image_name: parithoshj/nimbus:merge-97cefaa
+beacon_image_name: parithoshj/nimbus:merge-d282037
+validator_image_name: parithoshj/nimbus:merge-d282037
 
 eth2_github_external_user_pubkeys:
   - zah
@@ -43,10 +43,10 @@ beacon_start_args: >
   --rest --rest-port={{beacon_api_port}} --rest-address=0.0.0.0
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0
   --log-level="{{ beacon_log_level | upper }}"
-  --log-file="/beacondata/nimbus.log"
   --doppelganger-detection=off
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
+  --use-jwt-debug=true
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret
   --dump:on

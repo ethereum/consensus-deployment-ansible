@@ -2,7 +2,7 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:latest
+beacon_image_name: gcr.io/prysmaticlabs/prysm/beacon-chain:fallback_nicely
 validator_image_name: gcr.io/prysmaticlabs/prysm/validator:latest
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
@@ -40,6 +40,7 @@ beacon_start_args: >
     {% endif %}
   --verbosity="{{ beacon_log_level | lower }}"
   --min-sync-peers=1
+  --pprof
   --p2p-host-ip={{ansible_host}}
   --p2p-max-peers={{hi_peer_count}}
   --p2p-udp-port={{beacon_p2p_port}} --p2p-tcp-port={{beacon_p2p_port}}
