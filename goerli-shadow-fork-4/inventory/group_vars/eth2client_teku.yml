@@ -60,7 +60,7 @@ beacon_start_args: >
 # memory limits
 ##############################################
 beacon_env:
-  JAVA_OPTS: "-XX:SoftMaxHeapSize=2g -Xmx4g"
+  JAVA_OPTS: "-Xmx2g"
 
 # TODO: maybe configure logging style via env var later
 #  LOG4J_CONFIGURATION_FILE: "/beacondata/log_config.xml"

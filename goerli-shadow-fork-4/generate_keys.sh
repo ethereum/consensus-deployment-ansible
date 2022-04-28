@@ -51,7 +51,7 @@ echo "lighthouse keys"
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 42 1 "goerli-shadow-fork-4-lighthouse-nethermind" 500
 
 echo "lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 43 1 "goerli-shadow-fork-4-lighthouse-besu" 500
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 43 1 "goerli-shadow-fork-4-prysm-besu" 500
 
 echo "lodestar keys"
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 44 1 "goerli-shadow-fork-4-lodestar-geth" 500

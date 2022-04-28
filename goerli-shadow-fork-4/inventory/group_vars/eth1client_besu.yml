@@ -1,5 +1,5 @@
 eth1_client_name: besu
-eth1_image_name: hyperledger/besu:22.4.0-RC2-SNAPSHOT
+eth1_image_name: hyperledger/besu:develop
 execution_endpoint: http://127.0.0.1:{{eth1_engine_port_no_auth}}
 
 home_dir: "/home/{{ansible_user}}"

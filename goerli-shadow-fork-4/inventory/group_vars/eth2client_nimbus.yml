@@ -3,12 +3,13 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-4e14728
-validator_image_name: parithoshj/nimbus:merge-4e14728
+beacon_image_name: parithoshj/nimbus:merge-09b2f4c
+validator_image_name: parithoshj/nimbus:merge-09b2f4c
 
 eth2_github_external_user_pubkeys:
   - zah
   - tersec
+  - etan-status
 
 ##############################################
 # volume mappings on remote host
@@ -50,6 +51,7 @@ beacon_start_args: >
   {% endif %}
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret
+  --use-jwt-debug=true
   --dump:on
 
 ##############################################
