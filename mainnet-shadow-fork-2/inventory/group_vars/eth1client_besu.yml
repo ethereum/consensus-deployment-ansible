@@ -19,9 +19,10 @@ eth1_volumes:
   - "{{testnet_dir}}:/networkdata"
   - "{{home_dir}}/jwtsecret:/jwtsecret"
 
-#######################
-# NO AUTH SUPPORT YET
-#######################
+eth1_env:
+  JDWP_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Dcom.sun.management.jmxremote.port=5555 -Dcom.sun.management.jmxremote.authenticate=false"
+  NATIVE_MEMORY_OPTS: "-XX:NativeMemoryTracking=detail -XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics"
+  JAVA_OPTS: "${JDWP_OPTS} ${NATIVE_MEMORY_OPTS}"
 
 eth1_start_args: >
   --data-path="/eth1data/data"
@@ -46,7 +47,6 @@ eth1_start_args: >
   --p2p-host={{ansible_host}}
   --sync-mode=FAST
   --data-storage-format="BONSAI"
-  --miner-enabled=true
   --engine-jwt-enabled
   --engine-jwt-secret=/jwtsecret
   --ethstats={{inventory_hostname}}:mainnetshadowfork2@ethstats.mainnetshadowfork2.ethdevops.io:3000
