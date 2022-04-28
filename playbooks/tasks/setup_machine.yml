@@ -1,7 +1,7 @@
 - name: Setup name and keys
   hosts: all
   become: true
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Add SSH keys from Github users
       loop: "{{ github_user_pubkeys }}"

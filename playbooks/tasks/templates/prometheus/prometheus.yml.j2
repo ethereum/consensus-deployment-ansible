@@ -1,6 +1,6 @@
 global:
-  evaluation_interval: 15s
-  scrape_interval: 15s
+  evaluation_interval: 30s
+  scrape_interval: 30s
   scrape_timeout: 10s
 
   external_labels:
@@ -18,7 +18,7 @@ remote_write:
       max_samples_per_send: 500
       min_backoff: 50ms
       max_shards: 100
-    url: {{ thanos_url }}
+    url: {{ push_url }}
     remote_timeout: 10s
 {% if remote_write_auth == true %}
     basic_auth:
@@ -41,13 +41,20 @@ scrape_configs:
       - localhost:{{ beacon_metrics_port }}
 
 
-{% if separate_validator_process_enabled == true %}
+{% if eth1_client_name == "geth" or eth1_client_name == "erigon" %}
 
-  - job_name: validator
+  - job_name: execution_node
+    metrics_path: /debug/metrics/prometheus
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
       targets:
-      - localhost:{{ validator_metrics_port }}
-
+      - localhost:{{ eth1_metrics_port }}
+{% elif eth1_client_name == "besu" or eth1_client_name == "nethermind"  %}
+  - job_name: execution_node
+    static_configs:
+    - labels:
+        instance: "{{ ansible_hostname }}"
+      targets:
+      - localhost:{{ eth1_metrics_port }}
       {% endif %}

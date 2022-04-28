@@ -14,3 +14,6 @@
         restart: "{{ eth1_require_restart | default(false) }}"
         volumes: "{{eth1_volumes}}"
         command: "{{ eth1_start_args }}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"
+        env: "{{ eth1_env | default({}) }}"

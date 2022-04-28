@@ -42,7 +42,7 @@
 - name: Run bootstrap playbook to ensure basic stuff works and add oh-my-zsh
   hosts: all
   remote_user: "{{ bootstrap_user }}"
-  gather_facts: false
+  gather_facts: true
   become: true
   roles:
     # Prepare system to be managed by Ansible.

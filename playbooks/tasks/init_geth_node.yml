@@ -1,11 +1,11 @@
-- name: Init geth node
-  hosts: eth1client_geth
+- name: Init geth,erigon node
+  hosts: eth1client_geth,eth1client_erigon
   gather_facts: true
   serial: 20
   tasks:
-    - name: Run geth init
+    - name: Run geth,erigon init
       docker_container:
-        name: "geth_tmp"
+        name: "exec_tmp"
         state: started
         image: "{{ eth1_image_name }}"
         pull: true

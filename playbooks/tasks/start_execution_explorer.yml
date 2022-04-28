@@ -21,3 +21,5 @@
         command: "{{ execution_explorer_start_args }}"
         volumes: "{{execution_explorer_volumes}}"
         env_file: "{{explorer_host_dir}}/blockscout.env"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"
