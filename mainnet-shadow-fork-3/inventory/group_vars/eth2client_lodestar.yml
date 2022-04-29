@@ -59,7 +59,7 @@ beacon_start_args: >
         --enr.ip={{ansible_host}}
         --metrics.enabled
         --metrics.serverPort={{ beacon_metrics_port }}
-        --eth1.depositContractDeployBlock=0
+        --eth1.depositContractDeployBlock=14675001
         --jwt-secret="/jwtsecret"
 
 validator_start_args: >

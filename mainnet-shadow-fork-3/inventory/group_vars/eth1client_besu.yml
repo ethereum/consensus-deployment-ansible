@@ -1,5 +1,5 @@
 eth1_client_name: besu
-eth1_image_name: hyperledger/besu:develop
+eth1_image_name: hyperledger/besu:22.4.0-RC3-SNAPSHOT
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 home_dir: "/home/{{ansible_user}}"
@@ -49,7 +49,7 @@ eth1_start_args: >
   --data-storage-format="BONSAI"
   --engine-jwt-enabled
   --engine-jwt-secret=/jwtsecret
-  --ethstats={{inventory_hostname}}:mainnetshadowfork2@ethstats.mainnetshadowfork2.ethdevops.io:3000
+  --ethstats={{inventory_hostname}}:mainnetshadowfork3@ethstats.mainnetshadowfork3.ethdevops.io:3000
   {% if (eth1_bootnode_enode is defined) and bootnode_enrs %}
   --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}

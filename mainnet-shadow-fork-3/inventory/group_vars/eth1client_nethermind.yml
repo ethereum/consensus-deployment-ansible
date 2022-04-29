@@ -42,8 +42,8 @@ eth1_start_args: >
   --JsonRpc.AdditionalRpcUrls="http://localhost:{{eth1_engine_port_no_auth}}|http;ws|net;eth;subscribe;engine;web3;client|no-auth,http://localhost:{{eth1_engine_port}}|http;ws|net;eth;subscribe;engine;web3;client"
   --EthStats.Enabled=true
   --EthStats.Name={{inventory_hostname}}
-  --EthStats.Secret=mainnetshadowfork2
-  --EthStats.Server=wss://ethstats.mainnetshadowfork2.ethdevops.io/api/
+  --EthStats.Secret=mainnetshadowfork3
+  --EthStats.Server=wss://ethstats.mainnetshadowfork3.ethdevops.io/api/
   --Metrics.ExposePort={{eth1_metrics_port}}
   --Metrics.Enabled=true
 

@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: parithoshj/geth:master
+eth1_image_name: parithoshj/geth:master-84041e8
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 home_dir: "/home/{{ansible_user}}"
@@ -37,13 +37,13 @@ eth1_start_args: >
   --allow-insecure-unlock
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
   --vmodule=rpc=5
-  --maxpeers=200
+  --maxpeers=75
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
-  --ethstats={{inventory_hostname}}:mainnetshadowfork2@ethstats.mainnetshadowfork2.ethdevops.io
+  --ethstats={{inventory_hostname}}:mainnetshadowfork3@ethstats.mainnetshadowfork3.ethdevops.io
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
-  {% if ansible_hostname == "mainnet-shadow-fork-2-eth1-bootnode-geth-1" or ansible_hostname == "mainnet-shadow-fork-2-lighthouse-geth-1" or ansible_hostname == "mainnet-shadow-fork-2-teku-geth-1"  %}
+  {% if ansible_hostname == "mainnet-shadow-fork-3-eth1-bootnode-geth-1" or ansible_hostname == "mainnet-shadow-fork-3-lighthouse-geth-1" or ansible_hostname == "mainnet-shadow-fork-3-teku-geth-1"  %}
   --gcmode=archive
   {% endif %}
 
