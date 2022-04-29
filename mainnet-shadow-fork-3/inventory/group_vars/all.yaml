@@ -43,7 +43,9 @@ fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 # enter bootnodes here if needed
 bootnode_enrs:
   - "enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
-eth1_bootnode_enode: []
+  - "enr:-Ly4QCvaZiwogxNNnbrIxfaB2KQ6mhebEcCSYmX2-jqR9n_YAHtRQgmU8aCEvVovJ2AcU_ZBNVq7O0SKJp3w9YMnuBABh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAT2N9eIQAQJjIAAAAAAAAAgmlkgnY0gmlwhKRcqS-Jc2VjcDI1NmsxoQPgKIS9SLvovBqgXmkBhpxrAsDtACmrBGGw5I07wTc0L4hzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
+eth1_bootnode_enode:
+  - "enode://f433706b6211699b5f50962e665496b83eb4db6428b544065194654ed7063e1e942a0a2af380482ba0f79c26cd7422885367256e8233ac17b2ee8d30e8f8308d@164.92.169.47:30303"
 
 ##############################################
 # metric information
