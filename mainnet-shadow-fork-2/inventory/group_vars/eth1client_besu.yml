@@ -20,9 +20,8 @@ eth1_volumes:
   - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 eth1_env:
-  JDWP_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Dcom.sun.management.jmxremote.port=5555 -Dcom.sun.management.jmxremote.authenticate=false"
+  JDWP_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
   NATIVE_MEMORY_OPTS: "-XX:NativeMemoryTracking=detail -XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics"
-  JAVA_OPTS: "${JDWP_OPTS} ${NATIVE_MEMORY_OPTS}"
 
 eth1_start_args: >
   --data-path="/eth1data/data"
