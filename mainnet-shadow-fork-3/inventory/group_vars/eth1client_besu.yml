@@ -10,6 +10,8 @@ eth1_kernel_memory: 5500M
 eth1_github_external_user_pubkeys:
   - garyschulte
   - jflo
+  - fab-10
+  - matkt
 
 # websocket with /ws suffix
 eth1endpoint_ws: ws://127.0.0.1:8546/ws
