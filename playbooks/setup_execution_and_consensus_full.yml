@@ -13,6 +13,7 @@
 
 # uploads validator keys corresponding to the host
 - import_playbook: tasks/upload_validator_keys.yml
+  when: no_validator_keys != 'true'
 
 # uploads custom chain config and genesis data if needed
 - import_playbook: tasks/upload_custom_config_data.yml
@@ -21,7 +22,7 @@
 
 # inits geth instance
 - import_playbook: tasks/init_geth_node.yml
-  when: eth1_client_name == 'geth'
+  when: eth1_client_name == 'geth' or eth1_client_name == 'erigon'
 
 # starts execution container
 - import_playbook: tasks/start_execution_node.yml
