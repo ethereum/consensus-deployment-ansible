@@ -1,5 +1,5 @@
 eth1_client_name: erigon
-eth1_image_name: parithoshj/erigon:devel-77560b6
+eth1_image_name: parithoshj/erigon:shadow-mainnet-3-0199c8d
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 home_dir: "/home/{{ansible_user}}"
