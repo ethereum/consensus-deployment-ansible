@@ -15,3 +15,4 @@
           - "3000:3000"  # just the container port exposed within the host, for the nginx setup
         env:
           WS_SECRET: "{{ ethstats_secret }}"
+          NODE_OPTIONS: "--max-old-space-size=4096"

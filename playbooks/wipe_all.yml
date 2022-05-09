@@ -5,7 +5,7 @@
   become: true
   tasks:
     - name: Stop Eth2 beacon node container
-      shell: "docker stop --time=10 {{beacon_container_name}}"
+      shell: "docker stop {{beacon_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
     - name: Remove beacon data
@@ -14,7 +14,7 @@
         path: "{{beacon_node_dir}}"
         state: absent
     - name: Stop Eth2 validator client container
-      shell: "docker stop --time=10 {{validator_container_name}}"
+      shell: "docker stop {{validator_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
     - name: Remove validator data
@@ -23,7 +23,7 @@
         path: "{{validator_node_dir}}"
         state: absent
     - name: Stop execution client container
-      shell: "docker stop --time=10 {{eth1_client_name}}"
+      shell: "docker stop {{eth1_client_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
     - name: Remove execution data
@@ -43,60 +43,94 @@
       file:
         path: "{{ home_dir }}/jwtsecret"
         state: absent
-    - name: Stop node_exporter service
-      systemd:
-        state: stopped
-        name: node_exporter
-      ignore_errors: yes
-    - name: Stop prometheus service
-      systemd:
-        state: stopped
-        name: prometheus
-      ignore_errors: yes
-    - name: Disable node exporter
-      systemd:
-        name: node_exporter
-        enabled: no
-        masked: no
-      ignore_errors: yes
-    - name: Disable prometheus
-      systemd:
-        name: prometheus
-        enabled: no
-        masked: no
-      ignore_errors: yes
-    - name: Delete the systemD unit file
-      file:
-        path: /etc/systemd/system/node_exporter.service
-        state: absent
-    - name: Delete the systemD unit file
-      file:
-        path: /etc/systemd/system/prometheus.service
-        state: absent
-    - name: Reload systemD
-      systemd:
-        daemon_reload: yes
-    - name: Delete the bin
-      file:
-        path: /usr/local/bin/node_exporter
-        state: absent
-    - name: Delete user
-      user:
-        name: node_exp
-        state: absent
-        group: node_exp
-        shell: "/sbin/nologin"
-    - name: Delete user
-      user:
-        name: prometheus
-        state: absent
-        group: prometheus
-        shell: "/sbin/nologin"
-    - name: Delete the node exporter config
-      file:
-        path: /etc/default/node_exporter
-        state: absent
-    - name: Delete the prometheus config
-      file:
-        path: /etc/default/prometheus
-        state: absent
+#     - name: Stop node_exporter service
+#       systemd:
+#         state: stopped
+#         name: node_exporter
+#       `ignore_errors: yes`
+#     - name: Stop prometheus service
+#       systemd:
+#         state: stopped
+#         name: prometheus
+#       ignore_errors: yes
+#     - name: Remove prom data
+#       become: true
+#       file:
+#         path: "/var/lib/prometheus"
+#         state: absent
+#     - name: Remove prom data
+#       become: true
+#       file:
+#         path: "/var/lib/node_exporter"
+#         state: absent
+#     - name: create prometheus data directory
+#       file:
+#         path: "/var/lib/prometheus"
+#         state: directory
+#         owner: prometheus
+#         group: prometheus
+#         mode: 0755
+#     - name: create prometheus data directory
+#       file:
+#         path: "/var/lib/node_exporter"
+#         state: directory
+#         owner: prometheus
+#         group: prometheus
+#         mode: 0755
+#     - name: Stop prometheus service
+#       systemd:
+#         state: started
+#         name: prometheus
+#       ignore_errors: yes
+#     - name: Stop node_exporter service
+#       systemd:
+#         state: started
+#         name: node_exporter
+#       ignore_errors: yes
+#     - name: Disable node exporter
+#       systemd:
+#         name: node_exporter
+#         enabled: no
+#         masked: no
+#       ignore_errors: yes
+#     - name: Disable prometheus
+#       systemd:
+#         name: prometheus
+#         enabled: no
+#         masked: no
+#       ignore_errors: yes
+#     - name: Delete the systemD unit file
+#       file:
+#         path: /etc/systemd/system/node_exporter.service
+#         state: absent
+#     - name: Delete the systemD unit file
+#       file:
+#         path: /etc/systemd/system/prometheus.service
+#         state: absent
+#     - name: Reload systemD
+#       systemd:
+#         daemon_reload: yes
+#     - name: Delete the bin
+#       file:
+#         path: /usr/local/bin/node_exporter
+#         state: absent
+#     - name: Delete user
+#       user:
+#         name: node_exp
+#         state: absent
+#         group: node_exp
+#         shell: "/sbin/nologin"
+#     - name: Delete user
+#       user:
+#         name: prometheus
+#         state: absent
+#         group: prometheus
+#         shell: "/sbin/nologin"
+#     - name: Delete the node exporter config
+#       file:
+#         path: /etc/default/node_exporter
+#         state: absent
+#     - name: Delete the prometheus config
+#       file:
+#         path: /etc/default/prometheus
+#         state: absent
