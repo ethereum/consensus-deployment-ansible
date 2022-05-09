@@ -1,5 +1,5 @@
 eth1_client_name: erigon
-eth1_image_name: parithoshj/erigon:shadow-mainnet-3-0199c8d
+eth1_image_name: parithoshj/erigon:shadow-mainnet-3-87448e5
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 home_dir: "/home/{{ansible_user}}"
@@ -35,6 +35,7 @@ eth1_start_args: >
   --prune=htrc
   --syncmode=fast
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
+  --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   --ethstats={{inventory_hostname}}:mainnetshadowfork3@ethstats.mainnetshadowfork3.ethdevops.io
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"

@@ -7,6 +7,9 @@ explorer_memory: 9000m
 beacon_explorer_image_name: "parithoshj/beacon-explorer:print-chain-id"
 execution_explorer_image_name: "skylenet/blockscout:v4.0.0-beta"
 
+explorer_first_block: 14651000
+explorer_ip_address: "164.92.169.47"
+
 explorer_postgres_container_name: postgres
 explorer_postgres_image_name: "postgres:12.0"
 explorer_postgres_memory: 9000m
