@@ -44,8 +44,10 @@ beacon_start_args: >
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0
   --log-level="{{ beacon_log_level | upper }}"
   --doppelganger-detection=off
+  {% if no_validator_keys != 'true' %}
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
+  {% endif %}
   --use-jwt-debug=true
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret
