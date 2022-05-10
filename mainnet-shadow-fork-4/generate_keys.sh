@@ -45,7 +45,7 @@ echo "teku keys"
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 40 1 "mainnet-shadow-fork-4-teku-nethermind" 500
 
 echo "teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 41 1 "mainnet-shadow-fork-4-prysm-erigon" 500
+prep_group 1 "$VALIDATORS_MNEMONIC_0" 41 1 "mainnet-shadow-fork-4-full-sync-prysm-erigon" 500
 
 echo "lighthouse keys"
 prep_group 1 "$VALIDATORS_MNEMONIC_0" 42 1 "mainnet-shadow-fork-4-lighthouse-nethermind" 500
