@@ -6,6 +6,10 @@ if [ -z "$VALIDATORS_MNEMONIC_0" ]; then
   exit 1
 fi
 
+if [ -z "$VALIDATORS_MNEMONIC_1" ]; then
+  echo "missing mnemonic 0"
+  exit 1
+fi
 
 function prep_group {
   let group_base=$1
@@ -32,38 +36,62 @@ function prep_group {
   done
 }
 
-echo "teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "mainnet-shadow-fork-4-teku-geth" 1000
+#echo "teku keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 0 3 "mainnet-shadow-fork-4-teku-geth" 1000
+#
+#echo "lighthouse keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 4 "mainnet-shadow-fork-4-lighthouse-geth" 1000
+#
+#echo "prysm keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 13 "mainnet-shadow-fork-4-prysm-geth" 1000
+#
+#echo "teku keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 40 1 "mainnet-shadow-fork-4-teku-nethermind" 500
+#
+#echo "teku keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 41 1 "mainnet-shadow-fork-4-full-sync-prysm-erigon" 500
+#
+#echo "lighthouse keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 42 1 "mainnet-shadow-fork-4-lighthouse-nethermind" 500
+#
+#echo "lighthouse keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 43 1 "mainnet-shadow-fork-4-prysm-besu" 500
+#
+#echo "lodestar keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 44 1 "mainnet-shadow-fork-4-lodestar-geth" 500
+#
+#echo "lodestar keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 45 1 "mainnet-shadow-fork-4-lodestar-nethermind" 500
+#
+#echo "nimbus keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 46 1 "mainnet-shadow-fork-4-nimbus-geth" 500
+#
+#echo "nimbus keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 47 1 "mainnet-shadow-fork-4-nimbus-nethermind" 500
+#
+#echo "prysm keys"
+#prep_group 1 "$VALIDATORS_MNEMONIC_0" 24 1 "mainnet-shadow-fork-4-prysm-nethermind" 1000
 
 echo "lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 3 4 "mainnet-shadow-fork-4-lighthouse-geth" 1000
-
-echo "prysm keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 7 13 "mainnet-shadow-fork-4-prysm-geth" 1000
-
-echo "teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 40 1 "mainnet-shadow-fork-4-teku-nethermind" 500
-
-echo "teku keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 41 1 "mainnet-shadow-fork-4-full-sync-prysm-erigon" 500
-
-echo "lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 42 1 "mainnet-shadow-fork-4-lighthouse-nethermind" 500
-
-echo "lighthouse keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 43 1 "mainnet-shadow-fork-4-prysm-besu" 500
-
-echo "lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 44 1 "mainnet-shadow-fork-4-lodestar-geth" 500
-
-echo "lodestar keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 45 1 "mainnet-shadow-fork-4-lodestar-nethermind" 500
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 0 1 "mainnet-shadow-fork-4-lighthouse-besu" 1
 
 echo "nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 46 1 "mainnet-shadow-fork-4-nimbus-geth" 500
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 1 1 "mainnet-shadow-fork-4-nimbus-besu" 1
+
+echo "teku keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 2 1 "mainnet-shadow-fork-4-teku-besu" 1
+
+echo "lodestar keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 3 1 "mainnet-shadow-fork-4-lodestar-besu" 1
+
+echo "lighthouse keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 4 1 "mainnet-shadow-fork-4-lighthouse-erigon" 1
 
 echo "nimbus keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 47 1 "mainnet-shadow-fork-4-nimbus-nethermind" 500
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 5 1 "mainnet-shadow-fork-4-nimbus-erigon" 1
 
-echo "prysm keys"
-prep_group 1 "$VALIDATORS_MNEMONIC_0" 24 1 "mainnet-shadow-fork-4-prysm-nethermind" 1000
+echo "teku keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 6 1 "mainnet-shadow-fork-4-teku-erigon" 1
+
+echo "lodestar keys"
+prep_group 1 "$VALIDATORS_MNEMONIC_1" 7 1 "mainnet-shadow-fork-4-lodestar-erigon" 1
