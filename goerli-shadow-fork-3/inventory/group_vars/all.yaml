@@ -48,6 +48,7 @@ eth1_bootnode_enode:
   - "enode://49f67c32e4ae58baea7fd65cfb48adce92244c4be3e1990ac21888b77b8b8b041b35c6a827b7cb7ba95ea5037c5f5bebbd0b7f44aea1e223126ab8b5f00843fc@167.71.234.112:30303"
   - "enode://c7791a82c6018620830f06fa1e1ac8d93413fbbca360e331e7bbb93f8b1960daf82a2b17b67062a8c524d49b143119861753266d7a0cf5a0cb337adf18cfea9a@68.183.68.27:30303"
 
+no_validator_keys: false
 ##############################################
 # metric information
 ##############################################
@@ -76,6 +77,7 @@ beacon_p2p_port: 9000
 validator_metrics_port: 8001
 validator_rpc_port: 4002
 node_exporter_web_listen_address: "0.0.0.0:9100"
+eth1_metrics_port: 8002
 
 ##############################################
 # Command for JSON RPC snooper
