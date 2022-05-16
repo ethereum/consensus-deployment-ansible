@@ -1,5 +1,5 @@
 eth1_client_name: nethermind
-eth1_image_name: nethermindeth/nethermind:kiln_shadowfork
+eth1_image_name: nethermindeth/nethermind:kiln_shadowfork_test
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 
 home_dir: "/home/{{ansible_user}}"
