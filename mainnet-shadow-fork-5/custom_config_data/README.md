@@ -1,14 +1,18 @@
 # mainnet-shadow-fork-5
-TTD: `49407055721335634264064`
+TTD: `49399410637657203539968`
 ENR for consensus clients:
 ```yaml
   - "enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
-  - "enr:-Ly4QNgJCLg_NhByYhfXOR5MSHQ2KCQoVBvLMby16awvFSwbMqp-OLBlV5Y3ZqeZfNqfUp4u64W8fNgD3xMlvBEZG5ABh2F0dG5ldHOIAAAAAAAAAACEZXRoMpAgQWTnIQAQKDIAAAAAAAAAgmlkgnY0gmlwhKEjnOuJc2VjcDI1NmsxoQO_VZjxeisyDG262QHud7_vCq3lbDoG6-pIC-5SMKfCKIhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
+  - "enr:-Ly4QOY4YvejyORiEHuWWFgFkfoIPGF6TS3DG-lI0pINHxz8bAsumf_X56CLgB17DZngJ9QbLmwyBK2hu9aEfKR_VttHh2F0dG5ldHOI__________-EZXRoMpBIlbRbIgAQKP__________gmlkgnY0gmlwhKEjnTaJc2VjcDI1NmsxoQMH9F3uOI8bSe3pLaY6XiScLTXJp_lHqPEeW-aJVtbRWohzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA"
+  - "enr:-Ly4QA_2NFpB01n1IaNgkHxyrigdE7RaNiwAYVby8ItxS97wPMbMirRyd6KrPikT0rsV9KLFFCLRMDkh3ajBLxDx7GUKh2F0dG5ldHOI__________-EZXRoMpBIlbRbIgAQKP__________gmlkgnY0gmlwhKEjlDKJc2VjcDI1NmsxoQM1LJkA-_AUIOsCwUbzGZfylcKW7D2J9jy1Fl9_9D7zXYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA"
+  - "enr:-MK4QLoph8kcE7o9jAK6f3QncQJaqapg9ENuO-QJMZLW3YvAT4GWZCmrMyk4jH_3IAH4cwGvMMG1GFkOKxPcx-k0VMqGAYC_ACRyh2F0dG5ldHOI__________-EZXRoMpBIlbRbIgAQKP__________gmlkgnY0gmlwhGj4D4eJc2VjcDI1NmsxoQLyLSFLakl7ptW2F5V_vkTE88JiM9t0KjVfNhEmfwGcTYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA=="
 ```
 
 enode for execution clients:
 ```yaml
   - "enode://ca855d0f6058d39596226031dccca3177a3aff85bec21fcba07fef475494070b9e8625aa3304aca00e9d81604c5d514cece14a9f2e00acced648dc00a4ca0d85@161.35.156.235:30303"
+  - "enode://3dce2b885ad1980507d1df9fe04ec3d499c8b91e845503a33396a6a5e01b24e0196edc8f16d57e2513783678e624206c399caf1d06c6df97f7dab22723db672d@161.35.157.54:30303"
+  - "enode://b23ca7fbd0425b0a4cb4bb131c9bfb71fa7bedc4510a1afc893ccd3862512ecb11ea8f3b6e31884858656baf37c94baef5f8f5087bce3080324630a5a3362985@104.248.15.135:30303"
 ```
 
 Altair will fork at epoch 50 and merge epoch at 100.
@@ -70,14 +74,14 @@ mainnet-shadow-fork-5-lodestar-besu-1: 26000 - 27000
 mainnet-shadow-fork-5-lodestar-besu-2: 27000 - 28000
 mainnet-shadow-fork-5-prysm-besu-1: 28000 - 29000
 mainnet-shadow-fork-5-prysm-besu-2: 29000 - 30000
-mainnet-shadow-fork-5-lighthouse-erigon-1: 30000 - 31000
-mainnet-shadow-fork-5-lighthouse-erigon-2: 31000 - 32000
-mainnet-shadow-fork-5-nimbus-erigon-1: 32000 - 33000
-mainnet-shadow-fork-5-nimbus-erigon-2: 33000 - 34000
-mainnet-shadow-fork-5-teku-erigon-1: 34000 - 35000
-mainnet-shadow-fork-5-teku-erigon-2: 35000 - 36000
-mainnet-shadow-fork-5-lodestar-erigon-1: 36000 - 37000
-mainnet-shadow-fork-5-lodestar-erigon-2: 37000 - 38000
-mainnet-shadow-fork-5-prysm-erigon-1: 38000 - 39000
-mainnet-shadow-fork-5-prysm-erigon-2: 39000 - 40000
+mainnet-shadow-fork-5-lighthouse-erigon-1: 30000 - 31000 (Running on lh-geth-1's beacon node)
+mainnet-shadow-fork-5-lighthouse-erigon-2: 31000 - 32000 (Running on lh-geth-1's beacon node)
+mainnet-shadow-fork-5-nimbus-erigon-1: 32000 - 33000 (Running on lh-geth of explorer)
+mainnet-shadow-fork-5-nimbus-erigon-2: 33000 - 34000 (Running on Giulio's prysm-erigon node)
+mainnet-shadow-fork-5-teku-erigon-1: 34000 - 35000 (Running on lh-geth of explorer)
+mainnet-shadow-fork-5-teku-erigon-2: 35000 - 36000 (Running on lh-geth of explorer)
+mainnet-shadow-fork-5-lodestar-erigon-1: 36000 - 37000 (Running on lodestar-geth-1's beacon node)
+mainnet-shadow-fork-5-lodestar-erigon-2: 37000 - 38000 (Running on lodestar-geth-1's beacon node)
+mainnet-shadow-fork-5-prysm-erigon-1: 38000 - 39000 (Running on prysm-geth-1's beacon node)
+mainnet-shadow-fork-5-prysm-erigon-2: 39000 - 40000 (Running on prysm-geth-1's beacon node)
 ```
