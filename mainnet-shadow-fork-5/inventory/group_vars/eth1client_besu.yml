@@ -50,7 +50,7 @@ eth1_start_args: >
   --Xmerge-support=true
   --miner-coinbase="{{fee_recipient}}"
   --p2p-host={{ansible_host}}
-  --sync-mode=FAST
+  --sync-mode=X_SNAP
   --data-storage-format="BONSAI"
   --engine-jwt-enabled
   --engine-jwt-secret=/jwtsecret
