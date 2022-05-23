@@ -82,7 +82,6 @@ eth1_metrics_port: 8002
 ##############################################
 # Command for JSON RPC snooper
 ##############################################
-snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port}}"
 snoop_image_name: parithoshj/json_rpc_snoop:v1.0.0-x86
 snoop_container_name: snooper
 

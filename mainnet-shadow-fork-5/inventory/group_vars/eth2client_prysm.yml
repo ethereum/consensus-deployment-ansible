@@ -2,7 +2,7 @@
 # image name and image location
 ##############################################
 eth2_client_name: prysm
-beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:fix-error-is-ordering-d4ddcd
+beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:latest
 validator_image_name: gcr.io/prysmaticlabs/prysm/validator:latest
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
@@ -24,6 +24,15 @@ beacon_volumes:
 validator_volumes:
   - "{{validator_node_dir}}:/validatordata"
   - "{{testnet_dir}}:/custom_config_data"
+
+###############################################
+## memory limits
+###############################################
+#beacon_env:
+#  MSAN_SYMBOLIZER_PATH: /usr/bin/llvm-symbolizer
+#
+#validator_env:
+#  MSAN_SYMBOLIZER_PATH: /usr/bin/llvm-symbolizer
 
 ##############################################
 # arguments to run the containers with

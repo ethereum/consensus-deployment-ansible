@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-9cbe61c
-validator_image_name: parithoshj/nimbus:merge-9cbe61c
+beacon_image_name: parithoshj/nimbus:merge-e48c291
+validator_image_name: parithoshj/nimbus:merge-e48c291
 
 eth2_github_external_user_pubkeys:
   - zah
@@ -30,7 +30,7 @@ beacon_start_args: >
   --network="/custom_config_data"
   --max-peers="{{hi_peer_count}}"
   --data-dir="/beacondata"
-  --web3-url="{{consensus_endpoint_nimbus}}"
+  --web3-url="{{execution_endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --bootstrap-node="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -48,7 +48,6 @@ beacon_start_args: >
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
   {% endif %}
-  --use-jwt-debug=true
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret
   --dump:on

@@ -59,6 +59,7 @@ beacon_start_args: >
   --validator-monitor-auto
   --suggested-fee-recipient={{fee_recipient}}
   --jwt-secrets="/jwtsecret"
+  --slasher --slasher-history-length 256 --slasher-max-db-size 16
 
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 
