@@ -22,5 +22,5 @@
   when: separate_validator_process_enabled
 
 # install node_exporter and metric pusher
-- import_playbook: tasks/deploy_node_exporter_and_metric_pusher.yml
+- import_playbook: tasks/deploy_node_exporter_and_prometheus.yml
   when: push_metrics_enabled

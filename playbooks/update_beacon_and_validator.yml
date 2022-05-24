@@ -3,9 +3,6 @@
 - import_playbook: tasks/stop_beacon.yml
 - import_playbook: tasks/stop_validator.yml
 
-# uploads custom chain config and genesis data if needed
-- import_playbook: tasks/upload_custom_config_data.yml
-
 # stars beacon node docker container
 - import_playbook: tasks/start_beacon.yml
 

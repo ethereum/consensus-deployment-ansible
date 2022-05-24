@@ -18,6 +18,13 @@
         user: "{{ bootstrap_user }}"
         state: present
         key: "https://github.com/{{ item }}.keys"
+    - name: "Add authorized keys"
+      loop: "{{ github_fuzzer_user }}"
+      authorized_key:
+        user: "{{ bootstrap_user }}"
+        state: present
+        key: "https://github.com/{{ item }}.keys"
+      ignore_errors: yes
     - name: "Allow admin users to sudo without a password"
       lineinfile:
         dest: "/etc/sudoers" # path: in version 2.3
