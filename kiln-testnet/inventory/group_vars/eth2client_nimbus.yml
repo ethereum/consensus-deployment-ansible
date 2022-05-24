@@ -3,12 +3,13 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-190a741
-validator_image_name: parithoshj/nimbus:merge-190a741
+beacon_image_name: parithoshj/nimbus:merge-79452b7
+validator_image_name: parithoshj/nimbus:merge-79452b7
 
 eth2_github_external_user_pubkeys:
   - zah
   - tersec
+  - etan-status
 
 ##############################################
 # volume mappings on remote host
@@ -23,16 +24,13 @@ beacon_log_level: debug
 ##############################################
 # arguments to run the containers with
 ##############################################
-#######################
-# NO AUTH SUPPORT YET
-#######################
 beacon_start_args: >
   beacon_node
   --non-interactive=true
   --network="/custom_config_data"
   --max-peers="{{hi_peer_count}}"
   --data-dir="/beacondata"
-  --web3-url="{{consensus_endpoint_nimbus}}"
+  --web3-url="{{execution_endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --bootstrap-node="{{ bootnode_enrs | join(',') }}"
   {% endif %}
@@ -45,7 +43,6 @@ beacon_start_args: >
   --rest --rest-port={{beacon_api_port}} --rest-address=0.0.0.0
   --metrics --metrics-port={{beacon_metrics_port}} --metrics-address=0.0.0.0
   --log-level="{{ beacon_log_level | upper }}"
-  --log-file="/beacondata/nimbus.log"
   --doppelganger-detection=off
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"

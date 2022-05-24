@@ -47,7 +47,6 @@ eth1_start_args: >
   --metrics-host=0.0.0.0
   --metrics-port={{eth1_metrics_port}}
   --p2p-enabled=true
-  --Xmerge-support=true
   --miner-coinbase="{{fee_recipient}}"
   --p2p-host={{ansible_host}}
   --sync-mode=X_SNAP

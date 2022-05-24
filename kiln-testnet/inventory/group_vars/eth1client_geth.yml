@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: parithoshj/geth:merge-b951e9c
+eth1_image_name: parithoshj/geth:master-4b309c7
 execution_endpoint: http://127.0.0.1:{{eth1_engine_port}}
 
 eth1_github_external_user_pubkeys:
@@ -32,12 +32,14 @@ eth1_start_args: >
   --ws.port={{eth1_ws_rpc_port}}
   --ws.addr 0.0.0.0
   --authrpc.port={{eth1_engine_port}}
+  --authrpc.addr=0.0.0.0
+  --authrpc.vhosts="*"
   --authrpc.jwtsecret=/jwtsecret
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
-  --metrics --pprof --pprof.addr 0.0.0.0
+  --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
   --vmodule=rpc=5
-  --maxpeers=200
+  --maxpeers=150
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"

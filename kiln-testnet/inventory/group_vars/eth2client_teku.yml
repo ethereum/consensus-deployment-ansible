@@ -53,6 +53,8 @@ beacon_start_args: >
   --validators-keystore-locking-enabled=false
   --ee-jwt-secret-file="/jwtsecret"
   --Xnetwork-total-terminal-difficulty-override="{{terminal_total_difficulty}}"
+  --Xlog-include-p2p-warnings-enabled
+  --Xmetrics-block-timing-tracking-enabled
 
 ##############################################
 # memory limits

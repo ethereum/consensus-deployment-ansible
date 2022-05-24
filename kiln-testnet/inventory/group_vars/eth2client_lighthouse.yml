@@ -56,7 +56,6 @@ beacon_start_args: >
   --execution-endpoints={{execution_endpoint}}
   --eth1-endpoints={{eth1endpoint}}
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
-  --validator-monitor-auto
   --suggested-fee-recipient={{fee_recipient}}
   --jwt-secrets="/jwtsecret"
 

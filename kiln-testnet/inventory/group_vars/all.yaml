@@ -54,11 +54,13 @@ eth1_bootnode_enode:
 ##############################################
 # enter pushgateway config if needed
 prometheus_config_file: "prometheus/prometheus.yml.j2"
-thanos_url: "https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write"
+push_url: "https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write"
 push_metrics_enabled: true
 remote_write_auth: true
 remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/kiln.json | jq .username') }}"
 remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/kiln.json | jq .password') }}"
+
+no_validator_keys: false
 
 ##############################################
 # ports to configure
@@ -76,6 +78,7 @@ beacon_p2p_port: 9000
 validator_metrics_port: 8001
 validator_rpc_port: 4002
 node_exporter_web_listen_address: "0.0.0.0:9100"
+eth1_metrics_port: 8002
 
 ##############################################
 # name of the validator to display

@@ -2,7 +2,7 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: parithoshj/teku:develop
+beacon_image_name: consensys/teku:develop
 validator_image_name: consensys/teku:develop
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
