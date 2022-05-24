@@ -4,3 +4,17 @@
   roles:
     - cloudalchemy.node-exporter
     - cloudalchemy.prometheus
+  tasks:
+    - name: Start exporter container
+      when: eth_metrics_exporter_enabled | bool
+      docker_container:
+        name: "{{ eth_metrics_exporter_name }}"
+        state: started
+        image: "{{ eth_metrics_exporter_image }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: "{{ eth1_require_restart | default(false) }}"
+        command: "--consensus-url={{beacon_endpoint}} --execution-url={{eth1endpoint}} --metrics-port={{eth_metrics_exporter_port}}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"

@@ -40,6 +40,15 @@ scrape_configs:
       targets:
       - localhost:{{ beacon_metrics_port }}
 
+{% if eth_metrics_exporter_enabled is sameas true %}
+
+  - job_name: exporter
+    static_configs:
+    - labels:
+        instance: "{{ ansible_hostname }}"
+      targets:
+      - localhost:{{ eth_metrics_exporter_port }}
+      {% endif %}
 
 {% if eth1_client_name == "geth" or eth1_client_name == "erigon" %}
 
