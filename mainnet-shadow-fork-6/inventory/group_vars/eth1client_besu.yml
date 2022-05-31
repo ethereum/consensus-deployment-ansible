@@ -1,5 +1,5 @@
 eth1_client_name: besu
-eth1_image_name: hyperledger/besu:develop
+eth1_image_name: hyperledger/besu:22.4.2
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port}}"
 

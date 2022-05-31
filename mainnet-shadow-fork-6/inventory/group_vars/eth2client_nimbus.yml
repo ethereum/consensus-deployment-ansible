@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: nimbus
 
-beacon_image_name: parithoshj/nimbus:merge-79452b7
-validator_image_name: parithoshj/nimbus:merge-79452b7
+beacon_image_name: statusim/nimbus-eth2:multiarch-v22.5.1
+validator_image_name: statusim/nimbus-eth2:multiarch-v22.5.1
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
@@ -26,7 +26,6 @@ beacon_log_level: debug
 # arguments to run the containers with
 ##############################################
 beacon_start_args: >
-  beacon_node
   --non-interactive=true
   --network="/custom_config_data"
   --max-peers="{{hi_peer_count}}"
