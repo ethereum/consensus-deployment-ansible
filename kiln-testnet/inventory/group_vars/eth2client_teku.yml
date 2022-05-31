@@ -59,10 +59,6 @@ beacon_start_args: >
 ##############################################
 # memory limits
 ##############################################
-beacon_memory: 7000M
-beacon_kernel_memory: 7500M
-validator_memory: 2000M
-validator_kernel_memory: 2500M
 beacon_env:
   JAVA_OPTS: "-XX:SoftMaxHeapSize=2g -Xmx4g"
 
