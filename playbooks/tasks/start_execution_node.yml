@@ -9,6 +9,7 @@
         state: started
         image: "{{ eth1_image_name }}"
         pull: true
+        stop_grace_period: 90s
         restart_policy: unless-stopped
         network_mode: host
         restart: "{{ eth1_require_restart | default(false) }}"
