@@ -58,7 +58,7 @@ push_metrics_enabled: true
 remote_write_auth: true
 eth_metrics_exporter_enabled: true
 eth_metrics_exporter_name: "metrics-exporter"
-eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter"
+eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter:0.9.0"
 remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-mainnet-6.json | jq .username') }}"
 remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-mainnet-6.json | jq .password') }}"
 
