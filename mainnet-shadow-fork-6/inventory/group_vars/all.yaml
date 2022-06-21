@@ -28,6 +28,8 @@ consensus_endpoint_nimbus: ws://127.0.0.1:8551
 
 eth1endpoint: http://127.0.0.1:8545
 
+beacon_api_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
+
 # Merge Engine endpoints
 # TODO change IP?
 # TODO: some engines might start using the 8550 port (or 8551 for ws)

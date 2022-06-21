@@ -7,7 +7,6 @@ eth2_client_name: lodestar
 beacon_image_name: chainsafe/lodestar:v0.37.0
 validator_image_name: chainsafe/lodestar:v0.37.0
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
-beacon_api_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
   - dapplion
