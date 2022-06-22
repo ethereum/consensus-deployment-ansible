@@ -49,7 +49,7 @@ eth1_start_args: >
   --p2p-enabled=true
   --miner-coinbase="{{fee_recipient}}"
   --p2p-host={{ansible_host}}
-  --sync-mode=X_SNAP
+  --sync-mode=X_CHECKPOINT
   --data-storage-format="BONSAI"
   --engine-jwt-enabled
   --engine-jwt-secret=/jwtsecret
