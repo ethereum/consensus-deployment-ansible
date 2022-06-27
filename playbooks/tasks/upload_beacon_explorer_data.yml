@@ -1,18 +1,30 @@
 - name: Upload explorer data
   hosts: explorer
-  gather_facts: true
+  gather_facts: false
   tasks:
-  - name: Creates explorer dir
-    file:
-      path: "{{explorer_host_dir}}"
-      state: directory
-  - name: Archive explorerdata dir to prepare for upload
-    archive:
-      path: "{{local_explorerdata_host_dir}}/*"
-      dest: "{{local_explorerdata_host_archive}}"
-    delegate_to: localhost
-  - name: Upload new explorer config
-    unarchive:
-      src: "{{ local_explorerdata_host_archive }}"
-      dest: "{{ explorer_host_dir }}/"
+    - name: Creates explorer dir
+      file:
+        path: "{{explorer_host_dir}}"
+        state: directory
 
+    - name: Load config
+      delegate_to: localhost
+      set_fact:
+        eth2_config: "{{ lookup('file', local_eth2_config_filepath) | from_yaml }}"
+
+    - name: Template config
+      template:
+        src: "./templates/beaconchain_explorer/config.yaml"
+        dest: "{{explorer_host_dir}}/config.yaml"
+    - name: Copy imprint.html
+      copy:
+        src: "./templates/beaconchain_explorer/imprint.html"
+        dest: "{{explorer_host_dir}}/imprint.html"
+    - name: Copy tables.sql
+      copy:
+        src: "./templates/beaconchain_explorer/tables.sql"
+        dest: "{{explorer_host_dir}}/tables.sql"
+    - name: Copy eth2 config
+      copy:
+        src: "{{local_eth2_config_filepath}}"
+        dest: "{{beacon_explorer_config_host_path}}"
