@@ -15,7 +15,6 @@ pithos-testnet/mergenet.yaml
 pithos-testnet/custom_config_data/venv
 backups
 explorerdata
-explorer.yml
 mergenet.yaml
 faucet.yml
 reverse_proxy.yml
