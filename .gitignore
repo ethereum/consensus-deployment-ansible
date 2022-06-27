@@ -19,3 +19,5 @@ mergenet.yaml
 faucet.yml
 reverse_proxy.yml
 dshackle.yml
+.vscode/settings.json
+

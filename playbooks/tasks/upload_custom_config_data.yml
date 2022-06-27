@@ -8,6 +8,10 @@
       path: "{{local_custom_config_data_host_dir}}/*"
       dest: "{{local_custom_config_data_host_archive}}"
     delegate_to: localhost
+  - name: Creates testnet dir
+    file:
+      path: "{{testnet_dir}}"
+      state: directory
   - name: Upload config data to remote
     unarchive:
       src: "{{ local_custom_config_data_host_archive }}"
@@ -17,4 +21,3 @@
   - name: Modify permissions to match user-group inside docker image
     shell: chown -R 777 "{{ testnet_dir }}"
     become: true
-
