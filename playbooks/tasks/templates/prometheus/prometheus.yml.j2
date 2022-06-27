@@ -31,12 +31,14 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
+        scrape_location: node
       targets:
       - localhost:9100
   - job_name: beacon
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
+        scrape_location: beacon
       targets:
       - localhost:{{ beacon_metrics_port }}
 
@@ -46,6 +48,7 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
+        scrape_location: exporter
       targets:
       - localhost:{{ eth_metrics_exporter_port }}
       {% endif %}
@@ -57,6 +60,7 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
+        scrape_location: execution
       targets:
       - localhost:{{ eth1_metrics_port }}
 {% elif eth1_client_name == "besu" or eth1_client_name == "nethermind"  %}
