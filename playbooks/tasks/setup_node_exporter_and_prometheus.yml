@@ -15,6 +15,6 @@
         restart_policy: unless-stopped
         network_mode: host
         restart: "{{ eth1_require_restart | default(false) }}"
-        command: "--consensus-url={{beacon_endpoint}} --execution-url={{eth1endpoint}} --metrics-port={{eth_metrics_exporter_port}}"
+        command: "--consensus-url={{beacon_api_endpoint}} --execution-url={{eth1endpoint}} --metrics-port={{eth_metrics_exporter_port}}"
         log_options: "{{ common_log_options }}"
         log_driver: "{{ common_log_driver }}"
