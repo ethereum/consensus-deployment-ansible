@@ -33,12 +33,28 @@ scrape_configs:
         instance: "{{ ansible_hostname }}"
       targets:
       - localhost:9100
+
+{% if eth2_client_name is defined %}
+
   - job_name: beacon
     static_configs:
     - labels:
         instance: "{{ ansible_hostname }}"
+        scrape_location: beacon
       targets:
       - localhost:{{ beacon_metrics_port }}
+
+{% if eth2_validator_metrics_enabled == true %}
+  - job_name: validator
+    static_configs:
+    - labels:
+        instance: "{{ inventory_hostname }}"
+        scrape_location: validator
+      targets:
+      - localhost:{{ validator_metrics_port }}
+{% endif %}
+
+{% endif %}
 
 {% if eth_metrics_exporter_enabled is sameas true %}
 
