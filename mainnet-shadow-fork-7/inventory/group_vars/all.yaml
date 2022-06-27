@@ -143,7 +143,7 @@ common_log_driver: json-file
 ##############################################
 beacon_container_name: beacon
 validator_container_name: validator
-hi_peer_count: 100
+hi_peer_count: {{ [100, groups['beacon']] | min }}
 separate_validator_process_enabled: true
 
 firewall_allowed_tcp_ports:
