@@ -1,12 +1,15 @@
 - name: Start node exporter and prometheus
-  hosts: beacon, validator
+  hosts: beacon, validator, execution
   gather_facts: true
   roles:
     - cloudalchemy.node-exporter
     - cloudalchemy.prometheus
   tasks:
     - name: Start exporter container
-      when: eth_metrics_exporter_enabled | bool
+      when:
+        - eth_metrics_exporter_enabled | bool
+        - eth2_client_name is defined
+        - eth1_client_name is defined
       docker_container:
         name: "{{ eth_metrics_exporter_name }}"
         state: started
