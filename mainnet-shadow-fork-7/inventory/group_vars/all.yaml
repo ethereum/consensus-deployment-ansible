@@ -112,6 +112,7 @@ local_forkmondata_host_dir: "{{inventory_dir}}/../forkmondata"
 local_forkmondata_host_archive: "{{inventory_dir}}/../forkmondata.tar.gz"
 local_custom_config_data_host_dir: "{{inventory_dir}}/../custom_config_data"
 local_custom_config_data_host_archive: "{{inventory_dir}}/../custom_config_data.tar.gz"
+local_eth2_config_filepath: "{{local_custom_config_data_host_dir}}/config.yaml"
 # private dirs
 # Validator assignments
 local_validator_host_dir: "{{inventory_dir}}/../validator_prep/{{inventory_hostname}}"
