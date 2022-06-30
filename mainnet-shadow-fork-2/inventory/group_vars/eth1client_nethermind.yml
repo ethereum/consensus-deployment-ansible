@@ -9,6 +9,7 @@ eth1_github_external_user_pubkeys:
   - avalonche
   - DockBoss
   - LukaszRozmej
+  - marcindsobczak
 
 eth1_memory: 5000M
 eth1_kernel_memory: 5500M

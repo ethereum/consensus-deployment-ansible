@@ -5,11 +5,11 @@
   tasks:
     - name: Start execution node container
       docker_container:
-        name: "{{ eth1_client_name }}"
+        name: "{{ execution_container_name }}"
         state: started
         image: "{{ eth1_image_name }}"
         pull: true
-        stop_grace_period: 90s
+        stop_timeout: 90
         restart_policy: unless-stopped
         network_mode: host
         restart: "{{ eth1_require_restart | default(false) }}"

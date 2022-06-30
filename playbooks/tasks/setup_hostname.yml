@@ -1,0 +1,12 @@
+- name: set hostname
+  hosts: all
+  become: true
+  tasks:
+    - name: Set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+    - name: add myself to /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        regexp: "^{{ ansible_host }}="
+        line: "{{ ansible_host }} {{ inventory_hostname }}"

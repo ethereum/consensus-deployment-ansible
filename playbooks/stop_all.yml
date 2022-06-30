@@ -13,6 +13,6 @@
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
     - name: Stop geth client container
-      shell: "docker stop --time=10 {{eth1_client_name}}"
+      shell: "docker stop --time=10 {{execution_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"

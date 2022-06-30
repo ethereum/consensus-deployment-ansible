@@ -1,23 +1,19 @@
-[network]
-name = "{{ eth2_network_name }}"
-etherscan_api_key = "some-etherscan-api-key"
+# How often to reload data from the nodes
+reload_interval = "10s"
+# If specified, a http server will serve static content here
+server_address = "0.0.0.0:{{forkmon_http_listen_port}}"
 
-[consensus_chain]
-seconds_per_slot = 12
-slots_per_epoch = 32
-genesis_time = 1637593200
+# Shown in the document title, if specified
+chain_name="MSF7"
 
-[weak_subjectivity]
-provider_endpoint = "http://eth2-ws-provider_eth2_ws_server_1:80"
-
-[monitor]
-output_dir = "public"
-port = 8080
-
-{% for host in groups['beacon'] %}
-[[monitor.endpoints]]
-consensus = "http://{{ hostvars[host].ansible_host }}:{{ hostvars[host].beacon_api_port }}"
-execution = "{{ hostvars[host].eth1_client_name }}"
-
+{% for host in groups['execution'] %}
+[[clients]]
+  kind="rpc"
+  url = "http://{{ hostvars[host].ansible_host }}:{{ hostvars[host].eth1_rpc_port }}"
+  name = "{{ hostvars[host].inventory_hostname }}"
 {% endfor %}
+
+[Metrics]
+
+enabled = false
 

@@ -6,7 +6,7 @@ global:
   external_labels:
     consensus_client: "{{ eth2_client_name }}"
     execution_client: "{{ eth1_client_name }}"
-    instance: "{{ ansible_hostname }}"
+    instance: "{{ inventory_hostname }}"
     testnet: "{{ eth2_network_name }}"
     ip_address: "{{ ansible_host }}"
 
@@ -30,7 +30,7 @@ scrape_configs:
   - job_name: node
     static_configs:
     - labels:
-        instance: "{{ ansible_hostname }}"
+        instance: "{{ inventory_hostname }}"
       targets:
       - localhost:9100
 
@@ -39,8 +39,7 @@ scrape_configs:
   - job_name: beacon
     static_configs:
     - labels:
-        instance: "{{ ansible_hostname }}"
-        scrape_location: beacon
+        instance: "{{ inventory_hostname }}"
       targets:
       - localhost:{{ beacon_metrics_port }}
 
@@ -49,7 +48,6 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ inventory_hostname }}"
-        scrape_location: validator
       targets:
       - localhost:{{ validator_metrics_port }}
 {% endif %}
@@ -61,7 +59,7 @@ scrape_configs:
   - job_name: exporter
     static_configs:
     - labels:
-        instance: "{{ ansible_hostname }}"
+        instance: "{{ inventory_hostname }}"
       targets:
       - localhost:{{ eth_metrics_exporter_port }}
       {% endif %}
@@ -72,14 +70,14 @@ scrape_configs:
     metrics_path: /debug/metrics/prometheus
     static_configs:
     - labels:
-        instance: "{{ ansible_hostname }}"
+        instance: "{{ inventory_hostname }}"
       targets:
       - localhost:{{ eth1_metrics_port }}
 {% elif eth1_client_name == "besu" or eth1_client_name == "nethermind"  %}
   - job_name: execution_node
     static_configs:
     - labels:
-        instance: "{{ ansible_hostname }}"
+        instance: "{{ inventory_hostname }}"
       targets:
       - localhost:{{ eth1_metrics_port }}
       {% endif %}
