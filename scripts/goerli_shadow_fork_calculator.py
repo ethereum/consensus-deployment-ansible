@@ -17,4 +17,4 @@ blocks_till_ttd = (ttd_time - current_time)/15
 
 ttd_difficulty = current_difficulty + (blocks_till_ttd * 1.375 )
 
-print("TTD on %s will be: %s", ttd_time_input, ttd_difficulty)
+print("TTD on %s will be: ", ttd_time_input, ttd_difficulty)

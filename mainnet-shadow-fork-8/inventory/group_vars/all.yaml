@@ -136,6 +136,7 @@ common_log_driver: json-file
 ##############################################
 beacon_container_name: beacon
 validator_container_name: validator
+execution_container_name: execution
 hi_peer_count: 100
 separate_validator_process_enabled: true
 
