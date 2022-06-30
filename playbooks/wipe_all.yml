@@ -23,7 +23,7 @@
         path: "{{validator_node_dir}}"
         state: absent
     - name: Stop execution client container
-      shell: "docker rm -f {{eth1_client_name}}"
+      shell: "docker rm -f {{execution_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
     - name: Remove execution data

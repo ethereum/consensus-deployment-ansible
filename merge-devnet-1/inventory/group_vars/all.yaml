@@ -84,8 +84,8 @@ local_custom_config_data_host_dir: "{{inventory_dir}}/../custom_config_data"
 local_custom_config_data_host_archive: "{{inventory_dir}}/../custom_config_data.tar.gz"
 # private dirs
 # Validator assignments
-local_validator_host_dir: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}"
-local_validator_host_archive: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}.tar.gz"
+local_validator_host_dir: "{{inventory_dir}}/../validator_prep/{{inventory_hostname}}"
+local_validator_host_archive: "{{inventory_dir}}/../validator_prep/{{inventory_hostname}}.tar.gz"
 
 ##############################################
 # remote host data directories

@@ -1,0 +1,14 @@
+forkmon_memory: 3000m
+forkmon_image_name: "holiman/nodemonitor:latest"
+forkmon_require_restart: true
+forkmon_http_listen_port: 8080
+forkmon_container_name: forkmon
+
+forkmon_host_dir: "{{home_dir}}/forkmon_data"
+
+forkmon_volumes:
+  - "{{forkmon_host_dir}}/config.toml:/config.toml"
+
+forkmon_start_args: "/config.toml"
+
+forkmon_debug_level: info
