@@ -31,6 +31,7 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ inventory_hostname }}"
+        scrape_location: node
       targets:
       - localhost:9100
 
@@ -40,6 +41,7 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ inventory_hostname }}"
+        scrape_location: beacon
       targets:
       - localhost:{{ beacon_metrics_port }}
 
@@ -60,6 +62,7 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ inventory_hostname }}"
+        scrape_location: exporter
       targets:
       - localhost:{{ eth_metrics_exporter_port }}
 
@@ -74,6 +77,7 @@ scrape_configs:
     static_configs:
     - labels:
         instance: "{{ inventory_hostname }}"
+        scrape_location: execution
       targets:
       - localhost:{{ eth1_metrics_port }}
 
