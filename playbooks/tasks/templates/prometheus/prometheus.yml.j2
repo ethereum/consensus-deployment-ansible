@@ -62,22 +62,19 @@ scrape_configs:
         instance: "{{ inventory_hostname }}"
       targets:
       - localhost:{{ eth_metrics_exporter_port }}
-      {% endif %}
 
+{% endif %}
+
+{% if eth1_client_name is defined %}
+
+  - job_name: execution_node
 {% if eth1_client_name == "geth" or eth1_client_name == "erigon" %}
-
-  - job_name: execution_node
     metrics_path: /debug/metrics/prometheus
+{% endif %}
     static_configs:
     - labels:
         instance: "{{ inventory_hostname }}"
       targets:
       - localhost:{{ eth1_metrics_port }}
-{% elif eth1_client_name == "besu" or eth1_client_name == "nethermind"  %}
-  - job_name: execution_node
-    static_configs:
-    - labels:
-        instance: "{{ inventory_hostname }}"
-      targets:
-      - localhost:{{ eth1_metrics_port }}
-      {% endif %}
+
+{% endif %}
