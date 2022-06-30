@@ -2,7 +2,7 @@
   hosts: beacon, validator, execution
   gather_facts: true
   roles:
-    - cloudalchemy.node-exporter
+    - cloudalchemy.node_exporter
     - cloudalchemy.prometheus
   tasks:
     - name: Start exporter container
