@@ -24,7 +24,7 @@ eth1_volumes:
   - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 eth1_env:
-  JDWP_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+  JAVE_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
   NATIVE_MEMORY_OPTS: "-XX:NativeMemoryTracking=detail -XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics"
 
 eth1_start_args: >
