@@ -1,5 +1,5 @@
 eth1_client_name: erigon
-eth1_image_name: parithoshj/erigon:devel-c03d573
+eth1_image_name: parithoshj/erigon:devel-9562b38
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port}}"
 
@@ -37,9 +37,8 @@ eth1_start_args: >
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   --batchSize=32m
-  --nodiscover
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
-  --staticpeers="{{ eth1_bootnode_enode | join(',') }}"
+  --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
 
 eth1_user_id: "1000:1000"

@@ -25,7 +25,7 @@ oh_my_zsh_config:
 # nimbus requires a websocket endpoint (http support unstable)
 # note: also used for execution engine endpoint in nimbus
 consensus_endpoint_nimbus: ws://127.0.0.1:8551
-
+beacon_api_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 eth1endpoint: http://127.0.0.1:8545
 
 # Merge Engine endpoints
@@ -61,8 +61,9 @@ push_url: "https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
 push_metrics_enabled: true
 remote_write_auth: true
 eth_metrics_exporter_enabled: true
+eth2_validator_metrics_enabled: false
 eth_metrics_exporter_name: "metrics-exporter"
-eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter:0.12.0"
+eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter:0.14.0"
 remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-mainnet-8.json | jq .username') }}"
 remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-mainnet-8.json | jq .password') }}"
 
