@@ -10,6 +10,7 @@
         - eth_metrics_exporter_enabled | bool
         - eth2_client_name is defined
         - eth1_client_name is defined
+        - eth2_client_name != "lodestar"
       docker_container:
         name: "{{ eth_metrics_exporter_name }}"
         state: started
