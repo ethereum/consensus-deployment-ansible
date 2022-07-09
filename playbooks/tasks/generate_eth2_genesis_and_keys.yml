@@ -36,6 +36,7 @@
         --mnemonics /data/mnemonics.yaml \
         --tranches-dir /data/tranches \
         --state-output /data/genesis.ssz
+
 - name: Generate validator keys
   hosts: validator
   gather_facts: false
