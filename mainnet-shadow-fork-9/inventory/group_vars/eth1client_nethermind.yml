@@ -1,5 +1,5 @@
 eth1_client_name: nethermind
-eth1_image_name: nethermind/nethermind:1.13.4
+eth1_image_name: nethermindeth/hive:latest
 execution_endpoint: http://127.0.0.1:{{eth1_engine_snoop_port}}
 snoop_command: "./json_rpc_snoop -p {{eth1_engine_snoop_port}} http://127.0.0.1:{{eth1_engine_port}}"
 
@@ -51,6 +51,7 @@ eth1_start_args: >
   --Seq.MinLevel="Info"
   --Seq.ServerUrl="https://seq.nethermind.io/"
   --Seq.ApiKey="{{nethermind_seq_api_key}}"
+  --Sync.SnapSync=true
 
 # run as root, the nethermind image doesn't handle running regular user well
 eth1_user_id: "0:0"
