@@ -37,8 +37,9 @@ eth1_start_args: >
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   --batchSize=32m
+  --nodiscover
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
-  --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
+  --staticpeers="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
 
 eth1_user_id: "1000:1000"
