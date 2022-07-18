@@ -15,6 +15,6 @@ ttd_time = time.mktime(datetime.strptime(ttd_time_input, "%Y-%m-%d %H:%M").timet
 blocks_till_ttd = (ttd_time - current_time)/15
 
 
-ttd_difficulty = current_difficulty + (blocks_till_ttd * 1.375 )
+ttd_difficulty = current_difficulty + (blocks_till_ttd * 1.41 )
 
 print("TTD on %s will be: ", ttd_time_input, ttd_difficulty)
