@@ -48,6 +48,7 @@ beacon_start_args: >
   {% if no_validator_keys != 'true' %}
   --validators-dir="/validatordata/keys"
   --secrets-dir="/validatordata/secrets"
+  --suggested-fee-recipient={{fee_recipient}}
   {% endif %}
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret

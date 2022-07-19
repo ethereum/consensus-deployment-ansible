@@ -60,6 +60,7 @@ beacon_start_args: >
         --metrics.serverPort={{ beacon_metrics_port }}
         --eth1.depositContractDeployBlock=14675001
         --jwt-secret="/jwtsecret"
+        --chain.defaultFeeRecipient={{fee_recipient}}
 
 validator_start_args: >
   validator
@@ -72,7 +73,8 @@ validator_start_args: >
    --logLevelFile=debug
    --logRotate
    --logMaxFiles=5
-  --graffiti={{graffiti}}
+   --graffiti={{graffiti}}
+   --defaultFeeRecipient={{fee_recipient}}
 
 ##############################################
 # memory limits
