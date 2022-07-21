@@ -59,7 +59,7 @@ remote_write_auth: true
 eth_metrics_exporter_enabled: true
 eth2_validator_metrics_enabled: false
 eth_metrics_exporter_name: "metrics-exporter"
-eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter:0.16.2"
+eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter:0.16.5"
 remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-goerli-5.json | jq .username') }}"
 remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/shadow-goerli-5.json | jq .password') }}"
 
