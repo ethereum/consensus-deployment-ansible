@@ -38,15 +38,21 @@ eth1endpoint: http://127.0.0.1:8545
 testnet_type: custom
 eth2_network_name: goerli-shadow-fork-5
 chainID: 5
-terminal_total_difficulty: "10627192"
+terminal_total_difficulty: "10625003"
 fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 # enter bootnodes here if needed
 bootnode_enrs:
   - "enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
   - "enr:-Ly4QEd59ZtWaZrA_Dzo8eNbY3GDdpjqOTImfs_-cEbKxy-UaJtSMvqEWklYBIgeXXZgFCIoln8uec_mzITjWZILwp4Bh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCU7O3dIQAQNBkAAAAAAAAAgmlkgnY0gmlwhIZ6NKmJc2VjcDI1NmsxoQMff_jQwrqKMxIDyWrs-senaz9saY0y1UbzWxn8NA8UNYhzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
+  - "enr:-Ly4QOj1FlWJt9M8NUIKgj-myPQytjmbPmi-zcBm2LBy42W6BiZX7mgaJu4T7hSfL5uzXlwr_TtFUIsDZKy7G5icapRHh2F0dG5ldHOI__________-EZXRoMpDcKJseIgAQNP__________gmlkgnY0gmlwhEDjRaKJc2VjcDI1NmsxoQMCzYzdh81bkTQ-lD-YL1hjZ190FpEpfX_ALj6URC-_7IhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA"
+  - "enr:-MK4QEgni5f4WCWIvrp7A-jxRZPJM_pX4yA75MCzUJXYOsKfUnlg3ehchPnfBO8Xg8T_crKuTootbDOS2aHg8jYJ5W2GAYIb6td5h2F0dG5ldHOI__________-EZXRoMpDcKJseIgAQNP__________gmlkgnY0gmlwhKXjSaWJc2VjcDI1NmsxoQLqk5OVHOTQ0f8mP3HDK1k2_qCcGxLB2vl_-Z0pNQJwvYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA=="
 
 eth1_bootnode_enode:
   - "enode://53e0cbed01f7a65e460aac4173b531d038be300d71f96b6312c1a95bc5f980eaeba4638720cc896bb9bde4fb3d711ab1a1abe97b2f67061e84152e9ba58bf106@134.122.52.169:30303"
+  - "enode://7c12b2ab865044896c87cc7126a20174494dab817a853a81c5b136c6a3c2401668378d801c64852cc7bdb23acdbc73ed41fdfe900e82a96d4ef94f04d26aa063@64.227.69.162:30303"
+  - "enode://d338ff47d3164946d16cd56710bb24e9b18dd22c4798e9845a304c44ee894bd7ec2a15ad8df4007bff30e3d97be71946557e493caa850d34d05cf2d9f7d195bf@165.227.73.165:30303"
+  - "enode://91b945760d2e51cb43fa05231bf116771244d2b4459600b147b5a16b61bd9384a83229dc63807e5ad0f3c09a7640dccb20c8930e2c1084562f6c97616e418227@104.248.202.173:30303"
+  - "enode://ada89f030fde6eb883fbe78a08c5f848ce4c89d990f3d465d77fe84aeb38f78a459a14f9a3e1f01d8d607dfce927db3eef95e8ff45ee72bf939377ab4401a188@178.128.251.189:30303"
 
 ##############################################
 # metric information
