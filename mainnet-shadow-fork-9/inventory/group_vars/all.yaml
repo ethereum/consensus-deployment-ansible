@@ -46,6 +46,7 @@ bootnode_enrs:
   - "enr:-Ly4QKDFicAUl7b-9VdbhSlkd1S_gWBPQRsUvE5ezzKnOhNAXho2awMK7eMbSzpPgGCLoKAfDpdAl0hWlbll8VOk9cwBh2F0dG5ldHOIAAAAAAAAAACEZXRoMpDK01pnIQAQMjIAAAAAAAAAgmlkgnY0gmlwhKesK-aJc2VjcDI1NmsxoQIyH7ZvM2VOy1rBt6qKBq-Xwxc3FmSB0IHbrS-B6lG7qohzeW5jbmV0cwCDdGNwgiMog3VkcIIjKA"
 eth1_bootnode_enode:
   - "enode://8ef2d11efdaa0585ba6c1604dab6ba2982f40407e1bb37ebdbf2db04eb70ff6d492ef91b836bc979661000c7dd367fbaac5370c26936afe1ee926fa0a6d49245@167.172.43.230:30303"
+  - "enode://3bb6320fce31d97537d458453f9e834e39dd5da20fcf30b93a09cde1599cc9c67678cb85047196905b05f57ba8ab89eda3dd642cdf72adb380dc8493a5481710@68.183.55.203:30303"
 
 ##############################################
 # metric information
@@ -159,4 +160,5 @@ firewall_additional_rules:
   - "iptables -A INPUT -p tcp --dport 3334 -j ACCEPT"
   - "iptables -A INPUT -p tcp --dport 3000 -d 167.172.43.230 -j ACCEPT"
   - "iptables -A INPUT -p tcp --dport 8545 -s 167.172.43.230 -j ACCEPT"
-  - "iptables -A INPUT -p tcp --dport 4000 -s 167.172.43.230 -j ACCEPT"
+  - "iptables -A INPUT -p tcp --dport 4000 -j ACCEPT"
+  - "iptables -A INPUT -p tcp --dport 4001 -j ACCEPT"
