@@ -74,6 +74,14 @@ ethstats_url: "ethstats.goerlishadowfork5.ethdevops.io"
 ethstats_password: "goerlishadowfork5"
 
 ##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:latest
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-goerli-shadow-fork-5 -relays https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli-sf5.flashbots.net"
+
+
+##############################################
 # ports to configure
 ##############################################
 eth1_rpc_port: 8545
@@ -89,6 +97,7 @@ beacon_metrics_port: 8000
 beacon_p2p_port: 9000
 validator_metrics_port: 8001
 validator_rpc_port: 4002
+mev_boost_port: 18550
 node_exporter_web_listen_address: "127.0.0.1:9100"
 prometheus_web_listen_address: "127.0.0.1:9101"
 eth1_metrics_port: 8002

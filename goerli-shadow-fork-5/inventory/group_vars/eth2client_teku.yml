@@ -58,6 +58,10 @@ beacon_start_args: >
   --Xlog-include-p2p-warnings-enabled
   --Xmetrics-block-timing-tracking-enabled
   --Xprogressive-balances-mode=USED
+  {% if mev_boost == 'true' %}
+  --builder-endpoint="http://127.0.0.1:{{mev_boost_port}}"
+  --validators-builder-registration-default-enabled=true
+  {% endif %}
 
 ##############################################
 # memory limits

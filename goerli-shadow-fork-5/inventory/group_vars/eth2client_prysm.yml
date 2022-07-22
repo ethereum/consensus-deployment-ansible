@@ -3,7 +3,7 @@
 ##############################################
 eth2_client_name: prysm
 beacon_image_name:  gcr.io/prysmaticlabs/prysm/beacon-chain:HEAD-c33acd
-validator_image_name: gcr.io/prysmaticlabs/prysm/validator:latest
+validator_image_name: gcr.io/prysmaticlabs/prysm/validator:HEAD-f9b3cd
 # GRPC, not REST JSON
 beacon_endpoint: "127.0.0.1:{{beacon_grpc_port}}"
 
@@ -64,6 +64,9 @@ beacon_start_args: >
   --contract-deployment-block=6582955
   --enable-vectorized-htr --enable-forkchoice-doubly-linked-tree
   --experimental-disable-boundary-checks
+  {% if mev_boost == 'true' %}
+  --http-mev-relay="http://127.0.0.1:{{mev_boost_port}}"
+  {% endif %}
 
 validator_start_args: >
   --accept-terms-of-use=true
@@ -74,6 +77,10 @@ validator_start_args: >
   --graffiti="{{graffiti}}"
   --wallet-dir=/validatordata/wallet
   --wallet-password-file="/validatordata/wallet_pass.txt"
+  --suggested-fee-recipient={{ fee_recipient }}
+  {% if mev_boost == 'true' %}
+  --enable-validator-registration
+  {% endif %}
 
 
 ##############################################

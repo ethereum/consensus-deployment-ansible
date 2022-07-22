@@ -62,6 +62,9 @@ beacon_start_args: >
         --jwt-secret="/jwtsecret"
         --chain.defaultFeeRecipient={{fee_recipient}}
         --chain.computeUnrealized
+        {% if mev_boost == 'true' %}
+        --builder.enabled --builder.urls="http://127.0.0.1:{{mev_boost_port}}"
+        {% endif %}
 
 validator_start_args: >
   validator
@@ -76,6 +79,10 @@ validator_start_args: >
    --logMaxFiles=5
    --graffiti={{graffiti}}
    --defaultFeeRecipient={{fee_recipient}}
+   {% if mev_boost == 'true' %}
+   --builder.enabled
+   {% endif %}
+
 ##############################################
 # memory limits
 ##############################################
