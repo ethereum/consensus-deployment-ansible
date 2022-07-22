@@ -1,0 +1,19 @@
+- import_playbook: tasks/create_bootstrap_user_first_run.yml
+
+# Setup hosts from scatch
+- import_playbook: tasks/setup_machine.yml
+- import_playbook: tasks/start_firewall.yml
+
+# Generate eth2 genesis + keys on remote host
+- import_playbook: tasks/generate_eth2_genesis_and_keys.yml
+# Upload custom config data
+- import_playbook: tasks/upload_custom_config_data.yml
+
+# Run all containers
+- import_playbook: setup_execution_and_consensus_full.yml
+- import_playbook: tasks/start_txfuzz.yml
+- import_playbook: tasks/setup_test_sync_cron.yml
+- import_playbook: setup_beacon_and_execution_explorer_full.yml
+#
+# TODO:
+# - Update bootnodes and restart containers

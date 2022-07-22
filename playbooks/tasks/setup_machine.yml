@@ -1,18 +1,31 @@
-- name: Setup name and keys
+- name: Run bootstrap playbook to ensure basic stuff works and add oh-my-zsh
   hosts: all
-  become: true
+  remote_user: "{{ bootstrap_user }}"
   gather_facts: true
-  tasks:
-    - name: Add SSH keys from Github users
-      loop: "{{ github_user_pubkeys }}"
-      authorized_key:
-        user: "{{ ansible_user }}"
-        state: present
-        key: "https://github.com/{{ item }}.keys"
+  become: true
   roles:
     # Prepare system to be managed by Ansible.
     - role: robertdebock.bootstrap
       tags: [bootstrap]
+    - role: robertdebock.fail2ban
+      tags: [fail2ban]
+      vars:
+        - fail2ban_loglevel: INFO
+        - fail2ban_logtarget: /var/log/fail2ban.log
+        - fail2ban_maxretry: 10
+        - fail2ban_bantime: 6000
+    - role: gantsign.oh-my-zsh
+      users:
+        - username: "{{ bootstrap_user }}"
+          theme: powerlevel9k/powerlevel9
+  tasks:
+    - name: Set custom .zshrc config
+      lineinfile:
+        dest: "/home/{{ bootstrap_user }}/.zshrc"
+        state: present
+        regexp: "^{{ item.key }}="
+        line: '{{ item.key }}="{{ item.value }}"'
+      loop: "{{ oh_my_zsh_config | dict2items }}"
 
 - import_playbook: setup_hostname.yml
 
@@ -20,7 +33,7 @@
   hosts:
     - all
   become: true
-  gather_facts: true  # Needed to check if 'ansible_distribution_release' is 'bionic'
+  gather_facts: true # Needed to check if 'ansible_distribution_release' is 'bionic'
   tasks:
     - name: Ubuntu universe repo and update
       block:

@@ -1,0 +1,23 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Set ansible_ssh_user to root
+      set_fact:
+        ansible_ssh_user: "{{initial_remote_user}}"
+      changed_when: false
+      delegate_to: localhost
+      run_once: true
+# After this playbook: whoami -> root
+
+- import_playbook: create_bootstrap_user.yml
+
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Set ansible_ssh_user to bootstrap_user
+      set_fact:
+        ansible_ssh_user: "{{bootstrap_user}}"
+      changed_when: false
+      delegate_to: localhost
+      run_once: true
+# After this playbook: whoami -> devops
