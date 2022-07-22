@@ -61,6 +61,8 @@ beacon_start_args: >
         --eth1.depositContractDeployBlock=6582955
         --jwt-secret="/jwtsecret"
         --chain.defaultFeeRecipient={{fee_recipient}}
+        --chain.computeUnrealized
+
 validator_start_args: >
   validator
    --rootDir=/validatordata
