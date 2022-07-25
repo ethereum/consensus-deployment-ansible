@@ -3,6 +3,7 @@
 ##############################################
 ansible_user: "devops"
 bootstrap_user: "devops"
+initial_remote_user: "root"
 
 github_user_pubkeys:
   - parithosh
@@ -38,7 +39,7 @@ eth1endpoint: http://127.0.0.1:8545
 testnet_type: custom
 eth2_network_name: mainnet-shadow-fork-10
 chainID: 1
-terminal_total_difficulty: "54772477605685202255872"
+terminal_total_difficulty: "54892060024013871644672"
 fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 # enter bootnodes here if needed
 bootnode_enrs:
