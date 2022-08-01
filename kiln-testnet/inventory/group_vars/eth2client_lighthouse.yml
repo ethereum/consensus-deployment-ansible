@@ -58,7 +58,9 @@ beacon_start_args: >
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --suggested-fee-recipient={{fee_recipient}}
   --jwt-secrets="/jwtsecret"
-  --checkpoint-sync-url="http://157.245.127.208:4000"
+  --slasher
+  --slasher-history-length=256
+  --slasher-max-db-size=50
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 
 validator_start_args: >

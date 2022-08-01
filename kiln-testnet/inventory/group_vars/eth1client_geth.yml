@@ -1,5 +1,5 @@
 eth1_client_name: geth
-eth1_image_name: parithoshj/geth:master-03157b6
+eth1_image_name: parithoshj/geth:master-3b2a6b3
 execution_endpoint: http://127.0.0.1:{{eth1_engine_port}}
 
 eth1_github_external_user_pubkeys:
