@@ -75,9 +75,9 @@ ethstats_password: "goerlishadowfork6"
 ##############################################
 # mev boost configs
 ##############################################
-mev_boost_image_name: flashbots/mev-boost:latest
+mev_boost_image_name: flashbots/mev-boost:v0.7.9
 mev_boost_container_name: mev_boost
-mev_boost_start_args: "-genesis-fork-version 0x13001035 -relays https://0xa3b204d8c8d2b24b93f4704fb669ceaed8469a86f21c4c73b54a2b37bd348e0f3a7c51d7c7ebef7e5c0d83f9957b5a93@builder-relay-goerli-sf6.flashbots.net"
+mev_boost_start_args: "-genesis-fork-version 0x13001035 -relays https://0x91d1d0da04b263875633306f502d8d40d012d27da576a403b725d67118bfb7b33c39fdd0ceb818edd3853b2cace295c5@bloxroute.max-profit.builder.goerli-sf6.blxrbdn.com"
 mev_boost: false
 
 ##############################################

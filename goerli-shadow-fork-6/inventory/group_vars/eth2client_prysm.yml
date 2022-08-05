@@ -79,7 +79,7 @@ validator_start_args: >
   --wallet-password-file="/validatordata/wallet_pass.txt"
   --suggested-fee-recipient={{ fee_recipient }}
   {% if mev_boost == 'true' %}
-  --enable-validator-registration
+  --enable-builder
   {% endif %}
 
 

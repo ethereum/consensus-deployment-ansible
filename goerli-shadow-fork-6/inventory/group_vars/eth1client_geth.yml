@@ -44,9 +44,6 @@ eth1_start_args: >
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
   --bootnodes "{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
-  {% if ansible_hostname == "goerli-shadow-fork-6-eth1-bootnode-geth-1" %}
-  --gcmode=archive
-  {% endif %}
 
 eth1_user_id: "1000:1000"
 
