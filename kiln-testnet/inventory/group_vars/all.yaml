@@ -11,6 +11,7 @@ github_user_pubkeys:
   - djrtwo
   - skylenet
   - samcm
+  - barnabasbusa
 
 ansible_python_interpreter: /usr/bin/python3
 oh_my_zsh_config:

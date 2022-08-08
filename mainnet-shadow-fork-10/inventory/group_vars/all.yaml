@@ -15,6 +15,7 @@ github_user_pubkeys:
   - z3n-chada
   - infosecual
   - jtraglia
+  - barnabasbusa
 
 ansible_python_interpreter: /usr/bin/python3
 oh_my_zsh_config:
