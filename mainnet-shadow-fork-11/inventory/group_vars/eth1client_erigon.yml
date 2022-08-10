@@ -33,7 +33,7 @@ eth1_start_args: >
   --authrpc.jwtsecret=/jwtsecret
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
-  --prune=htrc
+  --prune=htc
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{eth1_metrics_port}}
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   --batchSize=32m
