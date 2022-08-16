@@ -42,7 +42,7 @@ beacon_start_args: >
   --datadir="/beacondata"
   --chain-config-file="/custom_config_data/config.yaml"
   --genesis-state="/custom_config_data/genesis.ssz"
-  --http-web3provider="{{execution_endpoint}}"
+  --execution-endpoint="{{execution_endpoint}}"
     {% if (bootnode_enrs is defined) and bootnode_enrs %}
     {% for bootnode_enrs in bootnode_enrs %}
     --bootstrap-node="{{ bootnode_enrs }}"
@@ -63,7 +63,6 @@ beacon_start_args: >
   --suggested-fee-recipient={{ fee_recipient }}
   --contract-deployment-block=14675001
   --enable-vectorized-htr --enable-forkchoice-doubly-linked-tree
-  --experimental-disable-boundary-checks
 
 validator_start_args: >
   --accept-terms-of-use=true

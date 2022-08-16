@@ -1,5 +1,5 @@
 - name: Upload network data
-  hosts: beacon
+  hosts: all
   gather_facts: true
   serial: 20
   tasks:

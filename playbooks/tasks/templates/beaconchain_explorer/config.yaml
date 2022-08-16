@@ -7,8 +7,8 @@ database:
   password: "{{explorer_postgres_password}}"
 # Chain network configuration
 chain:
-  slotsPerEpoch: {{eth2_config['SLOTS_PER_EPOCH']}}
-  secondsPerSlot: {{eth2_config['SECONDS_PER_SLOT']}}
+  slotsPerEpoch: 32
+  secondsPerSlot: 12
   minGenesisActiveValidatorCount: {{eth2_config['MIN_GENESIS_ACTIVE_VALIDATOR_COUNT']}}
   genesisTimestamp: {{ eth2_config['MIN_GENESIS_TIME']|int + eth2_config['GENESIS_DELAY']|int }}
   mainnet: false # hide mainnet staking pool etc. info
@@ -19,8 +19,8 @@ chain:
 frontend:
   enabled: true # Enable or disable to web frontend
   imprint: "./imprint.html" # Path to the imprint page content
-  siteName: "{{eth2_network_name_pretty}}" # Name of the site, displayed in the title tag
-  siteSubtitle: "{{eth2_network_name_pretty}}" # Subtitle shown on the main page
+  siteName: "{{eth2_network_name}}" # Name of the site, displayed in the title tag
+  siteSubtitle: "{{eth2_network_name}}" # Subtitle shown on the main page
   csrfAuthKey: "0123456789abcdef000000000000000000000000000000000000000000000000"
   jwtSigningSecret: "0123456789abcdef000000000000000000000000000000000000000000000000"
   jwtIssuer: "localblockexplorer"
@@ -42,11 +42,11 @@ indexer:
   fullIndexOnStartup: false # Perform a one time full db index on startup
   indexMissingEpochsOnStartup: false # Check for missing epochs and export them after startup
   node:
-    host: "{{explorer_eth2_source_ip_address}}" # Address of the backend node
+    host: "{{explorer_ip_address}}" # Address of the backend node
     port: {{beacon_api_port}} # GRPC port of the Prysm node
     type: "lighthouse" # can be either prysm or lighthouse
     pageSize: 100 # the amount of entries to fetch per paged rpc call, TODO set to 500
-  eth1Endpoint: "http://{{explorer_eth1_source_ip_address}}:{{eth1_rpc_port}}"
+  eth1Endpoint: "http://{{explorer_ip_address}}:{{eth1_rpc_port}}"
   eth1DepositContractAddress: "{{eth2_config['DEPOSIT_CONTRACT_ADDRESS']}}"
   # Note: 0 is correct, but due to an underflow bug (being fixed), doesn't work.
   eth1DepositContractFirstBlock: {{eth1_deposit_contract_first_block}}
