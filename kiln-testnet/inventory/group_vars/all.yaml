@@ -58,6 +58,7 @@ prometheus_config_file: "prometheus/prometheus.yml.j2"
 push_url: "https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write"
 push_metrics_enabled: true
 remote_write_auth: true
+eth2_validator_metrics_enabled: false
 remote_write_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/kiln.json | jq .username') }}"
 remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/metrics-ingress-users/kiln.json | jq .password') }}"
 

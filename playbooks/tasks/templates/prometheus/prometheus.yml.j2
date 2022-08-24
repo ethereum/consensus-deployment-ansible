@@ -9,7 +9,7 @@ global:
     instance: "{{ inventory_hostname }}"
     testnet: "{{ eth2_network_name }}"
     ip_address: "{{ ansible_host }}"
-
+    network: "{{ eth2_network_name }}"
 
 remote_write:
   - queue_config:
