@@ -38,8 +38,7 @@ eth1_start_args: >
   --override.terminaltotaldifficulty={{terminal_total_difficulty}}
   --batchSize=32m
   {% if (eth1_bootnode_enode is defined) and eth1_bootnode_enode %}
-  --nodiscover
-  --staticpeers="{{ eth1_bootnode_enode | join(',') }}"
+  --bootnodes="{{ eth1_bootnode_enode | join(',') }}"
   {% endif %}
 
 #  --nodiscover
