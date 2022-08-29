@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: lodestar
 
-beacon_image_name: g11tech/lodestar:preparefix
-validator_image_name: chainsafe/lodestar:next
+beacon_image_name: chainsafe/lodestar:v1.0.0
+validator_image_name: chainsafe/lodestar:v1.0.0
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
@@ -37,44 +37,33 @@ validator_volumes:
 ##############################################
 beacon_start_args: >
   beacon
-        --rootDir=/beacondata
+        --dataDir=/beacondata
         --paramsFile=/custom_config_data/config.yaml
         --genesisStateFile=/custom_config_data/genesis.ssz
-        --network.discv5.bootEnrs="enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
+        --bootnodes="enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
         --network.connectToDiscv5Bootnodes
-        --network.discv5.enabled=true
-        --eth1.enabled=true
-        --api.rest.port={{beacon_api_port}}
-        --eth1.providerUrls={{eth1endpoint}}
+        --rest.port={{beacon_api_port}}
         --execution.urls={{execution_endpoint}}
-        --api.rest.enabled=true
-        --api.rest.host=0.0.0.0
-        --api.rest.api="*"
+        --rest
+        --rest.address=0.0.0.0
+        --rest.cors="*"
         --logLevel={{ beacon_log_level | lower }}
-        --logLevelFile=debug
-        --logFile=/beacondata/beacon.log
-        --logRotate
-        --logMaxFiles=5
         --enr.ip={{ansible_host}}
-        --metrics.enabled
-        --metrics.serverPort={{ beacon_metrics_port }}
+        --metrics
+        --metrics.port={{ beacon_metrics_port }}
         --eth1.depositContractDeployBlock=14675001
         --jwt-secret="/jwtsecret"
-        --chain.defaultFeeRecipient={{fee_recipient}}
+        --suggestedFeeRecipient={{fee_recipient}}
 
 validator_start_args: >
   validator
-   --rootDir=/validatordata
-  --paramsFile=/custom_config_data/config.yaml
+   --dataDir=/validatordata
+   --paramsFile=/custom_config_data/config.yaml
    --keystoresDir=/validatordata/keystores
    --secretsDir=/validatordata/secrets/
    --server={{beacon_endpoint}}
-   --logFile=/validatordata/validator.log
-   --logLevelFile=debug
-   --logRotate
-   --logMaxFiles=5
    --graffiti={{graffiti}}
-   --defaultFeeRecipient={{fee_recipient}}
+   --suggestedFeeRecipient={{fee_recipient}}
 
 ##############################################
 # memory limits
