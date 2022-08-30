@@ -83,6 +83,7 @@ nimbus_rpc_port: 4009
 beacon_api_port: 4000
 beacon_grpc_port: 4001
 beacon_metrics_port: 8000
+mev_boost_port: 18550
 beacon_p2p_port: 9000
 validator_metrics_port: 8001
 validator_rpc_port: 4002
@@ -96,6 +97,14 @@ eth_metrics_exporter_port: 8003
 ##############################################
 snoop_image_name: parithoshj/json_rpc_snoop:v1.0.0-x86
 snoop_container_name: snooper
+
+##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:v0.7.10
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-genesis-fork-version 0x13001037 -relays https://0xa60c6b1db969d242e76cde25e2a1c3e3f999e6df2ce3a36e8cdb359479dbf9072ef2c93a60dc2652345346c930858052@bloxroute.max-profit.sf12.blxrbdn.com"
+mev_boost: false
 
 ##############################################
 # name of the validator to display

@@ -52,6 +52,9 @@ beacon_start_args: >
   --terminal-total-difficulty-override={{terminal_total_difficulty}}
   --jwt-secret=/jwtsecret
   --dump:on
+  {% if mev_boost == 'true' %}
+  --payload-builder-enable --payload-builder-url="http://127.0.0.1:{{mev_boost_port}}"
+  {% endif %}
 
 ##############################################
 # file permissions and user ids

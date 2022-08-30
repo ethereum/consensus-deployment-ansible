@@ -57,7 +57,9 @@ beacon_start_args: >
   --suggested-fee-recipient={{fee_recipient}}
   --jwt-secrets="/jwtsecret"
   --count-unrealized
-
+  {% if mev_boost == 'true' %}
+  --builder="http://127.0.0.1:{{mev_boost_port}}"
+  {% endif %}
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 
 validator_start_args: >
@@ -72,6 +74,9 @@ validator_start_args: >
   --http --http-port={{validator_rpc_port}}
   --metrics --metrics-address 0.0.0.0 --metrics-port "{{validator_metrics_port}}"
   --suggested-fee-recipient={{fee_recipient}}
+  {% if mev_boost == 'true' %}
+  --builder-proposals
+  {% endif %}
 
 
 ##############################################
