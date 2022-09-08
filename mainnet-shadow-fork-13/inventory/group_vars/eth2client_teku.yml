@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: consensys/teku:22.8.1
-validator_image_name: consensys/teku:22.8.1
+beacon_image_name: consensys/teku:22.9.0
+validator_image_name: consensys/teku:22.9.0
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
@@ -34,7 +34,6 @@ beacon_start_args: >
   --p2p-advertised-port={{beacon_p2p_port}}
   --logging={{beacon_log_level}}
   --p2p-peer-upper-bound={{hi_peer_count}}
-  --eth1-endpoints="{{eth1endpoint}}"
   --ee-endpoint="{{execution_endpoint}}"
   {% if (bootnode_enrs is defined) and bootnode_enrs %}
   --p2p-discovery-bootnodes="{{ bootnode_enrs | join(',') }}"

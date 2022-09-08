@@ -7,7 +7,7 @@ explorer_memory: 9000m
 beacon_explorer_image_name: "parithoshj/beacon-explorer:print-chain-id"
 execution_explorer_image_name: "skylenet/blockscout:v4.0.0-beta"
 
-explorer_first_block: 15312967
+explorer_first_block: 15496560
 explorer_ip_address: "161.156.140.34"
 eth1_deposit_contract_first_block: 15440494
 

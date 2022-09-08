@@ -2,8 +2,8 @@
 # image name and image location
 ##############################################
 eth2_client_name: teku
-beacon_image_name: consensys/teku:22.8.1
-validator_image_name: consensys/teku:22.8.1
+beacon_image_name: consensys/teku:22.8.2
+validator_image_name: consensys/teku:22.8.2
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:

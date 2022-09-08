@@ -3,8 +3,8 @@
 ##############################################
 eth2_client_name: lighthouse
 
-beacon_image_name: sigp/lighthouse:v3.0.0
-validator_image_name: sigp/lighthouse:v3.0.0
+beacon_image_name: sigp/lighthouse:v3.1.0
+validator_image_name: sigp/lighthouse:v3.1.0
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 
 eth2_github_external_user_pubkeys:
