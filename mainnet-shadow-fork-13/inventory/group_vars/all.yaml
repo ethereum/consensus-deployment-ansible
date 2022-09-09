@@ -49,6 +49,10 @@ bootnode_enrs:
 
 eth1_bootnode_enode:
   - "enode://2156ea305f03bbb11fb28fff8236f891ad38e748c9cdac94032576076ad494af834ac05400a0ce7cce8b05af193fd3633452d6b15ea8ccc9f433dd982bc3e8d6@161.156.140.34:30303"
+  - "enode://2dd7ee95fde93b6541765a120f2444af09ae107f361e6671fd9fbd0e08cb62c9429f65642d93c79b5f9e107aa242c92951e7e0c82cbef794a8b3beb87dd16df8@52.117.155.50:30303"
+  - "enode://417782d383015e2967b85e2e76f2857d5632353e5a82cc12ccbba38153dbee209c87e23a3c349ad91841a2de22844cee1625991de2f62e7bb72c17660cb168a9@161.156.140.40:30303"
+  - "enode://b3b2756b678df7e149e5599de843f09bf482cf62d4d185cc231d09a4f99447f9a53e6ffb4e58226a8c21dbe3058ed19410e88d1e310461b4f92ea71dcac4c260@52.117.155.56:30303"
+  - "enode://6aa24c79afcd2bb015947ca2732ead1124706d56346ea584a92140c0bec461e875e3e6e80a9167bcf6b74e1a5a6c4000b74cf90c8b24f623b920fc71d7c3b2e4@52.117.136.78:30303"
 
 ##############################################
 # metric information
@@ -70,6 +74,14 @@ ethstats_url: "ethstats.mainnetshadowfork13.ethdevops.io"
 ethstats_password: "mainnetshadowfork13"
 
 ##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:v0.8.2
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-genesis-fork-version 0x13001038 -relays http://0xa60c6b1db969d242e76cde25e2a1c3e3f999e6df2ce3a36e8cdb359479dbf9072ef2c93a60dc2652345346c930858052@3.80.83.8:18550"
+mev_boost: false
+
+##############################################
 # ports to configure
 ##############################################
 eth1_rpc_port: 8545
@@ -89,6 +101,7 @@ node_exporter_web_listen_address: "127.0.0.1:9100"
 prometheus_web_listen_address: "127.0.0.1:9101"
 eth1_metrics_port: 8002
 eth_metrics_exporter_port: 8003
+mev_boost_port: 18550
 
 ##############################################
 # Command for JSON RPC snooper
