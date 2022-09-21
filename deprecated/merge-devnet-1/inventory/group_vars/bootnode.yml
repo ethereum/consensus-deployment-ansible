@@ -1,0 +1,26 @@
+bootnode_container_name: bootnode
+bootnode_memory: 2000m
+bootnode_image_name: protolambda/eth2-bootnode:cleanup
+
+bootnode_host_dir: "{{home_dir}}/bootnode_data"
+
+bootnode_port: 9001
+
+bootnode_ip: "{{ansible_host}}"
+
+# 32 bytes, hex encoded, no 0x.
+bootnode_p2p_priv_key: "0000"
+
+bootnode_start_args: >
+  {% if (other_bootnodes is defined) and other_bootnodes %}
+  --bootnodes="{{ other_bootnodes | join(',') }}"
+  {% endif %}
+  --color=false
+  --enr-ip="{{bootnode_ip}}"
+  --enr-udp="{{bootnode_port}}"
+  --level=trace
+  --listen-ip=0.0.0.0
+  --listen-udp="{{bootnode_port}}"
+  --api-addr="0.0.0.0:8002"
+  --node-db="/data/localnode.db"
+  --priv="{{bootnode_p2p_priv_key}}"
