@@ -29,7 +29,6 @@
 
 # starts the json rpc snooper
 - import_playbook: tasks/start_snooper.yml
-  when: eth2_client_name != 'nimbus'
 
 # stars beacon node docker container
 - import_playbook: tasks/start_beacon.yml
