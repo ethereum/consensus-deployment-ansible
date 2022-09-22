@@ -6,7 +6,7 @@
     # postgres on 172.1.1.100
     # explorer on 172.1.1.101
     # beacon   on 172.1.1.102
-    # eth1     on 172.1.1.103   # removed for Altair purposes, used in Merge
+    # el     on 172.1.1.103   # removed for Altair purposes, used in Merge
     # explorerstats on 172.1.1.104
     - name: Create explorer net
       docker_network:

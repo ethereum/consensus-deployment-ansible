@@ -1,4 +1,4 @@
-- name: Generate eth2 genesis
+- name: Generate cl genesis
   hosts: validator
   gather_facts: false
   tasks:
@@ -12,13 +12,13 @@
     - name: Validate ranges + prepare mnemonics.yaml
       delegate_to: localhost
       run_once: true
-      script: "./scripts/validate_eth2_indexes.py '{{keys_data_dict | to_json}}' {{local_eth2_config_filepath}} {{local_mnemonics_filepath}}"
+      script: "./scripts/validate_eth2_indexes.py '{{keys_data_dict | to_json}}' {{local_cl_config_filepath}} {{local_mnemonics_filepath}}"
 
     - name: Load config
       delegate_to: localhost
       run_once: true
       set_fact:
-        eth2_config: "{{ lookup('file', local_eth2_config_filepath) | from_yaml }}"
+        cl_config: "{{ lookup('file', local_cl_config_filepath) | from_yaml }}"
 
     # Note the genesis time persisted in genesis.ssz = MIN_GENESIS_TIME + GENESIS_DELAY
     - name: Generate genesis
@@ -66,31 +66,31 @@
         --source-max={{to_index}} \
         --source-min={{from_index}} \
         --source-mnemonic="{{mnemonic}}"
-    # Grab the right keys for each eth2 client
+    # Grab the right keys for each cl client
     - name: Copy keys for lighthouse
-      when: eth2_client_name == 'lighthouse'
+      when: cl_client_name == 'lighthouse'
       shell: |
         cp -r "{{output_keys_dirpath}}/keys" "{{validator_node_dir}}/validators"
         cp -r "{{output_keys_dirpath}}/secrets" "{{validator_node_dir}}/secrets"
     - name: Copy keys for teku
-      when: eth2_client_name == 'teku'
+      when: cl_client_name == 'teku'
       shell: |
         cp -r "{{output_keys_dirpath}}/teku-keys" "{{validator_node_dir}}/keys"
         cp -r "{{output_keys_dirpath}}/teku-secrets" "{{validator_node_dir}}/secrets"
     - name: Create folders for prysm
-      when: eth2_client_name == 'prysm'
+      when: cl_client_name == 'prysm'
       shell: |
         mkdir -p "{{validator_node_dir}}/wallet/direct/accounts"
         echo "prysm" > "{{validator_node_dir}}/wallet_pass.txt"
         cp -r "{{output_keys_dirpath}}/prysm/direct/accounts/all-accounts.keystore.json" "{{validator_node_dir}}/wallet/direct/accounts/all-accounts.keystore.json"
         cp -r "{{output_keys_dirpath}}/prysm/keymanageropts.json" "{{validator_node_dir}}/wallet/direct/keymanageropts.json"
     - name: Copy keys for nimbus
-      when: eth2_client_name == 'nimbus'
+      when: cl_client_name == 'nimbus'
       shell: |
         cp -r "{{output_keys_dirpath}}/nimbus-keys" "{{validator_node_dir}}/keys"
         cp -r "{{output_keys_dirpath}}/secrets" "{{validator_node_dir}}/secrets"
     - name: Copy keys for lodestar
-      when: eth2_client_name == 'lodestar'
+      when: cl_client_name == 'lodestar'
       shell: |
         cp -r "{{output_keys_dirpath}}/keys" "{{validator_node_dir}}/keystores"
         cp -r "{{output_keys_dirpath}}/secrets" "{{validator_node_dir}}/secrets"

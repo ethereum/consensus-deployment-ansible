@@ -23,7 +23,7 @@ host_keysdata = yaml.load(host_keysdata_str)
 #   config.yaml
 #   mnemonics.yaml
 # ```
-eth2_config_filepath = sys.argv[2]
+cl_config_filepath = sys.argv[2]
 mnemonics_out_filepath = sys.argv[3]
 
 
@@ -53,12 +53,12 @@ for hostname in host_keysdata:
 
 
 # Ensure config.yaml has correct validator count
-eth2_config_file = open(eth2_config_filepath, mode='r')
-eth2_config_yaml = yaml.load(eth2_config_file.read())
-eth2_config_file.close()
+cl_config_file = open(cl_config_filepath, mode='r')
+cl_config_yaml = yaml.load(cl_config_file.read())
+cl_config_file.close()
 
-min_validator_count = eth2_config_yaml['MIN_GENESIS_ACTIVE_VALIDATOR_COUNT']
-expected_genesis_time = eth2_config_yaml['MIN_GENESIS_TIME'] + eth2_config_yaml['GENESIS_DELAY']
+min_validator_count = cl_config_yaml['MIN_GENESIS_ACTIVE_VALIDATOR_COUNT']
+expected_genesis_time = cl_config_yaml['MIN_GENESIS_TIME'] + cl_config_yaml['GENESIS_DELAY']
 
 if total_count < min_validator_count:
   raise Exception("total_count {0} < MIN_GENESIS_ACTIVE_VALIDATOR_COUNT {1}".format(total_count, min_validator_count))

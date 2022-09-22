@@ -4,12 +4,12 @@ global:
   scrape_timeout: 10s
 
   external_labels:
-    consensus_client: "{{ eth2_client_name }}"
-    execution_client: "{{ eth1_client_name }}"
+    consensus_client: "{{ cl_client_name }}"
+    execution_client: "{{ el_client_name }}"
     instance: "{{ inventory_hostname }}"
-    testnet: "{{ eth2_network_name }}"
+    testnet: "{{ cl_network_name }}"
     ip_address: "{{ ansible_host }}"
-    network: "{{ eth2_network_name }}"
+    network: "{{ cl_network_name }}"
 
 remote_write:
   - queue_config:
@@ -35,7 +35,7 @@ scrape_configs:
       targets:
       - localhost:9100
 
-{% if eth2_client_name is defined %}
+{% if cl_client_name is defined %}
 
   - job_name: beacon
     static_configs:
@@ -45,7 +45,7 @@ scrape_configs:
       targets:
       - localhost:{{ beacon_metrics_port }}
 
-{% if eth2_validator_metrics_enabled == true %}
+{% if cl_validator_metrics_enabled == true %}
   - job_name: validator
     static_configs:
     - labels:
@@ -68,10 +68,10 @@ scrape_configs:
 
 {% endif %}
 
-{% if eth1_client_name is defined %}
+{% if el_client_name is defined %}
 
   - job_name: execution_node
-{% if eth1_client_name == "geth" or eth1_client_name == "erigon" %}
+{% if el_client_name == "geth" or el_client_name == "erigon" %}
     metrics_path: /debug/metrics/prometheus
 {% endif %}
     static_configs:
@@ -79,6 +79,6 @@ scrape_configs:
         instance: "{{ inventory_hostname }}"
         scrape_location: execution
       targets:
-      - localhost:{{ eth1_metrics_port }}
+      - localhost:{{ el_metrics_port }}
 
 {% endif %}

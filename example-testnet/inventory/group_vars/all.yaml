@@ -1,0 +1,159 @@
+##############################################
+# generic ansible config information
+##############################################
+ansible_user: "devops"
+bootstrap_user: "devops"
+initial_remote_user: "root"
+
+github_user_pubkeys:
+  - parithosh
+
+
+ansible_python_interpreter: /usr/bin/python3
+oh_my_zsh_config:
+  PROMPT: "%{$fg[yellow]%}%n%{$fg[white]%}@%{$fg[red]%}%m%{$reset_color%} ${PROMPT}"
+
+##############################################
+# el endpoints
+##############################################
+# nimbus requires a websocket endpoint (http support unstable)
+# note: also used for execution engine endpoint in nimbus
+consensus_endpoint_nimbus: ws://127.0.0.1:8551
+beacon_api_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
+elendpoint: http://127.0.0.1:8545
+
+# Merge Engine endpoints
+# TODO change IP?
+# TODO: some engines might start using the 8550 port (or 8551 for ws)
+
+##############################################
+# testnet specific information
+##############################################
+testnet_type: custom
+cl_network_name: example-testnet
+chainID: 1
+terminal_total_difficulty: "58314930535569159094272"
+fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
+# enter bootnodes here if needed
+bootnode_enrs:
+  - []
+
+el_bootnode_enode:
+  - []
+
+##############################################
+# metric information
+##############################################
+# enter pushgateway config if needed
+prometheus_config_file: "prometheus/prometheus.yml.j2"
+push_url: "https://example.test/insert/0/prometheus/api/v1/write"
+push_metrics_enabled: false
+remote_write_auth: false
+eth_metrics_exporter_enabled: false
+cl_validator_metrics_enabled: false
+eth_metrics_exporter_name: "metrics-exporter"
+eth_metrics_exporter_image: "samcm/ethereum-metrics-exporter:0.16.5"
+remote_write_username: "test"
+remote_write_password: "test"
+
+no_validator_keys: false
+ethstats_url: "example.io"
+ethstats_password: "example"
+
+##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:v0.8.2
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-genesis-fork-version 0x00 -relays http://example.io"
+mev_boost: false
+
+##############################################
+# ports to configure
+##############################################
+el_rpc_port: 8545
+el_ws_rpc_port: 8546
+el_engine_port_no_auth: 8550
+el_engine_port: 8551
+el_engine_snoop_port: 8560
+el_engine_ws_port: 8552
+nimbus_rpc_port: 4009
+beacon_api_port: 4000
+beacon_grpc_port: 4001
+beacon_metrics_port: 8000
+beacon_p2p_port: 9000
+validator_metrics_port: 8001
+validator_rpc_port: 4002
+node_exporter_web_listen_address: "127.0.0.1:9100"
+prometheus_web_listen_address: "127.0.0.1:9101"
+el_metrics_port: 8002
+eth_metrics_exporter_port: 8003
+mev_boost_port: 18550
+
+##############################################
+# Command for JSON RPC snooper
+##############################################
+snoop_image_name: parithoshj/json_rpc_snoop:v1.0.0-x86
+snoop_container_name: snooper
+
+##############################################
+# name of the validator to display
+##############################################
+graffiti: "{{cl_client_name}}-{{el_client_name}}"
+
+##############################################
+# local data directories
+##############################################
+local_explorerdata_host_dir: "{{inventory_dir}}/../explorerdata"
+local_explorerdata_host_archive: "{{inventory_dir}}/../explorerdata.tar.gz"
+local_forkmondata_host_dir: "{{inventory_dir}}/../forkmondata"
+local_forkmondata_host_archive: "{{inventory_dir}}/../forkmondata.tar.gz"
+local_custom_config_data_host_dir: "{{inventory_dir}}/../custom_config_data"
+local_custom_config_data_host_archive: "{{inventory_dir}}/../custom_config_data.tar.gz"
+local_cl_config_filepath: "{{local_custom_config_data_host_dir}}/config.yaml"
+# private dirs
+# Validator assignments
+local_validator_host_dir: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}"
+local_validator_host_archive: "{{inventory_dir}}/../validator_prep/{{ansible_hostname}}.tar.gz"
+
+##############################################
+# remote host data directories
+##############################################
+beacon_node_dir: "{{home_dir}}/beacon"
+validator_node_dir: "{{home_dir}}/validator"
+testnet_dir: "{{home_dir}}/custom_config_data"
+el_node_dir: "{{home_dir}}/eldata"
+
+##############################################
+# common log config
+##############################################
+beacon_log_level: info
+common_log_options:
+  max-file: "10"
+  max-size: 500m
+  mode: non-blocking
+  max-buffer-size: 4m
+common_log_driver: json-file
+
+##############################################
+# container names
+##############################################
+beacon_container_name: beacon
+validator_container_name: validator
+execution_container_name: execution
+hi_peer_count: 100
+separate_validator_process_enabled: true
+
+firewall_allowed_tcp_ports:
+  - 22
+  - 30303
+  - 9000
+  - 80
+  - 443
+
+firewall_allowed_udp_ports:
+  - 30303
+  - 9000
+
+firewall_additional_rules:
+  - []

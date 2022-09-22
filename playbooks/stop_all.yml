@@ -4,11 +4,11 @@
   gather_facts: true
   become: true
   tasks:
-    - name: Stop Eth2 beacon node container
+    - name: Stop cl beacon node container
       shell: "docker stop --time=10 {{beacon_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
-    - name: Stop Eth2 validator client container
+    - name: Stop cl validator client container
       shell: "docker stop --time=10 {{validator_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"

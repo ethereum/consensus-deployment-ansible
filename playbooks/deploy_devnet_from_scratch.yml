@@ -4,8 +4,8 @@
 - import_playbook: tasks/setup_machine.yml
 - import_playbook: tasks/start_firewall.yml
 
-# Generate eth2 genesis + keys on remote host
-- import_playbook: tasks/generate_eth2_genesis_and_keys.yml
+# Generate cl genesis + keys on remote host
+- import_playbook: tasks/generate_cl_genesis_and_keys.yml
 # Upload custom config data
 - import_playbook: tasks/upload_custom_config_data.yml
 

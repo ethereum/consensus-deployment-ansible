@@ -4,7 +4,7 @@
 - import_playbook: tasks/stop_validator.yml
 - import_playbook: tasks/stop_execution_node.yml
 - import_playbook: tasks/stop_snooper.yml
-  when: eth2_client_name != 'nimbus'
+  when: cl_client_name != 'nimbus'
 
 #- name: delete dir
 #  hosts: all
@@ -12,7 +12,7 @@
 #    - name: Remove custom_config_data dir
 #      become: true
 #      when: (testnet_type == 'custom') or
-#            (testnet_type == 'prater' and eth2_client_name == 'prysm')
+#            (testnet_type == 'prater' and cl_client_name == 'prysm')
 #      file:
 #        path: "{{testnet_dir}}"
 #        state: absent
@@ -23,10 +23,10 @@
 #
 #- import_playbook: tasks/upload_custom_config_data.yml
 #  when: (testnet_type == 'custom') or
-#        (testnet_type == 'prater' and eth2_client_name == 'prysm')
+#        (testnet_type == 'prater' and cl_client_name == 'prysm')
 
 - import_playbook: tasks/init_geth_node.yml
-  when: eth1_client_name == 'geth' or eth1_client_name == 'erigon'
+  when: el_client_name == 'geth' or el_client_name == 'erigon'
 
 # starts execution node docker container
 - import_playbook: tasks/start_execution_node.yml

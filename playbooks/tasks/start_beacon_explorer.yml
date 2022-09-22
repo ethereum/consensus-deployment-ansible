@@ -3,7 +3,7 @@
   gather_facts: true
   serial: 20
   tasks:
-    - name: Start Eth2 explorer
+    - name: Start cl explorer
       docker_container:
         name: "{{ beacon_explorer_container_name }}"
         state: started

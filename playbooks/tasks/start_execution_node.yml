@@ -7,14 +7,14 @@
       docker_container:
         name: "{{ execution_container_name }}"
         state: started
-        image: "{{ eth1_image_name }}"
+        image: "{{ el_image_name }}"
         pull: true
         stop_timeout: 90
         restart_policy: unless-stopped
         network_mode: host
-        restart: "{{ eth1_require_restart | default(false) }}"
-        volumes: "{{eth1_volumes}}"
-        command: "{{ eth1_start_args }}"
+        restart: "{{ el_require_restart | default(false) }}"
+        volumes: "{{el_volumes}}"
+        command: "{{ el_start_args }}"
         log_options: "{{ common_log_options }}"
         log_driver: "{{ common_log_driver }}"
-        env: "{{ eth1_env | default({}) }}"
+        env: "{{ el_env | default({}) }}"

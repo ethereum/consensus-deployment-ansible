@@ -33,7 +33,7 @@
 #        env:
 #          DEFAULT_EMAIL: "{{letsencrypt_email}}"
 #          NGINX_PROXY_CONTAINER: nginx-proxy
-    - name: Start Eth2 forkmon
+    - name: Start cl forkmon
       docker_container:
         name: "{{ forkmon_container_name }}"
         state: started

@@ -16,14 +16,14 @@
       file:
         path: "{{validator_node_dir}}"
         state: directory
-- name: Init eth1 data dirs for nodes
+- name: Init el data dirs for nodes
   hosts: execution
   gather_facts: false
   serial: 20
   tasks:
-    - name: Creates eth1 dir
+    - name: Creates el dir
       file:
-        path: "{{eth1_node_dir}}"
+        path: "{{el_node_dir}}"
         state: directory
 - name: Init testnet data dirs for nodes
   hosts: [beacon, execution, validator]

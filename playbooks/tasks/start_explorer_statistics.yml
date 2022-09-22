@@ -3,7 +3,7 @@
   gather_facts: true
   serial: 20
   tasks:
-    - name: Start Eth2 explorer statistics
+    - name: Start cl explorer statistics
       docker_container:
         name: "{{ explorer_stats_container_name }}"
         state: started

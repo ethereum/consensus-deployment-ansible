@@ -4,7 +4,7 @@
   gather_facts: true
   become: true
   tasks:
-    - name: Stop Eth2 beacon node container
+    - name: Stop cl beacon node container
       shell: "docker rm -f {{beacon_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
@@ -13,7 +13,7 @@
       file:
         path: "{{beacon_node_dir}}"
         state: absent
-    - name: Stop Eth2 validator client container
+    - name: Stop cl validator client container
       shell: "docker rm -f {{validator_container_name}}"
       register: stop_result
       failed_when: "(stop_result.rc >= 1) and not ('No such container' in stop_result.stderr)"
@@ -29,12 +29,12 @@
     - name: Remove execution data
       become: true
       file:
-        path: "{{eth1_node_dir}}"
+        path: "{{el_node_dir}}"
         state: absent
     - name: Remove testnet dir
       become: true
       when: (testnet_type == 'custom') or
-        (testnet_type == 'prater' and eth2_client_name == 'prysm')
+        (testnet_type == 'prater' and cl_client_name == 'prysm')
       file:
         path: "{{testnet_dir}}"
         state: absent

@@ -1,0 +1,89 @@
+##############################################
+# image name and image location
+##############################################
+cl_client_name: lodestar
+
+beacon_image_name: chainsafe/lodestar:v1.0.0
+validator_image_name: chainsafe/lodestar:v1.0.0
+beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
+
+cl_github_external_user_pubkeys:
+  - dapplion
+  - wemeetagain
+  - tuyennhv
+  - g11tech
+  - dadepo
+  - philknows
+
+beacon_env:
+  LODESTAR_PRESET: mainnet
+
+validator_env:
+  LODESTAR_PRESET: mainnet
+
+##############################################
+# volume mappings on remote host
+##############################################
+beacon_volumes:
+  - "{{beacon_node_dir}}:/beacondata"
+  - "{{testnet_dir}}:/custom_config_data"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
+
+validator_volumes:
+  - "{{validator_node_dir}}:/validatordata"
+  - "{{testnet_dir}}:/custom_config_data"
+##############################################
+# arguments to run the containers with
+##############################################
+beacon_start_args: >
+  beacon
+        --dataDir=/beacondata
+        --paramsFile=/custom_config_data/config.yaml
+        --genesisStateFile=/custom_config_data/genesis.ssz
+        --bootnodes="enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
+        --network.connectToDiscv5Bootnodes
+        --rest.port={{beacon_api_port}}
+        --execution.urls={{execution_endpoint}}
+        --rest
+        --rest.address=0.0.0.0
+        --rest.cors="*"
+        --logLevel={{ beacon_log_level | lower }}
+        --enr.ip={{ansible_host}}
+        --metrics
+        --metrics.port={{ beacon_metrics_port }}
+        --eth1.depositContractDeployBlock=14675001
+        --jwt-secret="/jwtsecret"
+        --suggestedFeeRecipient={{fee_recipient}}
+        {% if mev_boost == 'true' %}
+        --builder --builder.urls="http://127.0.0.1:{{mev_boost_port}}"
+        {% endif %}
+
+validator_start_args: >
+  validator
+   --dataDir=/validatordata
+   --paramsFile=/custom_config_data/config.yaml
+   --keystoresDir=/validatordata/keystores
+   --secretsDir=/validatordata/secrets/
+   --server={{beacon_endpoint}}
+   --graffiti={{graffiti}}
+   --suggestedFeeRecipient={{fee_recipient}}
+   {% if mev_boost == 'true' %}
+   --builder
+   {% endif %}
+
+##############################################
+# memory limits
+##############################################
+validator_memory: 2000M
+validator_kernel_memory: 2500M
+beacon_memory: 7000M
+beacon_kernel_memory: 7500M
+
+##############################################
+# file permissions and user ids
+##############################################
+keystores_file_mode: "0700"
+beacon_user_id: "1000:1000"
+validator_user_id: "1000:1000"
+
+separate_validator_process_enabled: true

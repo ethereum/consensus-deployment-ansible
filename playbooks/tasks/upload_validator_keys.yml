@@ -21,19 +21,19 @@
         path: "{{local_validator_host_dir}}/selected_keys"
         state: directory
     - name: Copy keys for lighthouse
-      when: not does_key_tar_exist.stat.exists and eth2_client_name == 'lighthouse'
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'lighthouse'
       delegate_to: localhost
       shell: |
         cp -r "{{local_validator_host_dir}}/keys" "{{local_validator_host_dir}}/selected_keys/validators"
         cp -r "{{local_validator_host_dir}}/secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
     - name: Copy keys for teku
-      when: not does_key_tar_exist.stat.exists and eth2_client_name == 'teku'
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'teku'
       delegate_to: localhost
       shell: |
         cp -r "{{local_validator_host_dir}}/teku-keys" "{{local_validator_host_dir}}/selected_keys/keys"
         cp -r "{{local_validator_host_dir}}/teku-secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
     - name: Create folders for prysm
-      when: not does_key_tar_exist.stat.exists and eth2_client_name == 'prysm'
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'prysm'
       delegate_to: localhost
       shell: |
         mkdir -p "{{local_validator_host_dir}}/selected_keys/wallet/direct/accounts"
@@ -41,13 +41,13 @@
         cp -r "{{local_validator_host_dir}}/prysm/direct/accounts/all-accounts.keystore.json" "{{local_validator_host_dir}}/selected_keys/wallet/direct/accounts/all-accounts.keystore.json"
         cp -r "{{local_validator_host_dir}}/prysm/keymanageropts.json" "{{local_validator_host_dir}}/selected_keys/wallet/direct/keymanageropts.json"
     - name: Copy keys for nimbus
-      when: not does_key_tar_exist.stat.exists and eth2_client_name == 'nimbus'
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'nimbus'
       delegate_to: localhost
       shell: |
         cp -r "{{local_validator_host_dir}}/nimbus-keys" "{{local_validator_host_dir}}/selected_keys/keys"
         cp -r "{{local_validator_host_dir}}/secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
     - name: Copy keys for lodestar
-      when: not does_key_tar_exist.stat.exists and eth2_client_name == 'lodestar'
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'lodestar'
       delegate_to: localhost
       shell: |
         cp -r "{{local_validator_host_dir}}/keys" "{{local_validator_host_dir}}/selected_keys/keystores"

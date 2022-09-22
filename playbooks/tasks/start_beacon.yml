@@ -10,7 +10,7 @@
     - name: Modify permissions to match user-group inside docker image
       shell: chown -R "{{ beacon_user_id }}" "{{ beacon_node_dir }}"
       become: true
-    - name: Start Eth2 beacon node container
+    - name: Start cl beacon node container
       docker_container:
         name: "{{ beacon_container_name }}"
         state: started

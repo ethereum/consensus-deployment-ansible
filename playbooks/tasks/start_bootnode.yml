@@ -3,7 +3,7 @@
   gather_facts: true
   serial: 20
   tasks:
-    - name: Start Eth2 bootnode
+    - name: Start cl bootnode
       docker_container:
         name: "{{ bootnode_container_name }}"
         state: started

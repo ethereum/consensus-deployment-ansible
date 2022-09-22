@@ -3,7 +3,7 @@
   gather_facts: true
   serial: 20
   tasks:
-    - name: Start Eth2 validator client container
+    - name: Start cl validator client container
       docker_container:
         name: "{{ validator_container_name }}"
         state: started

@@ -19,14 +19,14 @@
         state: present
         key: "https://github.com/{{ item }}.keys"
     - name: "Add client specific authorized keys"
-      loop: "{{ eth1_github_external_user_pubkeys }}"
+      loop: "{{ el_github_external_user_pubkeys }}"
       authorized_key:
         user: "{{ bootstrap_user }}"
         state: present
         key: "https://github.com/{{ item }}.keys"
       ignore_errors: yes
     - name: "Add client specific authorized keys"
-      loop: "{{ eth2_github_external_user_pubkeys }}"
+      loop: "{{ cl_github_external_user_pubkeys }}"
       authorized_key:
         user: "{{ bootstrap_user }}"
         state: present

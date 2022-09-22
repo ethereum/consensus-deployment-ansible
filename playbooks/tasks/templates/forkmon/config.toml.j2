@@ -9,7 +9,7 @@ chain_name="MSF7"
 {% for host in groups['execution'] %}
 [[clients]]
   kind="rpc"
-  url = "http://{{ hostvars[host].ansible_host }}:{{ hostvars[host].eth1_rpc_port }}"
+  url = "http://{{ hostvars[host].ansible_host }}:{{ hostvars[host].el_rpc_port }}"
   name = "{{ hostvars[host].inventory_hostname }}"
 {% endfor %}
 
