@@ -1,4 +1,0 @@
-ethstats_image_name: puppeth/ethstats:latest
-
-ethstats_container_name: ethstats
-ethstats_secret: "mainnetshadowfork2"
