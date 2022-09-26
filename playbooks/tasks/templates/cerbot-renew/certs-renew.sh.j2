@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+## declare an array variable
+declare -a serviceNames=(   \
+{% for frontend in haproxy_frontends %}
+                        "{{ frontend.address }}" \
+{% endfor %}
+)
+
+
+echo "Stopping loadbalancers"
+## stop nginx and haproxy first
+sudo service nginx stop
+sudo service haproxy stop
+echo "loadbalancers stopped!"
+
+echo "renewing certificates"
+sudo certbot renew
+
+echo "certificates renewed!"
+
+## now loop through the above array
+for i in "${serviceNames[@]}"
+do
+   echo "Copying cert for: $i"
+   cat /etc/letsencrypt/live/$i/fullchain.pem /etc/letsencrypt/live/$i/privkey.pem > /etc/certificates/$i.pem
+done
+
+echo "copied certificates in the required format to the haproxy directory"
+
+sudo service nginx start
+sudo service haproxy start
+
+echo "Done copying certs and restarting loadbalancers!"
+echo "Look at logs with journalctl -u haproxy.service -f to confirm if it went well"

@@ -1,0 +1,20 @@
+- name: Start execution node
+  hosts: execution
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start execution node container
+      docker_container:
+        name: "{{ execution_container_name }}"
+        state: started
+        image: "{{ el_image_name }}"
+        pull: true
+        stop_timeout: 90
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: "{{ el_require_restart | default(false) }}"
+        volumes: "{{el_volumes}}"
+        command: "{{ el_start_args }}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"
+        env: "{{ el_env | default({}) }}"

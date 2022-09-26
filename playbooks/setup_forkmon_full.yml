@@ -1,0 +1,3 @@
+---
+- import_playbook: tasks/upload_forkmon_data.yml
+- import_playbook: tasks/start_fork_monitor.yml

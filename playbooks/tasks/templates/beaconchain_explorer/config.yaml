@@ -1,0 +1,52 @@
+# Database credentials
+database:
+  user: "{{explorer_postgres_user}}"
+  name: "db"
+  host: "{{explorer_postgres_ip}}"
+  port: {{explorer_postgres_port}}
+  password: "{{explorer_postgres_password}}"
+# Chain network configuration
+chain:
+  slotsPerEpoch: 32
+  secondsPerSlot: 12
+  minGenesisActiveValidatorCount: {{cl_config['MIN_GENESIS_ACTIVE_VALIDATOR_COUNT']}}
+  genesisTimestamp: {{ cl_config['MIN_GENESIS_TIME']|int + cl_config['GENESIS_DELAY']|int }}
+  mainnet: false # hide mainnet staking pool etc. info
+  phase0path: "{{beacon_explorer_config_cont_path}}"
+  altairForkEpoch: {{cl_config['ALTAIR_FORK_EPOCH']}}
+# Note: It is possible to run either the frontend or the indexer or both at the same time
+# Frontend config
+frontend:
+  enabled: true # Enable or disable to web frontend
+  imprint: "./imprint.html" # Path to the imprint page content
+  siteName: "{{cl_network_name}}" # Name of the site, displayed in the title tag
+  siteSubtitle: "{{cl_network_name}}" # Subtitle shown on the main page
+  csrfAuthKey: "0123456789abcdef000000000000000000000000000000000000000000000000"
+  jwtSigningSecret: "0123456789abcdef000000000000000000000000000000000000000000000000"
+  jwtIssuer: "localblockexplorer"
+  jwtValidityInMinutes: 30
+  server:
+    host: "0.0.0.0" # Address to listen on
+    port: "3333" # Port to listen on
+  database:
+    user: "{{explorer_postgres_user}}"
+    name: "db"
+    host: "{{explorer_postgres_ip}}"
+    port: "{{explorer_postgres_port}}"
+    password: "{{explorer_postgres_password}}"
+  # sessionSecret: "<sessionSecret>"
+  # flashSecret: "" # Encryption secret for flash cookies
+# Indexer config
+indexer:
+  enabled: true # Enable or disable the indexing service
+  fullIndexOnStartup: false # Perform a one time full db index on startup
+  indexMissingEpochsOnStartup: false # Check for missing epochs and export them after startup
+  node:
+    host: "{{explorer_ip_address}}" # Address of the backend node
+    port: {{beacon_api_port}} # GRPC port of the Prysm node
+    type: "lighthouse" # can be either prysm or lighthouse
+    pageSize: 100 # the amount of entries to fetch per paged rpc call, TODO set to 500
+  eth1Endpoint: "http://{{explorer_ip_address}}:{{el_rpc_port}}"
+  eth1DepositContractAddress: "{{cl_config['DEPOSIT_CONTRACT_ADDRESS']}}"
+  # Note: 0 is correct, but due to an underflow bug (being fixed), doesn't work.
+  eth1DepositContractFirstBlock: {{el_deposit_contract_first_block}}

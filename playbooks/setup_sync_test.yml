@@ -1,0 +1,28 @@
+# stop any running beacon/validator docker image, remove existing validator keys and beacon node data
+- import_playbook: tasks/stop_and_wipe_beacon_and_validator.yml
+
+# creates requisite directories for data and sets permissions
+- import_playbook: tasks/mkdatadirs.yml
+
+# uploads custom chain config and genesis data if needed
+- import_playbook: tasks/upload_custom_config_data.yml
+  when: (testnet_type == 'custom') or
+        (testnet_type == 'prater' and cl_client_name == 'prysm')
+
+# inits geth instance
+- import_playbook: tasks/init_geth_node.yml
+  when: el_client_name == 'geth'
+
+# starts execution container
+- import_playbook: tasks/start_execution_node.yml
+
+# starts the json rpc snooper
+- import_playbook: tasks/start_snooper.yml
+  when: cl_client_name != 'nimbus'
+
+# stars beacon node docker container
+- import_playbook: tasks/start_beacon.yml
+
+# install node_exporter and metric pusher
+- import_playbook: tasks/setup_node_exporter_and_prometheus.yml
+  when: push_metrics_enabled

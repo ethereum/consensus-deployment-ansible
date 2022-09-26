@@ -1,0 +1,19 @@
+# How often to reload data from the nodes
+reload_interval = "10s"
+# If specified, a http server will serve static content here
+server_address = "0.0.0.0:{{forkmon_http_listen_port}}"
+
+# Shown in the document title, if specified
+chain_name="MSF7"
+
+{% for host in groups['execution'] %}
+[[clients]]
+  kind="rpc"
+  url = "http://{{ hostvars[host].ansible_host }}:{{ hostvars[host].el_rpc_port }}"
+  name = "{{ hostvars[host].inventory_hostname }}"
+{% endfor %}
+
+[Metrics]
+
+enabled = false
+

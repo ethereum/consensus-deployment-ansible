@@ -1,0 +1,3 @@
+---
+- import_playbook: tasks/upload_faucet_data.yml
+- import_playbook: tasks/start_faucet.yml

@@ -1,0 +1,4 @@
+---
+- import_playbook: tasks/upload_dshackle_data.yml
+- import_playbook: tasks/start_dshackle_redis.yml
+- import_playbook: tasks/start_dshackle.yml

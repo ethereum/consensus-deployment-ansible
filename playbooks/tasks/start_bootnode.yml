@@ -1,0 +1,18 @@
+- name: Start bootnodes
+  hosts: bootnode
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start cl bootnode
+      docker_container:
+        name: "{{ bootnode_container_name }}"
+        state: started
+        image: "{{ bootnode_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: "{{ bootnode_require_restart | default(false) }}"
+        memory: "{{bootnode_memory}}"
+        command: "{{ bootnode_start_args }}"
+        volumes:
+          - "{{bootnode_host_dir}}:/data"

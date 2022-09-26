@@ -1,0 +1,20 @@
+- name: Start dshackle
+  hosts: dshackle
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start dshackle
+      docker_container:
+        name: "{{ dshackle_container_name }}"
+        state: started
+        image: "{{ dshackle_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "172.1.1.106"
+        ports:
+          - "{{dshackle_port}}:2450"
+        restart: "{{ dshackle_require_restart | default(false) }}"
+        volumes: "{{ dshackle_volumes }}"

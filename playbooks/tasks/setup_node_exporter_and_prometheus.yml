@@ -1,0 +1,24 @@
+- name: Start node exporter and prometheus
+  hosts: beacon, validator, execution
+  gather_facts: true
+  roles:
+    - cloudalchemy.node_exporter
+    - cloudalchemy.prometheus
+  tasks:
+    - name: Start exporter container
+      when:
+        - eth_metrics_exporter_enabled | bool
+        - cl_client_name is defined
+        - el_client_name is defined
+        - cl_client_name != "lodestar"
+      docker_container:
+        name: "{{ eth_metrics_exporter_name }}"
+        state: started
+        image: "{{ eth_metrics_exporter_image }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: "{{ el_require_restart | default(false) }}"
+        command: "--consensus-url={{beacon_api_endpoint}} --execution-url={{elendpoint}} --metrics-port={{eth_metrics_exporter_port}}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"

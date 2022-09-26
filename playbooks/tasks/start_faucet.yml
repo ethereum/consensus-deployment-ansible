@@ -1,0 +1,20 @@
+- name: Start faucet
+  hosts: faucet
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start faucet
+      docker_container:
+        name: "{{ faucet_container_name }}"
+        state: started
+        image: "{{ faucet_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        ports:
+          - "8001:8000"
+        restart: "{{ explorer_require_restart | default(false) }}"
+        volumes: "{{ faucet_volumes }}"
+        env:
+          HCAPTCHA_SITEKEY: "{{ hcaptcha_site_key }}"
+          HCAPTCHA_SECRET: "{{ hcaptcha_secret }}"

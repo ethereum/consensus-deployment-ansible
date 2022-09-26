@@ -1,0 +1,25 @@
+- name: Start execution explorer
+  hosts: explorer
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start execution explorer
+      docker_container:
+        name: "{{ execution_explorer_container_name }}"
+        state: started
+        image: "{{ execution_explorer_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "172.1.1.102"
+        ports:
+          - "3334:4000"
+        restart: "{{ explorer_require_restart | default(false) }}"
+        memory: "{{explorer_memory}}"
+        command: "{{ execution_explorer_start_args }}"
+        volumes: "{{execution_explorer_volumes}}"
+        env_file: "{{explorer_host_dir}}/blockscout.env"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"

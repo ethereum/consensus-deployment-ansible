@@ -1,0 +1,84 @@
+global:
+  evaluation_interval: 30s
+  scrape_interval: 30s
+  scrape_timeout: 10s
+
+  external_labels:
+    consensus_client: "{{ cl_client_name }}"
+    execution_client: "{{ el_client_name }}"
+    instance: "{{ inventory_hostname }}"
+    testnet: "{{ cl_network_name }}"
+    ip_address: "{{ ansible_host }}"
+    network: "{{ cl_network_name }}"
+
+remote_write:
+  - queue_config:
+      batch_send_deadline: 5s
+      max_backoff: 500ms
+      max_samples_per_send: 500
+      min_backoff: 50ms
+      max_shards: 100
+    url: {{ push_url }}
+    remote_timeout: 10s
+{% if remote_write_auth == true %}
+    basic_auth:
+      username: {{remote_write_username}}
+      password: {{remote_write_password}}
+{% endif %}
+
+scrape_configs:
+  - job_name: node
+    static_configs:
+    - labels:
+        instance: "{{ inventory_hostname }}"
+        scrape_location: node
+      targets:
+      - localhost:9100
+
+{% if cl_client_name is defined %}
+
+  - job_name: beacon
+    static_configs:
+    - labels:
+        instance: "{{ inventory_hostname }}"
+        scrape_location: beacon
+      targets:
+      - localhost:{{ beacon_metrics_port }}
+
+{% if cl_validator_metrics_enabled == true %}
+  - job_name: validator
+    static_configs:
+    - labels:
+        instance: "{{ inventory_hostname }}"
+      targets:
+      - localhost:{{ validator_metrics_port }}
+{% endif %}
+
+{% endif %}
+
+{% if eth_metrics_exporter_enabled is sameas true %}
+
+  - job_name: exporter
+    static_configs:
+    - labels:
+        instance: "{{ inventory_hostname }}"
+        scrape_location: exporter
+      targets:
+      - localhost:{{ eth_metrics_exporter_port }}
+
+{% endif %}
+
+{% if el_client_name is defined %}
+
+  - job_name: execution_node
+{% if el_client_name == "geth" or el_client_name == "erigon" %}
+    metrics_path: /debug/metrics/prometheus
+{% endif %}
+    static_configs:
+    - labels:
+        instance: "{{ inventory_hostname }}"
+        scrape_location: execution
+      targets:
+      - localhost:{{ el_metrics_port }}
+
+{% endif %}

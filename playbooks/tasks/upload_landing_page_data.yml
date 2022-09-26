@@ -1,0 +1,18 @@
+- name: Upload landing_page data
+  hosts: landing_page
+  gather_facts: true
+  tasks:
+    - name: Creates landing_page dir
+      file:
+        path: "{{landing_page_dir}}"
+        state: directory
+    - name: Move the landing_page config j2 template to remote
+      template:
+        src: "{{inventory_dir}}/../landing_page_data/config.yaml.j2"
+        dest:  "{{landing_page_dir}}/config.yaml"
+        mode: '755'
+    - name: Move the landing_page random text to remote
+      template:
+        src: "{{inventory_dir}}/../landing_page_data/custom_text.md"
+        dest:  "{{landing_page_dir}}/custom_text.md"
+        mode: '755'

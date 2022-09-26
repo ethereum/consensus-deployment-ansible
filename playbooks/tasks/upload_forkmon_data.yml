@@ -1,0 +1,13 @@
+- name: Upload forkmon data
+  hosts: forkmon
+  gather_facts: true
+  tasks:
+  - name: Creates forkmon dir
+    file:
+      path: "{{forkmon_host_dir}}"
+      state: directory
+  - name: Move the forkmon config j2 template to remote
+    template:
+      src: forkmon/config.toml.j2
+      dest:  "{{forkmon_host_dir}}/config.toml"
+      mode: '755'

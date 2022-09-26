@@ -1,0 +1,18 @@
+- name: Upload faucet data
+  hosts: faucet
+  gather_facts: true
+  tasks:
+    - name: Creates faucet dir
+      file:
+        path: "{{faucet_node_dir}}"
+        state: directory
+    - name: Move the faucet config j2 template to remote
+      template:
+        src: faucet/chains.json.j2
+        dest:  "{{faucet_node_dir}}/chains.json"
+        mode: '755'
+    - name: Move the faucet faucet.properties j2 template to remote
+      template:
+        src: faucet/fauceth.properties.j2
+        dest: "{{faucet_node_dir}}/fauceth.properties"
+        mode: '755'

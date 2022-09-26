@@ -1,0 +1,26 @@
+- import_playbook: tasks/stop_beacon.yml
+  when: mev_boost == 'true'
+- import_playbook: tasks/stop_validator.yml
+  when: mev_boost == 'true'
+
+- name: Start mev boost
+  hosts: beacon
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start mev boost
+      when: mev_boost == 'true'
+      docker_container:
+        name: "{{ mev_boost_container_name }}"
+        state: started
+        image: "{{ mev_boost_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        command: "{{ mev_boost_start_args }}"
+
+
+- import_playbook: tasks/start_beacon.yml
+  when: mev_boost == 'true'
+- import_playbook: tasks/start_validator.yml
+  when: (separate_validator_process_enabled) and (no_validator_keys != 'true') and (mev_boost == 'true')

@@ -1,0 +1,18 @@
+- name: Start validator client
+  hosts: validator
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start cl validator client container
+      docker_container:
+        name: "{{ validator_container_name }}"
+        state: started
+        image: "{{ validator_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: "{{ validator_require_restart | default(false) }}"
+        volumes: "{{validator_volumes}}"
+        command: "{{ validator_start_args }}"
+        env: "{{ validator_env | default({}) }}"
+        user: "{{ validator_user_id }}"

@@ -1,0 +1,19 @@
+---
+haproxy_frontends:
+  - name: host_grafana
+    address: grafana.example.io
+    backend: grafana
+
+
+haproxy_backend_servers:
+  - name: grafana
+    address: localhost:3000
+    options: 'check fall 3 rise 2'
+
+haproxy_stats_port: 8404
+haproxy_user: monitoring
+haproxy_group: monitoring
+haproxy_stats_user: monitoring
+haproxy_stats_password: example
+
+haproxy_default_backend_name: grafana

@@ -1,0 +1,70 @@
+- name: Upload validator keys
+  hosts: validator
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Check that the keys to be moved already exists
+      delegate_to: localhost
+      ansible.builtin.stat:
+        path: "{{local_validator_host_archive}}"
+      register: does_key_tar_exist
+    - name: Remove the directory in case it has stale key data
+      when: not does_key_tar_exist.stat.exists
+      delegate_to: localhost
+      file:
+        path: "{{local_validator_host_dir}}/selected_keys"
+        state: absent
+    - name: Create dir so we start from a clean slate
+      when: not does_key_tar_exist.stat.exists
+      delegate_to: localhost
+      file:
+        path: "{{local_validator_host_dir}}/selected_keys"
+        state: directory
+    - name: Copy keys for lighthouse
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'lighthouse'
+      delegate_to: localhost
+      shell: |
+        cp -r "{{local_validator_host_dir}}/keys" "{{local_validator_host_dir}}/selected_keys/validators"
+        cp -r "{{local_validator_host_dir}}/secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
+    - name: Copy keys for teku
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'teku'
+      delegate_to: localhost
+      shell: |
+        cp -r "{{local_validator_host_dir}}/teku-keys" "{{local_validator_host_dir}}/selected_keys/keys"
+        cp -r "{{local_validator_host_dir}}/teku-secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
+    - name: Create folders for prysm
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'prysm'
+      delegate_to: localhost
+      shell: |
+        mkdir -p "{{local_validator_host_dir}}/selected_keys/wallet/direct/accounts"
+        echo "prysm" > "{{local_validator_host_dir}}/selected_keys/wallet_pass.txt"
+        cp -r "{{local_validator_host_dir}}/prysm/direct/accounts/all-accounts.keystore.json" "{{local_validator_host_dir}}/selected_keys/wallet/direct/accounts/all-accounts.keystore.json"
+        cp -r "{{local_validator_host_dir}}/prysm/keymanageropts.json" "{{local_validator_host_dir}}/selected_keys/wallet/direct/keymanageropts.json"
+    - name: Copy keys for nimbus
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'nimbus'
+      delegate_to: localhost
+      shell: |
+        cp -r "{{local_validator_host_dir}}/nimbus-keys" "{{local_validator_host_dir}}/selected_keys/keys"
+        cp -r "{{local_validator_host_dir}}/secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
+    - name: Copy keys for lodestar
+      when: not does_key_tar_exist.stat.exists and cl_client_name == 'lodestar'
+      delegate_to: localhost
+      shell: |
+        cp -r "{{local_validator_host_dir}}/keys" "{{local_validator_host_dir}}/selected_keys/keystores"
+        cp -r "{{local_validator_host_dir}}/secrets" "{{local_validator_host_dir}}/selected_keys/secrets"
+    - name: Archive validator dir to prepare for upload
+      when: not does_key_tar_exist.stat.exists
+      delegate_to: localhost
+      archive:
+        path: "{{local_validator_host_dir}}/selected_keys/*"
+        dest: "{{local_validator_host_archive}}"
+    - name: Upload new validator accounts to BN
+      unarchive:
+        src: "{{ local_validator_host_archive }}"
+        dest: "{{ validator_node_dir }}/"
+        mode: "{{keystores_file_mode}}"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+    - name: Modify permissions to match user-group inside docker image
+      shell: chown -R "{{ validator_user_id }}" "{{ validator_node_dir }}"
+      become: true

@@ -1,0 +1,13 @@
+- name: Upload execution explorer data
+  hosts: explorer
+  gather_facts: true
+  tasks:
+    - name: Creates explorer dir
+      file:
+        path: "{{explorer_host_dir}}"
+        state: directory
+    - name: Move the execution explorer config j2 template to remote
+      template:
+        src: blockscout_data/blockscout.env.j2
+        dest:  "{{explorer_host_dir}}/blockscout.env"
+        mode: '755'

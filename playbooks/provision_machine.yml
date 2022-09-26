@@ -1,0 +1,6 @@
+# Sets up access keys and installs basic packages
+- import_playbook: tasks/create_bootstrap_user_first_run.yml
+
+# Setup hosts from scatch
+- import_playbook: tasks/start_firewall.yml
+- import_playbook: tasks/setup_machine.yml

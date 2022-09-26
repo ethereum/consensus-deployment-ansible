@@ -1,0 +1,17 @@
+- name: Start snooper
+  hosts: all
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start snooper
+      docker_container:
+        name: "{{ snoop_container_name }}"
+        state: started
+        image: "{{ snoop_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: "{{ beacon_require_restart | default(false) }}"
+        command: "{{ snoop_command }}"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"

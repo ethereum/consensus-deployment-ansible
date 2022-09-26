@@ -1,0 +1,18 @@
+- name: Init geth,erigon node
+  hosts: geth,erigon
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Run geth,erigon init
+      docker_container:
+        name: "exec_tmp"
+        state: started
+        image: "{{ el_image_name }}"
+        pull: true
+        restart_policy: no
+        auto_remove: false
+        detach: no
+        network_mode: host
+        volumes: "{{el_volumes}}"
+        command: "{{ geth_init_args }}"
+        env: "{{ el_env | default({}) }}"

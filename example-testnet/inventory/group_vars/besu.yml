@@ -1,0 +1,62 @@
+el_client_name: besu
+el_image_name: hyperledger/besu:22.7.2-openjdk-11-debug-amd64
+execution_endpoint: http://127.0.0.1:{{el_engine_snoop_port}}
+snoop_command: "./json_rpc_snoop -p {{el_engine_snoop_port}} http://127.0.0.1:{{el_engine_port}}"
+
+home_dir: "/home/{{ansible_user}}"
+
+el_memory: 5000M
+el_kernel_memory: 5500M
+
+el_github_external_user_pubkeys:
+  - garyschulte
+  - jflo
+  - fab-10
+  - matkt
+  - gezero
+  - siladu
+  - pinges
+
+# websocket with /ws suffix
+elendpoint_ws: ws://127.0.0.1:8546/ws
+
+el_volumes:
+  - "{{el_node_dir}}:/eldata"
+  - "{{testnet_dir}}:/networkdata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
+
+el_env:
+  JAVE_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+  NATIVE_MEMORY_OPTS: "-XX:NativeMemoryTracking=detail -XX:+UnlockDiagnosticVMOptions -XX:+PrintNMTStatistics"
+
+el_start_args: >
+  --data-path="/eldata/data"
+  --genesis-file="/networkdata/besu_genesis.json"
+  --network-id={{chainID}}
+  --max-peers=100
+  --rpc-http-enabled=true --rpc-http-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE
+  --rpc-http-host=0.0.0.0
+  --rpc-http-port={{el_rpc_port}}
+  --engine-rpc-enabled=true
+  --engine-rpc-port={{el_engine_port}}
+  --engine-host-allowlist="*"
+  --rpc-http-cors-origins="*"
+  --rpc-ws-enabled=true --rpc-ws-api=ADMIN,CLIQUE,MINER,ETH,NET,DEBUG,TXPOOL,ENGINE,TRACE
+  --rpc-ws-host=0.0.0.0
+  --host-allowlist="*"
+  --metrics-enabled
+  --metrics-host=0.0.0.0
+  --metrics-port={{el_metrics_port}}
+  --p2p-enabled=true
+  --miner-coinbase="{{fee_recipient}}"
+  --p2p-host={{ansible_host}}
+  --sync-mode=X_CHECKPOINT
+  --data-storage-format="BONSAI"
+  --engine-jwt-enabled
+  --engine-jwt-secret=/jwtsecret
+  --ethstats={{inventory_hostname}}:{{ethstats_password}}@{{ethstats_url}}:3000
+  {% if (el_bootnode_enode is defined) and bootnode_enrs %}
+  --bootnodes="{{ el_bootnode_enode | join(',') }}"
+  {% endif %}
+
+el_user_id: "1000:1000"

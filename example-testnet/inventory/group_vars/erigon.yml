@@ -1,0 +1,50 @@
+el_client_name: erigon
+el_image_name: thorax/erigon:v2022.09.01
+execution_endpoint: http://127.0.0.1:{{el_engine_snoop_port}}
+snoop_command: "./json_rpc_snoop -p {{el_engine_snoop_port}} http://127.0.0.1:{{el_engine_port}}"
+
+home_dir: "/home/{{ansible_user}}"
+
+el_github_external_user_pubkeys:
+  - Giulio2002
+  - yperbasis
+
+# bare websocket
+elendpoint_ws: ws://127.0.0.1:8546
+
+el_volumes:
+  - "{{el_node_dir}}:/eldata"
+  - "{{testnet_dir}}:/networkdata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
+
+geth_init_args: >
+  erigon --datadir=/eldata init /networkdata/genesis.json
+
+el_start_args: >
+  erigon --datadir=/eldata
+  --networkid={{chainID}}
+  --http --http.api "wen3,admin,engine,net,eth"
+  --http.port {{el_rpc_port}}
+  --http.addr 0.0.0.0
+  --http.corsdomain "*"
+  --ws
+  --authrpc.port={{el_engine_port}}
+  --authrpc.addr=0.0.0.0
+  --authrpc.jwtsecret=/jwtsecret
+  --nat extip:{{ansible_host}}
+  --allow-insecure-unlock
+  --prune=htc
+  --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{el_metrics_port}}
+  --batchSize=32m
+  {% if (el_bootnode_enode is defined) and el_bootnode_enode %}
+  --bootnodes="{{ el_bootnode_enode | join(',') }}"
+  {% endif %}
+
+#  --nodiscover
+#  --staticpeers="{{ el_bootnode_enode | join(',') }}"
+
+el_user_id: "1000:1000"
+
+# ./go-ethereum/build/bin/geth --datadir=./goerli-shadow-fork init genesis.json
+# ./go-ethereum/build/bin/geth --authrpc.jwtsecret=/home/devops/jwtsecret --datadir=./goerli-shadow-fork --ethash.dagdir=./goerli-shadow-fork/ethash --mine --miner.threads=1 --miner.etherbase=0xfb969eb20eca70c2800103bbb0d3757bc60f918a --http --http.corsdomain='*' --http.addr="0.0.0.0" --http.api="engine,net,eth,debug,txpool"  --nat extip:164.90.177.4 --networkid=5 console
+# ./go-ethereum/build/bin/geth --datadir=./goerli-shadow-fork --ethash.dagdir=./goerli-shadow-fork/ethash  --http --http.corsdomain='*' --http.addr="0.0.0.0" --http.vhosts="*" --http.api="engine,net,eth,debug,txpool" --ws --ws.api="eth,net,engine" --ws.port=8546 --ws.addr="0.0.0.0" --rpc.allow-unprotected-txs  --nat extip:164.90.177.4 --networkid=5 console

@@ -1,0 +1,49 @@
+- name: Init beacon data dirs for nodes
+  hosts: beacon
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Creates beacon dir
+      file:
+        path: "{{beacon_node_dir}}"
+        state: directory
+- name: Init validator data dirs for nodes
+  hosts: validator
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates validator dir
+      file:
+        path: "{{validator_node_dir}}"
+        state: directory
+- name: Init el data dirs for nodes
+  hosts: execution
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates el dir
+      file:
+        path: "{{el_node_dir}}"
+        state: directory
+- name: Init testnet data dirs for nodes
+  hosts: [beacon, execution, validator]
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Creates testnet dir
+      file:
+        path: "{{testnet_dir}}"
+        state: directory
+
+- name: Init JWT secret
+  hosts: [beacon, execution]
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Stat JWT path
+      register: jwt_path_stat
+      stat:
+        path: "{{ home_dir }}/jwtsecret"
+    - name: Creates JWT secret
+      when: not jwt_path_stat.stat.exists
+      shell: echo -n 0x$(openssl rand -hex 32 | tr -d "\n") > "{{ home_dir }}/jwtsecret"

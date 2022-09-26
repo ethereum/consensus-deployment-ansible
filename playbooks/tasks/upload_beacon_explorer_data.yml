@@ -1,0 +1,30 @@
+- name: Upload explorer data
+  hosts: explorer
+  gather_facts: false
+  tasks:
+    - name: Creates explorer dir
+      file:
+        path: "{{explorer_host_dir}}"
+        state: directory
+
+    - name: Load config
+      delegate_to: localhost
+      set_fact:
+        cl_config: "{{ lookup('file', local_cl_config_filepath) | from_yaml }}"
+
+    - name: Template config
+      template:
+        src: "./templates/beaconchain_explorer/config.yaml"
+        dest: "{{explorer_host_dir}}/config.yaml"
+    - name: Copy imprint.html
+      copy:
+        src: "./templates/beaconchain_explorer/imprint.html"
+        dest: "{{explorer_host_dir}}/imprint.html"
+    - name: Copy tables.sql
+      copy:
+        src: "./templates/beaconchain_explorer/tables.sql"
+        dest: "{{explorer_host_dir}}/tables.sql"
+    - name: Copy cl config
+      copy:
+        src: "{{local_cl_config_filepath}}"
+        dest: "{{explorer_host_dir}}/cl_config.yaml"

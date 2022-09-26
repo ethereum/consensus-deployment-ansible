@@ -1,0 +1,23 @@
+- name: Collect ENRs
+  hosts: beacon
+  gather_facts: false
+  serial: 20
+  tasks:
+    - name: Get node identity
+      shell: curl http://localhost:{{beacon_api_port}}/eth/v1/node/identity
+      register: node_identity_response
+    - name: Set each node's own enode
+      set_fact:
+        beacon_enr: "{{( node_identity_response.stdout | from_json)['data']['enr'] }}"
+- name: Write ENRs
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Create a map with all node's ENRs
+      with_items: "{{ groups['beacon'] }}"
+      set_fact:
+        beacon_enrs: "{{ beacon_enrs|default({}) | combine( {item: hostvars[item]['beacon_enr']} ) }}"
+    - name: Write ENRs
+      copy:
+        content: "{{ beacon_enrs.values() | list | to_nice_json }}"
+        dest: "../../enrs.json"

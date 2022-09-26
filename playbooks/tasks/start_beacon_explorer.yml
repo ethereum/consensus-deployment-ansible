@@ -1,0 +1,23 @@
+- name: Start explorer
+  hosts: explorer
+  gather_facts: true
+  serial: 20
+  tasks:
+    - name: Start cl explorer
+      docker_container:
+        name: "{{ beacon_explorer_container_name }}"
+        state: started
+        image: "{{ beacon_explorer_image_name }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: bridge
+        networks:
+          - name: "{{explorer_docker_network_name}}"
+            ipv4_address: "172.1.1.101"
+        ports:
+          - "5000:9333"
+          - "3333:3333"
+        restart: "{{ explorer_require_restart | default(false) }}"
+        memory: "{{explorer_memory}}"
+        command: "{{ beacon_explorer_start_args }}"
+        volumes: "{{beacon_explorer_volumes}}"
