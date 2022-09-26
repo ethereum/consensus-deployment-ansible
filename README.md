@@ -18,3 +18,4 @@ git submodule update --init --recursive
 - Modify the `testnets/<name>/inventory/group_vars/eth2client_<client_name>.yml` if required
 - Check the inventory with `ansible-inventory -i testnets/<name>/inventory/dynamic.py --list`
 - Run the playbook to run all beacon nodes and validators with ` ansible-playbook -i testnets/<name>/inventory/dynamic.py playbooks/setup_beacon_and_validators_full.yml`
+
