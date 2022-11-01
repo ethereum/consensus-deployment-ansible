@@ -127,7 +127,10 @@ el_node_dir: "{{home_dir}}/eldata"
 
 ##############################################
 # common log config
+# Possible log levels for execution clients: 
+# [off], error, warn, info (default), debug, trace, [all] 
 ##############################################
+execution_log_level: info
 beacon_log_level: info
 common_log_options:
   max-file: "10"

@@ -51,6 +51,7 @@ el_start_args: >
   --Metrics.ExposePort={{el_metrics_port}}
   --Metrics.Enabled=true
   --Sync.SnapSync=true
+  --log {{ execution_log_level | upper }}
 
 # run as root, the nethermind image doesn't handle running regular user well
 el_user_id: "0:0"
