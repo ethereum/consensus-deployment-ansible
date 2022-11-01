@@ -57,6 +57,7 @@ remote_write_username: "test"
 remote_write_password: "test"
 
 no_validator_keys: false
+ethstats_enabled: false 
 ethstats_url: "example.io"
 ethstats_password: "example"
 
