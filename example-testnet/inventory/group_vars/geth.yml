@@ -41,7 +41,9 @@ el_start_args: >
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{el_metrics_port}}
   --vmodule=rpc=5
   --maxpeers=75
+  {% if (ethstats_enabled) %}
   --ethstats={{inventory_hostname}}:{{ethstats_password}}@{{ethstats_url}}
+  {% endif %}
   {% if (el_bootnode_enode is defined) and el_bootnode_enode %}
   --bootnodes "{{ el_bootnode_enode | join(',') }}"
   {% endif %}

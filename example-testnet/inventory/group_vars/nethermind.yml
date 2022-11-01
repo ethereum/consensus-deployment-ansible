@@ -42,10 +42,12 @@ el_start_args: >
   --Init.IsMining=true
   --JsonRpc.JwtSecretFile=/jwtsecret
   --JsonRpc.AdditionalRpcUrls="http://localhost:{{el_engine_port_no_auth}}|http;ws|net;eth;subscribe;engine;web3;client|no-auth,http://localhost:{{el_engine_port}}|http;ws|net;eth;subscribe;engine;web3;client"
+  {% if (ethstats_enabled) %}
   --EthStats.Enabled=true
   --EthStats.Name={{inventory_hostname}}
   --EthStats.Secret={{ethstats_password}}
   --EthStats.Server=wss://{{ethstats_url}}/api/
+  {% endif %}
   --Metrics.ExposePort={{el_metrics_port}}
   --Metrics.Enabled=true
   --Sync.SnapSync=true
