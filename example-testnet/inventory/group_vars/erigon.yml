@@ -36,6 +36,7 @@ el_start_args: >
   --prune=htc
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{el_metrics_port}}
   --batchSize=32m
+  --verbosity={{ {"off": "0", "error": "1", "warn": "2", "info": "3", "debug": "4", "trace": "5"}[execution_log_level] }}
   {% if (el_bootnode_enode is defined) and el_bootnode_enode %}
   --bootnodes="{{ el_bootnode_enode | join(',') }}"
   {% endif %}

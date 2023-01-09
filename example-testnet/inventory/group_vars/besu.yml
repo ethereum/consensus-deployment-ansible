@@ -54,6 +54,7 @@ el_start_args: >
   --data-storage-format="BONSAI"
   --engine-jwt-enabled
   --engine-jwt-secret=/jwtsecret
+  --logging={{ execution_log_level | upper }}
   {% if (ethstats_enabled) %}
   --ethstats={{inventory_hostname}}:{{ethstats_password}}@{{ethstats_url}}:3000
   {% endif %}

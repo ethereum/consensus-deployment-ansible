@@ -39,8 +39,10 @@ el_start_args: >
   --nat extip:{{ansible_host}}
   --allow-insecure-unlock
   --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port={{el_metrics_port}}
-  --vmodule=rpc=5
   --maxpeers=75
+  --syncmode=full
+  --verbosity {{ {"off": "0", "error": "1", "warn": "2", "info": "3", "debug": "4", "trace": "5", "all": "5"}[execution_log_level] }}
+  --vmodule=rpc={{- {"off": "0", "error": "1", "warn": "2", "info": "3", "debug": "4", "trace": "5", "all": "5"}[execution_log_level] }}
   {% if (ethstats_enabled) %}
   --ethstats={{inventory_hostname}}:{{ethstats_password}}@{{ethstats_url}}
   {% endif %}
