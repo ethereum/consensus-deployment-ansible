@@ -9,6 +9,6 @@
 - name: geerlingguy.firewall
   version: "2.5.0"
 - name: robertdebock.bootstrap
-  version: "6.0.4"
+  version: "6.1.1"
 - name: robertdebock.fail2ban
   version: "4.2.3"
